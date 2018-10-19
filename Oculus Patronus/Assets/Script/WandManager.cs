@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class WandManager : MonoBehaviour {
 
     // Use this for initialization
 
     public float range = 100f;
+    public List<SpellDefinition> spellList;
 
-    private Dictionary<string,List<SpellColliderType>> colliderDictio;
+    //private Dictionary<string,List<SpellColliderType>> colliderDictio;
 
     private SpellTree spellTree;
 
@@ -19,34 +21,38 @@ public class WandManager : MonoBehaviour {
     RaycastHit shootHit;
     ParticleSystem spellParticles;
 
-    
-
     private Collider spellCollider;
+
 	void Start () {
         spellCollider = this.GetComponent<Collider>();
         isReading = false;
 
-        colliderDictio = new Dictionary<string, List<SpellColliderType>>();
+        //colliderDictio = new Dictionary<string, List<SpellColliderType>>();
 
-        List<SpellColliderType> colliderList = new List<SpellColliderType>();
-        colliderList.Add(SpellColliderType.RIGHT);
-        colliderList.Add(SpellColliderType.CENTER);
-        colliderDictio.Add("shoot", colliderList);
+        //List<SpellColliderType> colliderList = new List<SpellColliderType>();
+        //colliderList.Add(SpellColliderType.RIGHT);
+        //colliderList.Add(SpellColliderType.CENTER);
+        //colliderDictio.Add("shoot", colliderList);
 
-        List<SpellColliderType> colliderList2 = new List<SpellColliderType>();
-        colliderList2.Add(SpellColliderType.RIGHT);
-        colliderList2.Add(SpellColliderType.TOP);
-        colliderList2.Add(SpellColliderType.CENTER);
-        colliderDictio.Add("test", colliderList2);
+        //List<SpellColliderType> colliderList2 = new List<SpellColliderType>();
+        //colliderList2.Add(SpellColliderType.RIGHT);
+        //colliderList2.Add(SpellColliderType.TOP);
+        //colliderList2.Add(SpellColliderType.CENTER);
+        //colliderDictio.Add("test", colliderList2);
 
 
         spellParticles = GetComponent<ParticleSystem>();
 
         spellTree = new SpellTree();
 
-        foreach(string key in colliderDictio.Keys)
+        //foreach(string key in colliderDictio.Keys)
+        //{
+        //    spellTree.addSpell(colliderDictio[key], key);
+        //}
+
+        foreach (SpellDefinition spell in spellList)
         {
-            spellTree.addSpell(colliderDictio[key], key);
+            spellTree.addSpell(new List<SpellColliderType>(spell.colliderOrder) , spell.spellName);
         }
 
         spellTree.DebugTree();
@@ -81,9 +87,11 @@ public class WandManager : MonoBehaviour {
         // Enable the line renderer and set it's first position to be the end of the gun.
     }
 
+    [System.Serializable]
     public struct SpellDefinition
     {
         public string spellName;
-        public List<SpellColliderType> colliderOrder;
+        public SpellColliderType[] colliderOrder;
     }
 }
+

@@ -37,12 +37,12 @@ public class SpellTree{
                 {
                     isFind = true;
                     actualNode = child;
-                    Debug.Log("actual is " + actualNode.spellColliderType);
+                    //Debug.Log("actual is " + actualNode.spellColliderType);
                     break;
                 }
             }
-            if(!isFind)
-                Debug.Log("can't Advance to " + type);
+            //if(!isFind)
+                //Debug.Log("can't Advance to " + type);
 
             return isFind;
         }
@@ -51,13 +51,13 @@ public class SpellTree{
             SpellTreeNode newNode = actualNode.getChildOfType(type);
             if(newNode == null)
             {
-                Debug.Log("can't Advance to " + type);
+                //Debug.Log("can't Advance to " + type);
                 return false;
             }
             else
             {
                 actualNode = newNode;
-                Debug.Log("actual is " + actualNode.spellColliderType);
+                //Debug.Log("actual is " + actualNode.spellColliderType);
                 return true;
             }
             
@@ -67,7 +67,7 @@ public class SpellTree{
     //use to reset the actualNode at the start, i.e. no collision register
     public void resetActualNode()
     {
-        Debug.Log("actual is reset");
+        //Debug.Log("actual is reset");
 
         actualNode = null;
     }
@@ -120,26 +120,27 @@ public class SpellTree{
     //a node of the tree
     public class SpellTreeNode
     {
-        private List<SpellTreeNode> children;
         //is equal to null exept for the last node of a spell
         public string spellName { get; private set; }
         public SpellColliderType spellColliderType { get; private set; }
 
+        private List<SpellTreeNode> children;
+
         public SpellTreeNode(List<SpellColliderType> spellDefinition, string spellName)
         {
-            children = new List<SpellTreeNode>();
-
             SpellColliderType _spellColliderType = spellDefinition[0];
             spellDefinition.RemoveAt(0);
             this.spellColliderType = _spellColliderType;
             
             if (spellDefinition.Count != 0)
             {
+                children = new List<SpellTreeNode>();
                 this.spellName = null;
                 children.Add(new SpellTreeNode(spellDefinition, spellName));
             }
             else
             {
+                children = null;
                 this.spellName = spellName;
             }
         }
@@ -205,7 +206,10 @@ public class SpellTree{
             }
             else
             {
-                str += " + " + this.spellColliderType;
+                if(str == "")
+                    str += this.spellColliderType;
+                else
+                    str += " + " + this.spellColliderType;
                 foreach (SpellTreeNode child in children)
                 {
                     child.DebugTreeNode(str);
