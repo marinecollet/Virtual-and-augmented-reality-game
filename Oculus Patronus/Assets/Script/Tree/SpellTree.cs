@@ -42,25 +42,28 @@ public class SpellTree{
                 }
             }
             //if(!isFind)
-                //Debug.Log("can't Advance to " + type);
+            //Debug.Log("can't Advance to " + type);
 
             return isFind;
         }
         else
         {
-            SpellTreeNode newNode = actualNode.getChildOfType(type);
-            if(newNode == null)
+            if (actualNode.spellColliderType != type)
             {
-                //Debug.Log("can't Advance to " + type);
-                return false;
+                SpellTreeNode newNode = actualNode.getChildOfType(type);
+                if (newNode == null)
+                {
+                    //Debug.Log("can't Advance to " + type);
+                    return false;
+                }
+                else
+                {
+                    actualNode = newNode;
+                    //Debug.Log("actual is " + actualNode.spellColliderType);
+                    return true;
+                }
             }
-            else
-            {
-                actualNode = newNode;
-                //Debug.Log("actual is " + actualNode.spellColliderType);
-                return true;
-            }
-            
+            return true;
         }
     }
 

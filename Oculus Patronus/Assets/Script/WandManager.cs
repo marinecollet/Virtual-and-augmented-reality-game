@@ -20,12 +20,24 @@ public class WandManager : MonoBehaviour {
     Ray shootRay;
     RaycastHit shootHit;
     ParticleSystem spellParticles;
+    LineRenderer gunLine;
+    int movableMask;
 
     private Collider spellCollider;
 
-	void Start () {
+    ChangeParent changedParentGameObject;
+
+    GameObject spellShot;
+
+    void Start () {
         spellCollider = this.GetComponent<Collider>();
+        gunLine = GetComponent<LineRenderer>();
+
         isReading = false;
+        movableMask = LayerMask.GetMask("Movable");
+
+
+        spellShot = Resources.Load("Sphere") as GameObject;
 
         //colliderDictio = new Dictionary<string, List<SpellColliderType>>();
 
@@ -39,7 +51,6 @@ public class WandManager : MonoBehaviour {
         //colliderList2.Add(SpellColliderType.TOP);
         //colliderList2.Add(SpellColliderType.CENTER);
         //colliderDictio.Add("test", colliderList2);
-
 
         spellParticles = GetComponent<ParticleSystem>();
 
@@ -78,11 +89,61 @@ public class WandManager : MonoBehaviour {
 
     void launchSpell(string spell)
     {
+        spellParticles.Stop();
+        spellParticles.Play();
+
+        switch (spell)
+        {
+
+            case "shot":
+                GameObject wand = GameObject.FindGameObjectWithTag("Wand");
+                GameObject projectile = Instantiate(spellShot) as GameObject;
+                projectile.transform.position = transform.position + wand.transform.forward;
+                Rigidbody rb = projectile.GetComponent<Rigidbody>();
+                rb.velocity = wand.transform.forward * 20;
+                break;
+            case "lave":
+                //Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
+                Debug.Log("rayCast");
+                Debug.Log(transform.position);
+
+                gunLine.enabled = true;
+                gunLine.SetPosition(0, transform.position);
+
+                shootRay.origin = transform.position;
+                shootRay.direction = transform.forward;
+
+                if (Physics.Raycast(shootRay, out shootHit, range, movableMask))
+                {
+                    Debug.Log("rayCast success");
+                    // Try and find an EnemyHealth script on the gameobject hit.
+                    changedParentGameObject = shootHit.collider.GetComponent<ChangeParent>();
+                    shootHit.transform.parent = this.transform.parent;
+                    //If the EnemyHealth component exist...
+                    if (changedParentGameObject != null)
+                    {
+                        Debug.Log("change success");
+                        //... the enemy should take damage.
+                        changedParentGameObject.Change(this.gameObject);
+                    }
+
+                    //Set the second position of the line renderer to the point the raycast hit.
+                    gunLine.SetPosition(1, shootHit.point);
+                }
+                else
+                {
+                    Debug.Log("rayCast fail");
+                    //... set the second position of the line renderer to the fullest extent of the gun's range.
+                    gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
+                }
+                break;
+            default:
+                break;
+        }
         Debug.Log(spell);
 
         // Stop the particles from playing if they were, then start the particles.
-        spellParticles.Stop();
-        spellParticles.Play();
+
 
         // Enable the line renderer and set it's first position to be the end of the gun.
     }
@@ -92,6 +153,16 @@ public class WandManager : MonoBehaviour {
     {
         public string spellName;
         public SpellColliderType[] colliderOrder;
+    }
+
+    public void Update()
+    {
+        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger, OVRInput.Controller.Touch) && changedParentGameObject != null)
+        {
+            changedParentGameObject.reset();
+            changedParentGameObject = null;
+
+        }
     }
 }
 
