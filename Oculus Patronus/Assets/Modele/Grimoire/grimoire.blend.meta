@@ -45,8 +45,9 @@ ModelImporter:
     400036: Master
     400038: pages_L
     400040: pages_R
-    2100000: pages
+    2100000: page_right
     2100002: Cover
+    2100004: page_left
     4300000: pages_R
     4300002: Cover
     4300004: pages_L
@@ -67,8 +68,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: pages
+      name: page_left
     second: {fileID: 2100000, guid: a6d9fc444185fa44594bd766646a6484, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: page_right
+    second: {fileID: 2100000, guid: 3073f04f044710244a42bdb6d47c5752, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
