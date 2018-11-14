@@ -12,6 +12,12 @@ public class Maze : MonoBehaviour
     public MazePassage passagePrefab;
     public MazeWall wallPrefab;
     public MazeDoor doorPrefab;
+    public MazeCube cubePrefab;
+    public MazeEnnemy ennemyPrefab;
+    [Range(0f, 1f)]
+    public float ennemyProbability;
+    [Range(0f, 1f)]
+    public float cubeProbability;
     [Range(0f, 1f)]
     public float doorProbability;
 
@@ -99,8 +105,16 @@ public class Maze : MonoBehaviour
 
     private void CreatePassage(MazeCell cell, MazeCell otherCell, MazeDirection direction)
     {
-        Debug.Log("value radom " + Random.value);
         MazePassage prefab = Random.value < doorProbability ? doorPrefab : passagePrefab;
+        if(prefab == passagePrefab)
+        {
+            prefab = Random.value < cubeProbability ? cubePrefab : passagePrefab;
+            if (prefab == passagePrefab)
+            {
+                prefab = Random.value < ennemyProbability ? ennemyPrefab : passagePrefab;
+            }
+        }
+
         MazePassage passage = Instantiate(prefab) as MazePassage;
         passage.Initialize(cell, otherCell, direction);
         passage = Instantiate(prefab) as MazePassage;

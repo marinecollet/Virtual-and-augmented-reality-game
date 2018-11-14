@@ -63,4 +63,10 @@ MonoBehaviour:
     type: 2}
   doorPrefab: {fileID: 114204156372025602, guid: 95aaa7d46a2f93649b98d9b888ec9256,
     type: 2}
+  cubePrefab: {fileID: 114657106812731704, guid: 4b16f25cc9a619e4aa04f7ad5709dac8,
+    type: 2}
+  ennemyPrefab: {fileID: 114688247553922502, guid: f04b4fac0dc023b45a6f6288c26b3929,
+    type: 2}
+  ennemyProbability: 0.1
+  cubeProbability: 0.1
   doorProbability: 0.1

@@ -16,7 +16,15 @@ public class Page_left : MonoBehaviour {
             renderer.material = Resources.Load("material1", typeof(Material)) as Material;
         }
     }
-    
+
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            renderer = GetComponent<SkinnedMeshRenderer>();
+            renderer.material = Resources.Load("material1", typeof(Material)) as Material;
+        }
+    }
 
 
 }
