@@ -7,6 +7,13 @@ public class MazeCell : MonoBehaviour
     public IntVector2 coordinates;
     private int InitializedEdgeCount;
     private MazeCellEdge[] edges = new MazeCellEdge[MazeDirections.Count];
+    public MazeRoom room;
+
+    public void Initialize (MazeRoom room)
+    {
+        room.Add(this);
+        transform.GetChild(0).GetComponent<Renderer>().material = room.settings.floorMaterial;
+    }
 
     public MazeCellEdge GetEdge(MazeDirection direction)
     {
