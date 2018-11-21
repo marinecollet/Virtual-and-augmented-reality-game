@@ -9,6 +9,7 @@ public class WandManager : MonoBehaviour {
 
     public float range = 100f;
     public List<SpellDefinition> spellList;
+    public float moveObjectSpeed;
 
     //private Dictionary<string,List<SpellColliderType>> colliderDictio;
 
@@ -25,9 +26,16 @@ public class WandManager : MonoBehaviour {
 
     private Collider spellCollider;
 
-    ChangeParent changedParentGameObject;
+    ChangeParent changedParentGameObject = null;
 
     GameObject spellShot;
+
+    [System.Serializable]
+    public struct SpellDefinition
+    {
+        public string spellName;
+        public SpellColliderType[] colliderOrder;
+    }
 
     void Start () {
         spellCollider = this.GetComponent<Collider>();
@@ -103,7 +111,7 @@ public class WandManager : MonoBehaviour {
                 rb.velocity = wand.transform.forward * 20;
                 break;
             case "lave":
-                //Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
+                //Set the shootRay so that it starts at the end of the wand and points forward.
                 Debug.Log("rayCast");
                 Debug.Log(transform.position);
 
@@ -116,15 +124,16 @@ public class WandManager : MonoBehaviour {
                 if (Physics.Raycast(shootRay, out shootHit, range, movableMask))
                 {
                     Debug.Log("rayCast success");
-                    // Try and find an EnemyHealth script on the gameobject hit.
+                    // Try and find an ChangeParent script on the gameobject hit.
                     changedParentGameObject = shootHit.collider.GetComponent<ChangeParent>();
-                    shootHit.transform.parent = this.transform.parent;
+                    Debug.Log("changedParentGameObject " + changedParentGameObject);
+                    //shootHit.transform.parent = this.transform.parent;
                     //If the EnemyHealth component exist...
                     if (changedParentGameObject != null)
                     {
                         Debug.Log("change success");
                         //... the enemy should take damage.
-                        changedParentGameObject.Change(this.gameObject);
+                        changedParentGameObject.changeParent(this.gameObject);
                     }
 
                     //Set the second position of the line renderer to the point the raycast hit.
@@ -148,20 +157,19 @@ public class WandManager : MonoBehaviour {
         // Enable the line renderer and set it's first position to be the end of the gun.
     }
 
-    [System.Serializable]
-    public struct SpellDefinition
-    {
-        public string spellName;
-        public SpellColliderType[] colliderOrder;
-    }
-
     public void Update()
     {
         if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger, OVRInput.Controller.Touch) && changedParentGameObject != null)
         {
             changedParentGameObject.reset();
             changedParentGameObject = null;
+        }
 
+        if (OVRInput.GetDown(OVRInput.Button.SecondaryThumbstick, OVRInput.Controller.Touch) && changedParentGameObject != null)
+        {
+            Vector2 vect = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
+            Vector3 dir = (changedParentGameObject.transform.position - this.transform.position).normalized;
+            changedParentGameObject.transform.localPosition = changedParentGameObject.transform.localPosition + dir * vect.x * moveObjectSpeed;
         }
     }
 }
