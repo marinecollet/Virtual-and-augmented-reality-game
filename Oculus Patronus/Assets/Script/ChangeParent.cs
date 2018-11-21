@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ChangeParent : MonoBehaviour {
 
-    Transform oldParrent;
     Rigidbody rb;
 
     public void Start()
@@ -14,7 +13,6 @@ public class ChangeParent : MonoBehaviour {
 
     public void changeParent(GameObject gameObject)
     {
-        oldParrent = transform;
         transform.parent= gameObject.transform.parent;
         rb.isKinematic = true;
         rb.useGravity = false;
@@ -22,7 +20,7 @@ public class ChangeParent : MonoBehaviour {
 
     public void reset()
     {
-        transform.parent = oldParrent;
+        transform.parent = null;
         rb.isKinematic = false;
         rb.useGravity = true;
     }

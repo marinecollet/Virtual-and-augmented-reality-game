@@ -126,8 +126,6 @@ public class WandManager : MonoBehaviour {
                     Debug.Log("rayCast success");
                     // Try and find an ChangeParent script on the gameobject hit.
                     changedParentGameObject = shootHit.collider.GetComponent<ChangeParent>();
-                    Debug.Log("changedParentGameObject " + changedParentGameObject);
-                    //shootHit.transform.parent = this.transform.parent;
                     //If the EnemyHealth component exist...
                     if (changedParentGameObject != null)
                     {
@@ -159,7 +157,7 @@ public class WandManager : MonoBehaviour {
 
     public void Update()
     {
-        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger, OVRInput.Controller.Touch) && changedParentGameObject != null)
+        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && changedParentGameObject != null)
         {
             changedParentGameObject.reset();
             changedParentGameObject = null;
