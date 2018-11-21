@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class ChangeParent : MonoBehaviour {
 
+    Transform oldParrent;
     Rigidbody rb;
 
     public void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
-
-    public void changeParent(GameObject gameObject)
+    public void Change(GameObject gameObject)
     {
-        transform.parent= gameObject.transform.parent;
+        oldParrent = transform;
+        transform.SetParent(gameObject.transform.parent);
         rb.isKinematic = true;
         rb.useGravity = false;
     }
 
     public void reset()
     {
-        transform.parent = null;
+        transform.SetParent(oldParrent);
         rb.isKinematic = false;
         rb.useGravity = true;
     }
