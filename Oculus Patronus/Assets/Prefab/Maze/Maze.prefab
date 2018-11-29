@@ -60,7 +60,7 @@ MonoBehaviour:
     type: 2}
   wallPrefab: {fileID: 114699878219549792, guid: 24c4efbe2466c054fab545cb27518828,
     type: 2}
-  doorPrefab: {fileID: 114204156372025602, guid: ded1caa6fe888c4439a3a0e0e9128043,
+  doorPrefab: {fileID: 114670218479797860, guid: e5096b490761adc468d8c76a99de0032,
     type: 2}
   ennemyPrefab: {fileID: 114688247553922502, guid: ceddfef9342442a40a648b71b63a8e0c,
     type: 2}

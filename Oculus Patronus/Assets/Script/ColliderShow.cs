@@ -9,6 +9,7 @@ public class ColliderShow : MonoBehaviour
     public Renderer renderer_bot;
     public Renderer renderer_right;
     public Renderer renderer_mid;
+
     public void Update()
     {
         if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
