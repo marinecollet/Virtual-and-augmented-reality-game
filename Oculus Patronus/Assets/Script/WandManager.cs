@@ -6,11 +6,17 @@ using UnityEngine;
 public class WandManager : MonoBehaviour {
 
     // Use this for initialization
+    public Teleport teleport;
 
     public float range = 100f;
     public List<SpellDefinition> spellList;
     public float moveObjectSpeed;
     public Renderer mesh_teleport;
+
+    [SerializeField]
+    public Transform player;
+    [SerializeField]
+    public Transform camera;
 
     //private Dictionary<string,List<SpellColliderType>> colliderDictio;
 
@@ -27,11 +33,14 @@ public class WandManager : MonoBehaviour {
     int movableMask;
     int doorMask;
 
+    Vector3 position = new Vector3();
+
     private Collider spellCollider;
 
     ChangeParent changedParentGameObject = null;
 
     GameObject spellShot;
+    
 
     [System.Serializable]
     public struct SpellDefinition
@@ -212,6 +221,7 @@ public class WandManager : MonoBehaviour {
             Vector3 dir = (changedParentGameObject.transform.position - this.transform.position).normalized;
             changedParentGameObject.transform.localPosition = changedParentGameObject.transform.localPosition + dir * vect.x * moveObjectSpeed;
         }
+        /**
         if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
         {
             if(mesh_teleport.enabled == true)
@@ -222,7 +232,33 @@ public class WandManager : MonoBehaviour {
             {
                 mesh_teleport.enabled = true;
             }
+        }**/
+        if(OVRInput.GetDown(OVRInput.Button.PrimaryThumbstick))
+        {
+            if (mesh_teleport.enabled == true)
+            {
+                mesh_teleport.enabled = false;
+            }
+            else
+            {
+                mesh_teleport.enabled = true;
+            }
+            Vector2 vector_joystick = new Vector2();
+            vector_joystick = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
+            teleport.velocity += vector_joystick.y;
+        }
+
+        if (OVRInput.GetUp(OVRInput.Button.PrimaryThumbstick))
+        {
+            if (teleport.getRight())
+            {
+                position = teleport.getPosition();
+                player.position = new Vector3(position.x, player.position.y, position.z);
+                camera.position = new Vector3(position.x, camera.position.y, position.z);
+            }
         }
     }
+
+
 }
 

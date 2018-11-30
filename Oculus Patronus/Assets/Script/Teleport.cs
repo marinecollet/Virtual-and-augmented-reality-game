@@ -7,6 +7,7 @@ using UnityEngine;
 public class Teleport : MonoBehaviour
 {
 
+
     Mesh mesh;
     [SerializeField]
     public float meshWidth;
@@ -16,13 +17,11 @@ public class Teleport : MonoBehaviour
     public float angle;
     [SerializeField]
     public int resolution = 10;
-    [SerializeField]
-    public Transform player;
-    [SerializeField]
-    public Transform camera;
     float g; //force of gravity on the y axis
     float radianAngle;
     private Renderer renderer;
+    Vector3 position = new Vector3();
+    bool right;
 
     private void Awake()
     {
@@ -106,14 +105,30 @@ public class Teleport : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground") && renderer.enabled == true)
         {
-            Vector3 position = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-            Debug.Log(position);
-            player.position = new Vector3(position.x, player.position.y, position.z);
-            camera.position = new Vector3(position.x, camera.position.y, position.z);
+            renderer.material = Resources.Load("Correct_zone", typeof(Material)) as Material;
+            right = true;
+            position = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
             renderer.enabled = false;
+        }
+        else
+        {
+            renderer.material = Resources.Load("Bad_zone", typeof(Material)) as Material;
+            right = false;
         }
         
     }
 
+    public Vector3 getPosition()
+    {
+        return position;
+    }
+
+    public bool getRight()
+    {
+        if (right)
+            return true;
+        else
+            return false;
+    }
 
 }
