@@ -13,5 +13,4 @@ public class MazeDoor : MazePassage
             Transform child = transform.GetChild(i);
         }
     }
-
 }

@@ -6,10 +6,17 @@ using UnityEngine;
 public class WandManager : MonoBehaviour {
 
     // Use this for initialization
+    public Teleport teleport;
 
     public float range = 100f;
     public List<SpellDefinition> spellList;
     public float moveObjectSpeed;
+    public Renderer mesh_teleport;
+
+    [SerializeField]
+    public Transform player;
+    [SerializeField]
+    public Transform camera;
 
     //private Dictionary<string,List<SpellColliderType>> colliderDictio;
 
@@ -22,13 +29,18 @@ public class WandManager : MonoBehaviour {
     RaycastHit shootHit;
     ParticleSystem spellParticles;
     LineRenderer gunLine;
+
     int movableMask;
+    int doorMask;
+
+    Vector3 position = new Vector3();
 
     private Collider spellCollider;
 
     ChangeParent changedParentGameObject = null;
 
     GameObject spellShot;
+    
 
     [System.Serializable]
     public struct SpellDefinition
@@ -43,7 +55,7 @@ public class WandManager : MonoBehaviour {
 
         isReading = false;
         movableMask = LayerMask.GetMask("Movable");
-
+        doorMask = LayerMask.GetMask("Door");
 
         spellShot = Resources.Load("Sphere") as GameObject;
 
@@ -144,6 +156,46 @@ public class WandManager : MonoBehaviour {
                     gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
                 }
                 break;
+            case "holohomora":
+                //Set the shootRay so that it starts at the end of the wand and points forward.
+                Debug.Log("holohomora racast");
+                Debug.Log(transform.position);
+
+                gunLine.enabled = true;
+                gunLine.SetPosition(0, transform.position);
+
+                shootRay.origin = transform.position;
+                shootRay.direction = transform.forward;
+
+                if (Physics.Raycast(shootRay, out shootHit, range, doorMask))
+                {
+                    Debug.Log("rayCast success");
+                    // Try and find an ChangeParent script on the gameobject hit.
+                    //Animator anim = shootHit.collider.GetComponent<Animator>();
+                    ////If the EnemyHealth component exist...
+                    //if (anim != null && anim.GetBool("isOpen") != true)
+                    //{
+                    //    Debug.Log("open success success");
+                    //    //... the enemy should take damage.
+                    //    anim.SetBool("isOpen",true);
+                    //}
+
+                    DoorManager doorManager = shootHit.collider.GetComponent<DoorManager>();
+                    if(doorManager!= null)
+                    {
+                        doorManager.openTheDoor();
+                    }
+
+                    //Set the second position of the line renderer to the point the raycast hit.
+                    gunLine.SetPosition(1, shootHit.point);
+                }
+                else
+                {
+                    Debug.Log("holohomora rayCast fail");
+                    //... set the second position of the line renderer to the fullest extent of the gun's range.
+                    gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
+                }
+                break;
             default:
                 break;
         }
@@ -169,6 +221,44 @@ public class WandManager : MonoBehaviour {
             Vector3 dir = (changedParentGameObject.transform.position - this.transform.position).normalized;
             changedParentGameObject.transform.localPosition = changedParentGameObject.transform.localPosition + dir * vect.x * moveObjectSpeed;
         }
+        /**
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
+        {
+            if(mesh_teleport.enabled == true)
+            {
+                mesh_teleport.enabled = false;
+            }
+            else
+            {
+                mesh_teleport.enabled = true;
+            }
+        }**/
+        if(OVRInput.GetDown(OVRInput.Button.PrimaryThumbstick))
+        {
+            if (mesh_teleport.enabled == true)
+            {
+                mesh_teleport.enabled = false;
+            }
+            else
+            {
+                mesh_teleport.enabled = true;
+            }
+            Vector2 vector_joystick = new Vector2();
+            vector_joystick = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
+            teleport.velocity += vector_joystick.y;
+        }
+
+        if (OVRInput.GetUp(OVRInput.Button.PrimaryThumbstick))
+        {
+            if (teleport.getRight())
+            {
+                position = teleport.getPosition();
+                player.position = new Vector3(position.x, player.position.y, position.z);
+                camera.position = new Vector3(position.x, camera.position.y, position.z);
+            }
+        }
     }
+
+
 }
 
