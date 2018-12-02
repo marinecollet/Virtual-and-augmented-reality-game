@@ -1,46 +1,22 @@
 fileFormatVersion: 2
-guid: 47d7491c13bd7814cbb365006c0e2d32
+guid: ce9afb7b9e273fd478379fa28c2c0ac7
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Skin
-    2100002: Clothes
-    2100004: Head
-    2100006: Mouth
-    2100008: Eye
+    2100000: Material_001
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Dobby
+    4300000: Wand
     7400000: Default Take
     9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Clothes
-    second: {fileID: 2100000, guid: 138a4db819336114bbcd450bcaa73844, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Eye
-    second: {fileID: 2100000, guid: 359c6053001ef734caa27c035d2fc7b5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Head
-    second: {fileID: 2100000, guid: b02197e88fe0daa4389dbaf1b465f2ce, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Mouth
-    second: {fileID: 2100000, guid: 3d917cb4b11a9184d8dfd71726d65075, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Skin
-    second: {fileID: 2100000, guid: 720ed8dbfd698c84da4e9cc5214ec81e, type: 2}
+      name: Material_001
+    second: {fileID: 2100000, guid: 3a245de9eb98c634dab6b23f3b3714f3, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

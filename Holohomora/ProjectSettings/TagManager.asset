@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Wand
   layers:
   - Default
   - TransparentFX
@@ -14,6 +15,7 @@ TagManager:
   - 
   - 
   - PostProcessing
+  - Movable
   - 
   - 
   - 
@@ -35,8 +37,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Spatial Mapping
   m_SortingLayers:
   - name: Default
     uniqueID: 0

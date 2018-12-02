@@ -9,20 +9,13 @@ public class Maze : MonoBehaviour
     private MazeCell[,] cells;
     public float generationStepDelay;
     public IntVector2 size;
+    public Vector3 centerPosition;
     public MazePassage passagePrefab;
     public MazeWall wallPrefab;
     public MazeDoor doorPrefab;
-    public MazeCube cubePrefab;
-    public MazeEnnemy ennemyPrefab;
-    [Range(0f, 1f)]
-    public float ennemyProbability;
-    [Range(0f, 1f)]
-    public float cubeProbability;
     [Range(0f, 1f)]
     public float doorProbability;
-
-
-
+    public float scale;
 
     public MazeCell GetCell(IntVector2 coordinates)
     {
@@ -49,7 +42,8 @@ public class Maze : MonoBehaviour
         newCell.coordinates = coordinates;
         newCell.name = "Maze Cell " + coordinates.x + ", " + coordinates.z;
         newCell.transform.parent = transform;
-        newCell.transform.localPosition = new Vector3(coordinates.x - size.x * 0.5f + 0.5f, 0f, coordinates.z - size.z * 0.5f + 0.5f);
+        newCell.transform.localPosition = new Vector3((coordinates.x - size.x * 0.5f + 0.5f)*scale + centerPosition.x, 0f + centerPosition.y, (coordinates.z - size.z * 0.5f + 0.5f) * scale + centerPosition.z);
+        newCell.transform.localScale = newCell.transform.localScale * scale;
         return newCell;
     }
 
@@ -105,31 +99,29 @@ public class Maze : MonoBehaviour
 
     private void CreatePassage(MazeCell cell, MazeCell otherCell, MazeDirection direction)
     {
+        Debug.Log("value radom " + Random.value);
         MazePassage prefab = Random.value < doorProbability ? doorPrefab : passagePrefab;
-        if(prefab == passagePrefab)
-        {
-            prefab = Random.value < cubeProbability ? cubePrefab : passagePrefab;
-            if (prefab == passagePrefab)
-            {
-                prefab = Random.value < ennemyProbability ? ennemyPrefab : passagePrefab;
-            }
-        }
-
         MazePassage passage = Instantiate(prefab) as MazePassage;
+        passage.transform.localScale = passage.transform.localScale * scale;
         passage.Initialize(cell, otherCell, direction);
         passage = Instantiate(prefab) as MazePassage;
         passage.Initialize(otherCell, cell, direction.GetOpposite());
+        passage.transform.localScale = passage.transform.localScale * scale;
+
     }
 
     private void CreateWall(MazeCell cell, MazeCell otherCell, MazeDirection direction)
     {
         MazeWall wall = Instantiate(wallPrefab) as MazeWall;
         wall.Initialize(cell, otherCell, direction);
+        wall.transform.localScale = wall.transform.localScale * scale;
         if (otherCell != null)
         {
             wall = Instantiate(wallPrefab) as MazeWall;
             wall.Initialize(otherCell, cell, direction.GetOpposite());
+            wall.transform.localScale = wall.transform.localScale * scale;
         }
+
     }
 
 }
