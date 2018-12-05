@@ -39,6 +39,8 @@ public class WandManager : MonoBehaviour {
 
     ChangeParent changedParentGameObject = null;
 
+    private bool tryToMove;
+    
     GameObject spellShot;
     
 
@@ -49,37 +51,20 @@ public class WandManager : MonoBehaviour {
         public SpellColliderType[] colliderOrder;
     }
 
-    void Start () {
+    void Awake () {
         spellCollider = this.GetComponent<Collider>();
         gunLine = GetComponent<LineRenderer>();
 
+        tryToMove = true;
         isReading = false;
         movableMask = LayerMask.GetMask("Movable");
         doorMask = LayerMask.GetMask("Door");
 
         spellShot = Resources.Load("Sphere") as GameObject;
 
-        //colliderDictio = new Dictionary<string, List<SpellColliderType>>();
-
-        //List<SpellColliderType> colliderList = new List<SpellColliderType>();
-        //colliderList.Add(SpellColliderType.RIGHT);
-        //colliderList.Add(SpellColliderType.CENTER);
-        //colliderDictio.Add("shoot", colliderList);
-
-        //List<SpellColliderType> colliderList2 = new List<SpellColliderType>();
-        //colliderList2.Add(SpellColliderType.RIGHT);
-        //colliderList2.Add(SpellColliderType.TOP);
-        //colliderList2.Add(SpellColliderType.CENTER);
-        //colliderDictio.Add("test", colliderList2);
-
         spellParticles = GetComponent<ParticleSystem>();
 
         spellTree = new SpellTree();
-
-        //foreach(string key in colliderDictio.Keys)
-        //{
-        //    spellTree.addSpell(colliderDictio[key], key);
-        //}
 
         foreach (SpellDefinition spell in spellList)
         {
@@ -124,8 +109,8 @@ public class WandManager : MonoBehaviour {
                 break;
             case "lave":
                 //Set the shootRay so that it starts at the end of the wand and points forward.
-                Debug.Log("rayCast");
-                Debug.Log(transform.position);
+                //Debug.Log("rayCast");
+                //Debug.Log(transform.position);
 
                 gunLine.enabled = true;
                 gunLine.SetPosition(0, transform.position);
@@ -135,13 +120,13 @@ public class WandManager : MonoBehaviour {
 
                 if (Physics.Raycast(shootRay, out shootHit, range, movableMask))
                 {
-                    Debug.Log("rayCast success");
+                    //Debug.Log("rayCast success");
                     // Try and find an ChangeParent script on the gameobject hit.
                     changedParentGameObject = shootHit.collider.GetComponent<ChangeParent>();
                     //If the EnemyHealth component exist...
                     if (changedParentGameObject != null)
                     {
-                        Debug.Log("change success");
+                        //Debug.Log("change success");
                         //... the enemy should take damage.
                         changedParentGameObject.changeParent(this.gameObject);
                     }
@@ -151,15 +136,15 @@ public class WandManager : MonoBehaviour {
                 }
                 else
                 {
-                    Debug.Log("rayCast fail");
+                    //Debug.Log("rayCast fail");
                     //... set the second position of the line renderer to the fullest extent of the gun's range.
                     gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
                 }
                 break;
             case "holohomora":
                 //Set the shootRay so that it starts at the end of the wand and points forward.
-                Debug.Log("holohomora racast");
-                Debug.Log(transform.position);
+                //Debug.Log("holohomora racast");
+                //Debug.Log(transform.position);
 
                 gunLine.enabled = true;
                 gunLine.SetPosition(0, transform.position);
@@ -169,7 +154,7 @@ public class WandManager : MonoBehaviour {
 
                 if (Physics.Raycast(shootRay, out shootHit, range, doorMask))
                 {
-                    Debug.Log("rayCast success");
+                    //Debug.Log("rayCast success");
                     // Try and find an ChangeParent script on the gameobject hit.
                     //Animator anim = shootHit.collider.GetComponent<Animator>();
                     ////If the EnemyHealth component exist...
@@ -191,7 +176,7 @@ public class WandManager : MonoBehaviour {
                 }
                 else
                 {
-                    Debug.Log("holohomora rayCast fail");
+                    //Debug.Log("holohomora rayCast fail");
                     //... set the second position of the line renderer to the fullest extent of the gun's range.
                     gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
                 }
@@ -209,18 +194,26 @@ public class WandManager : MonoBehaviour {
 
     public void Update()
     {
-        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && changedParentGameObject != null)
+        if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger) && changedParentGameObject != null)
         {
             changedParentGameObject.reset();
             changedParentGameObject = null;
         }
 
-        if (OVRInput.GetDown(OVRInput.Button.SecondaryThumbstick, OVRInput.Controller.Touch) && changedParentGameObject != null)
+        if ((OVRInput.Get(OVRInput.RawButton.RThumbstickUp) || OVRInput.Get(OVRInput.RawButton.RThumbstickDown)) && changedParentGameObject != null)
         {
-            Vector2 vect = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
-            Vector3 dir = (changedParentGameObject.transform.position - this.transform.position).normalized;
-            changedParentGameObject.transform.localPosition = changedParentGameObject.transform.localPosition + dir * vect.x * moveObjectSpeed;
+            Vector2 vect = OVRInput.Get(OVRInput.RawAxis2D.RThumbstick);
+
+            Vector3 dir = (changedParentGameObject.transform.localPosition - this.transform.position).normalized;
+
+            Vector3 newPosition = changedParentGameObject.transform.localPosition + dir * vect.y * moveObjectSpeed;
+
+            if((newPosition - this.transform.position).sqrMagnitude > 1)
+            {
+                changedParentGameObject.transform.localPosition = newPosition;
+            }
         }
+
         /**
         if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
         {
@@ -233,22 +226,29 @@ public class WandManager : MonoBehaviour {
                 mesh_teleport.enabled = true;
             }
         }**/
-        if(OVRInput.GetDown(OVRInput.Button.PrimaryThumbstick))
+        if (OVRInput.GetDown(OVRInput.RawButton.LThumbstick))
         {
             if (mesh_teleport.enabled == true)
             {
+                tryToMove = false;
                 mesh_teleport.enabled = false;
             }
             else
             {
+                tryToMove = true;
                 mesh_teleport.enabled = true;
             }
-            Vector2 vector_joystick = new Vector2();
-            vector_joystick = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
-            teleport.velocity += vector_joystick.y;
         }
 
-        if (OVRInput.GetUp(OVRInput.Button.PrimaryThumbstick))
+        if (tryToMove && (OVRInput.Get(OVRInput.RawButton.LThumbstickUp) || OVRInput.Get(OVRInput.RawButton.LThumbstickDown)))
+        {
+            Vector2 vector_joystick = new Vector2();
+            vector_joystick = OVRInput.Get(OVRInput.RawAxis2D.LThumbstick);
+            Debug.Log("aaaaa " + vector_joystick);
+            teleport.SetVelocity(teleport.velocity + vector_joystick.y *0.1);
+        }
+
+        if (OVRInput.GetUp(OVRInput.RawButton.LThumbstick))
         {
             if (teleport.getRight())
             {

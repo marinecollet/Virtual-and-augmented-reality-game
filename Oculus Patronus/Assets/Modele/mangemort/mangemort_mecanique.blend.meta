@@ -8,17 +8,23 @@ ModelImporter:
     100004: //RootNode
     100006: Master
     100008: Wheel
+    100010: Arm
+    100012: Cube_001
     400000: Armature
     400002: Cube
     400004: //RootNode
     400006: Master
     400008: Wheel
+    400010: Arm
+    400012: Cube_001
     2100000: Material_002__diffuse
     2100002: Material_002
     4300000: Cube
+    4300002: Cube_001
     7400000: Default Take
     9500000: //RootNode
     13700000: Cube
+    13700002: Cube_001
   externalObjects:
   - first:
       type: UnityEngine:Material

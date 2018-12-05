@@ -115,7 +115,12 @@ public class Teleport : MonoBehaviour
             renderer.material = Resources.Load("Bad_zone", typeof(Material)) as Material;
             right = false;
         }
-        
+    }
+
+    public void SetVelocity(float vel)
+    {
+        this.velocity = vel;
+        MakeArcMesh(CalculateArcArray());
     }
 
     public Vector3 getPosition()

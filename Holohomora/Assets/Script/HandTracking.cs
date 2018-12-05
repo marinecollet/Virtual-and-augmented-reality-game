@@ -117,7 +117,7 @@ public class HandTracking : MonoBehaviour {
 
         if (args.state.sourcePose.TryGetPosition(out pos))
         {
-            obj.transform.position = pos + new Vector3(0f, 0f, 2f);
+            obj.transform.position = pos;// + new Vector3(0f, 0f, 2f);
         }
         StatusText.text = "obj created at pos " + pos+ "\n" + StatusText.text;
 
@@ -137,7 +137,7 @@ public class HandTracking : MonoBehaviour {
             {
                 if (args.state.sourcePose.TryGetPosition(out pos))
                 {
-                    trackingObject[id].transform.position = pos + new Vector3(0f,0f,2f);
+                    trackingObject[id].transform.position = pos;// + new Vector3(0f,0f,2f);
                 }
                 StatusText.text = "obj updated at pos " + pos+ "\n" + StatusText.text;
                 if (args.state.sourcePose.TryGetRotation(out rot))
