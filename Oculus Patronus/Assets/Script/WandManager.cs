@@ -11,8 +11,8 @@ public class WandManager : MonoBehaviour {
     public float range = 100f;
     public List<SpellDefinition> spellList;
     public float moveObjectSpeed;
-    public Renderer mesh_teleport;
-
+    public GameObject mesh_teleport;
+    public GameObject SortDetection;
     [SerializeField]
     public Transform player;
     [SerializeField]
@@ -38,8 +38,6 @@ public class WandManager : MonoBehaviour {
     private Collider spellCollider;
 
     ChangeParent changedParentGameObject = null;
-
-    private bool tryToMove;
     
     GameObject spellShot;
     
@@ -55,7 +53,6 @@ public class WandManager : MonoBehaviour {
         spellCollider = this.GetComponent<Collider>();
         gunLine = GetComponent<LineRenderer>();
 
-        tryToMove = true;
         isReading = false;
         movableMask = LayerMask.GetMask("Movable");
         doorMask = LayerMask.GetMask("Door");
@@ -143,8 +140,6 @@ public class WandManager : MonoBehaviour {
                 break;
             case "holohomora":
                 //Set the shootRay so that it starts at the end of the wand and points forward.
-                //Debug.Log("holohomora racast");
-                //Debug.Log(transform.position);
 
                 gunLine.enabled = true;
                 gunLine.SetPosition(0, transform.position);
@@ -154,17 +149,6 @@ public class WandManager : MonoBehaviour {
 
                 if (Physics.Raycast(shootRay, out shootHit, range, doorMask))
                 {
-                    //Debug.Log("rayCast success");
-                    // Try and find an ChangeParent script on the gameobject hit.
-                    //Animator anim = shootHit.collider.GetComponent<Animator>();
-                    ////If the EnemyHealth component exist...
-                    //if (anim != null && anim.GetBool("isOpen") != true)
-                    //{
-                    //    Debug.Log("open success success");
-                    //    //... the enemy should take damage.
-                    //    anim.SetBool("isOpen",true);
-                    //}
-
                     DoorManager doorManager = shootHit.collider.GetComponent<DoorManager>();
                     if(doorManager!= null)
                     {
@@ -226,37 +210,45 @@ public class WandManager : MonoBehaviour {
                 mesh_teleport.enabled = true;
             }
         }**/
-        if (OVRInput.GetDown(OVRInput.RawButton.LThumbstick))
+        if (OVRInput.GetDown(OVRInput.RawButton.RThumbstick))
         {
-            if (mesh_teleport.enabled == true)
+            if (!teleport.getRight() && mesh_teleport.activeSelf == true)
             {
-                tryToMove = false;
-                mesh_teleport.enabled = false;
+                mesh_teleport.SetActive(false);
+                SortDetection.SetActive(true);
+            }
+            else if (teleport.getRight() && mesh_teleport.activeSelf == true)
+            {
+                position = teleport.getPosition();
+                player.position = new Vector3(position.x, player.position.y, position.z);
+                camera.position = new Vector3(position.x, camera.position.y, position.z);
+                mesh_teleport.SetActive(false);
+                SortDetection.SetActive(true);
             }
             else
             {
-                tryToMove = true;
-                mesh_teleport.enabled = true;
+                SortDetection.SetActive(false);
+                mesh_teleport.SetActive(true);
             }
+
         }
 
-        if (tryToMove && (OVRInput.Get(OVRInput.RawButton.LThumbstickUp) || OVRInput.Get(OVRInput.RawButton.LThumbstickDown)))
+        if (mesh_teleport.activeSelf && (OVRInput.Get(OVRInput.RawButton.RThumbstickUp) || OVRInput.Get(OVRInput.RawButton.RThumbstickDown)))
         {
             Vector2 vector_joystick = new Vector2();
-            vector_joystick = OVRInput.Get(OVRInput.RawAxis2D.LThumbstick);
-            Debug.Log("aaaaa " + vector_joystick);
-            teleport.SetVelocity(teleport.velocity + vector_joystick.y *0.1);
+            vector_joystick = OVRInput.Get(OVRInput.RawAxis2D.RThumbstick);
+            teleport.SetVelocity(teleport.velocity + vector_joystick.y *0.1f);
         }
 
-        if (OVRInput.GetUp(OVRInput.RawButton.LThumbstick))
+        /**if (OVRInput.GetUp(OVRInput.RawButton.LThumbstick))
         {
-            if (teleport.getRight())
+            if (teleport.getRight() && mesh_teleport.enabled == true)
             {
                 position = teleport.getPosition();
                 player.position = new Vector3(position.x, player.position.y, position.z);
                 camera.position = new Vector3(position.x, camera.position.y, position.z);
             }
-        }
+        }**/
     }
 
 

@@ -7,7 +7,10 @@ using UnityEngine;
 public class Teleport : MonoBehaviour
 {
 
-
+    Ray shootRay;
+    RaycastHit shootHit;
+    LineRenderer gunLine;
+    int groundLayer;
     Mesh mesh;
     [SerializeField]
     public float meshWidth;
@@ -17,18 +20,15 @@ public class Teleport : MonoBehaviour
     public float angle;
     [SerializeField]
     public int resolution = 10;
+    public Transform targetPrefab;
+    private Transform target;
+    private Renderer targetRenderer;
     float g; //force of gravity on the y axis
     float radianAngle;
     private Renderer renderer;
     Vector3 position = new Vector3();
     bool right;
-
-    private void Awake()
-    {
-        mesh = GetComponent<MeshFilter>().mesh;
-        g = Mathf.Abs(Physics2D.gravity.y);
-        renderer = GetComponent<Renderer>();
-    }
+    float distance;
 
     //check that mesh is not null and that the game is playing
     private void OnValidate()
@@ -41,8 +41,17 @@ public class Teleport : MonoBehaviour
 
     void Start()
     {
+        mesh = GetComponent<MeshFilter>().mesh;
+        g = Mathf.Abs(Physics2D.gravity.y);
+        renderer = GetComponent<Renderer>();
+        groundLayer = 11;
+        gunLine = GetComponent<LineRenderer>();
         MakeArcMesh(CalculateArcArray());
         GetComponent<MeshCollider>().sharedMesh = mesh;
+        target = Instantiate(targetPrefab) as Transform;
+        targetRenderer = target.GetComponent<Renderer>();
+        targetRenderer.enabled = false;
+
     }
 
     void MakeArcMesh(Vector3[] arcVerts)
@@ -88,7 +97,7 @@ public class Teleport : MonoBehaviour
             float t = (float)i / (float)resolution;
             arcArray[i] = CalculateArcPoint(t, maxDistance);
         }
-
+        distance = (arcArray[resolution] - arcArray[0]).sqrMagnitude;
         return arcArray;
     }
 
@@ -101,19 +110,76 @@ public class Teleport : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("Ground") && renderer.enabled == true)
+    //    {
+
+    //        Debug.Log("ground");
+    //        renderer.material = Resources.Load("Correct_zone", typeof(Material)) as Material;
+    //        right = true;
+    //        position = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+    //        renderer.enabled = false;
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("error name "+other.gameObject.name);
+    //        renderer.material = Resources.Load("Bad_zone", typeof(Material)) as Material;
+    //        right = false;
+    //    }
+    //}
+
+    public void Update()
     {
-        if (other.gameObject.CompareTag("Ground") && renderer.enabled == true)
+        shootRay.origin = transform.position + transform.forward*0.1f;
+        shootRay.direction = transform.forward;
+        //gunLine.enabled = true;
+        //gunLine.SetPosition(0, transform.position);
+        float distance = (velocity * velocity * Mathf.Sin(2 * radianAngle)) / g;
+
+        if (Physics.Raycast(shootRay, out shootHit, distance))
         {
-            renderer.material = Resources.Load("Correct_zone", typeof(Material)) as Material;
-            right = true;
-            position = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-            renderer.enabled = false;
+            Debug.Log("ok "+ shootHit.collider.gameObject.layer+" " + groundLayer);
+            if(shootHit.collider.gameObject.layer == groundLayer) { 
+                Debug.Log("oui");
+                //gunLine.startColor = Color.blue;
+                //gunLine.SetPosition(1, shootHit.point);
+                renderer.material = Resources.Load("Correct_zone", typeof(Material)) as Material;
+                right = true;
+                position = shootHit.point;
+
+
+                if (!targetRenderer.enabled)
+                {
+                    targetRenderer.enabled = true;
+                }
+                target.transform.localPosition = position;
+
+                //renderer.enabled = false;
+            }
+            else
+            {
+                Debug.Log("nop "+shootHit.collider.gameObject.name);
+                //gunLine.startColor = Color.red;
+                //gunLine.SetPosition(1, shootRay.origin + shootRay.direction * distance);
+                renderer.material = Resources.Load("Bad_zone", typeof(Material)) as Material;
+                right = false;
+                if (targetRenderer.enabled)
+                {
+                    targetRenderer.enabled = false;
+                }
+            }
         }
         else
         {
+            //gunLine.startColor = Color.red;
+            //gunLine.SetPosition(1, shootRay.origin + shootRay.direction * distance);
             renderer.material = Resources.Load("Bad_zone", typeof(Material)) as Material;
-            right = false;
+            Debug.Log("non ");
+            if (targetRenderer.enabled)
+            {
+                targetRenderer.enabled = false;
+            }
         }
     }
 
