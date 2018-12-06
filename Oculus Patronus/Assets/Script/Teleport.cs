@@ -28,16 +28,18 @@ public class Teleport : MonoBehaviour
     private Renderer renderer;
     Vector3 position = new Vector3();
     bool right;
-    float distance;
+    float distance = 10;
+    float proportionality;
+    float new_velocity;
 
     //check that mesh is not null and that the game is playing
-    private void OnValidate()
+    /**private void OnValidate()
     {
         if (mesh != null && Application.isPlaying)
         {
             MakeArcMesh(CalculateArcArray());
         }
-    }
+    }**/
 
     void Start()
     {
@@ -90,20 +92,22 @@ public class Teleport : MonoBehaviour
     {
         Vector3[] arcArray = new Vector3[resolution + 1];
         radianAngle = Mathf.Deg2Rad * angle;
-        float maxDistance = (velocity * velocity * Mathf.Sin(2 * radianAngle)) / g;
+        float maxDistance = Mathf.Sqrt(Mathf.Pow((position.z-shootRay.origin.z),2) + Mathf.Pow((position.y - shootRay.origin.y), 2));
+        Debug.Log(maxDistance);
+
 
         for (int i = 0; i <= resolution; i++)
         {
             float t = (float)i / (float)resolution;
             arcArray[i] = CalculateArcPoint(t, maxDistance);
         }
-        distance = (arcArray[resolution] - arcArray[0]).sqrMagnitude;
         return arcArray;
     }
 
     //calculate height and distance of each vertex
     Vector3 CalculateArcPoint(float t, float maxDistance)
     {
+        velocity = Mathf.Sqrt((maxDistance * g) / Mathf.Sin(2 * radianAngle)); //proportionnalité entre la distance parcourue et la vitesse initiale
         float x = t * maxDistance;
         float y = x * Mathf.Tan(radianAngle) - ((g * x * x) / (2 * velocity * velocity * Mathf.Cos(radianAngle) * Mathf.Cos(radianAngle)));
         return new Vector3(x, y);
@@ -133,9 +137,13 @@ public class Teleport : MonoBehaviour
     {
         shootRay.origin = transform.position + transform.forward*0.1f;
         shootRay.direction = transform.forward;
+
+
+
+        MakeArcMesh(CalculateArcArray());
+
         //gunLine.enabled = true;
-        //gunLine.SetPosition(0, transform.position);
-        float distance = (velocity * velocity * Mathf.Sin(2 * radianAngle)) / g;
+        gunLine.SetPosition(0, transform.position);
 
         if (Physics.Raycast(shootRay, out shootHit, distance))
         {
@@ -143,7 +151,7 @@ public class Teleport : MonoBehaviour
             if(shootHit.collider.gameObject.layer == groundLayer) { 
                 Debug.Log("oui");
                 //gunLine.startColor = Color.blue;
-                //gunLine.SetPosition(1, shootHit.point);
+                gunLine.SetPosition(1, shootHit.point);
                 renderer.material = Resources.Load("Correct_zone", typeof(Material)) as Material;
                 right = true;
                 position = shootHit.point;
@@ -161,7 +169,7 @@ public class Teleport : MonoBehaviour
             {
                 Debug.Log("nop "+shootHit.collider.gameObject.name);
                 //gunLine.startColor = Color.red;
-                //gunLine.SetPosition(1, shootRay.origin + shootRay.direction * distance);
+                gunLine.SetPosition(1, shootRay.origin + shootRay.direction * distance);
                 renderer.material = Resources.Load("Bad_zone", typeof(Material)) as Material;
                 right = false;
                 if (targetRenderer.enabled)
@@ -173,7 +181,7 @@ public class Teleport : MonoBehaviour
         else
         {
             //gunLine.startColor = Color.red;
-            //gunLine.SetPosition(1, shootRay.origin + shootRay.direction * distance);
+            gunLine.SetPosition(1, shootRay.origin + shootRay.direction * distance);
             renderer.material = Resources.Load("Bad_zone", typeof(Material)) as Material;
             Debug.Log("non ");
             if (targetRenderer.enabled)
