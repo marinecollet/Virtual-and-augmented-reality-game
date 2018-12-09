@@ -44,6 +44,33 @@ public class HandTracking : MonoBehaviour {
         StatusText.text = "READY\n"+ StatusText.text;
     }
 
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        var obj = Instantiate(TrackingObject) as GameObject;
+    //        obj.transform.SetParent(this.transform.GetChild(0));
+    //        obj.transform.localRotation = Quaternion.identity;
+
+    //        Vector3 pos;
+
+
+    //        obj.transform.localPosition = new Vector3(0.0f, -0.1f, 0.6f);
+
+    //        StatusText.text = "obj created at pos " + new Vector3(0.0f, -0.1f, 0.6f) + "\n" + StatusText.text;
+
+
+    //        trackingObject.Add(1, obj);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.C))
+    //    {
+    //        var obj = trackingObject[1];
+    //        trackingObject.Remove(1);
+    //        Destroy(obj);
+    //        StatusText.text = "obj destroyed \n" + StatusText.text;
+    //    }
+    //}
+    
     void ChangeObjectColor(GameObject obj, Color color)
     {
         var rend = obj.GetComponentInChildren<Renderer>();
@@ -111,13 +138,19 @@ public class HandTracking : MonoBehaviour {
         trackedHands.Add(id);
         activeId = id;
 
+        //var obj = Instantiate(TrackingObject) as GameObject;
+        //obj.transform.SetParent(this.transform);
+        //obj.transform.localRotation = this.transform.localRotation;
+
         var obj = Instantiate(TrackingObject) as GameObject;
+        obj.transform.SetParent(this.transform.GetChild(0));
+        obj.transform.localRotation = Quaternion.identity;
 
         Vector3 pos;
 
         if (args.state.sourcePose.TryGetPosition(out pos))
         {
-            obj.transform.position = pos;// + new Vector3(0f, 0f, 2f);
+            obj.transform.localPosition = pos + new Vector3(0f, 0f, 0.5f);
         }
         StatusText.text = "obj created at pos " + pos+ "\n" + StatusText.text;
 
@@ -137,7 +170,7 @@ public class HandTracking : MonoBehaviour {
             {
                 if (args.state.sourcePose.TryGetPosition(out pos))
                 {
-                    trackingObject[id].transform.position = pos;// + new Vector3(0f,0f,2f);
+                    trackingObject[id].transform.localPosition = pos + new Vector3(0f,0f,0.5f);
                 }
                 StatusText.text = "obj updated at pos " + pos+ "\n" + StatusText.text;
                 if (args.state.sourcePose.TryGetRotation(out rot))
