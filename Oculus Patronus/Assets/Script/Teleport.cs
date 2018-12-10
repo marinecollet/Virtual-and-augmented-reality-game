@@ -28,9 +28,10 @@ public class Teleport : MonoBehaviour
     private Renderer renderer;
     Vector3 position = new Vector3();
     bool right;
-    float distance = 10;
+    float distance = 5;
     float proportionality;
     float new_velocity;
+
 
     //check that mesh is not null and that the game is playing
     /**private void OnValidate()
@@ -47,7 +48,6 @@ public class Teleport : MonoBehaviour
         g = Mathf.Abs(Physics2D.gravity.y);
         renderer = GetComponent<Renderer>();
         groundLayer = 11;
-        gunLine = GetComponent<LineRenderer>();
         MakeArcMesh(CalculateArcArray());
         GetComponent<MeshCollider>().sharedMesh = mesh;
         target = Instantiate(targetPrefab) as Transform;
@@ -92,8 +92,9 @@ public class Teleport : MonoBehaviour
     {
         Vector3[] arcArray = new Vector3[resolution + 1];
         radianAngle = Mathf.Deg2Rad * angle;
-        float maxDistance = Mathf.Sqrt(Mathf.Pow((position.z-shootRay.origin.z),2) + Mathf.Pow((position.y - shootRay.origin.y), 2));
-        Debug.Log(maxDistance);
+
+        float maxDistance = Mathf.Sqrt(Mathf.Pow((position.z - shootRay.origin.z), 2) + Mathf.Pow((position.y - shootRay.origin.y), 2));
+
 
 
         for (int i = 0; i <= resolution; i++)
@@ -114,44 +115,18 @@ public class Teleport : MonoBehaviour
     }
 
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag("Ground") && renderer.enabled == true)
-    //    {
-
-    //        Debug.Log("ground");
-    //        renderer.material = Resources.Load("Correct_zone", typeof(Material)) as Material;
-    //        right = true;
-    //        position = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-    //        renderer.enabled = false;
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("error name "+other.gameObject.name);
-    //        renderer.material = Resources.Load("Bad_zone", typeof(Material)) as Material;
-    //        right = false;
-    //    }
-    //}
-
     public void Update()
     {
         shootRay.origin = transform.position + transform.forward*0.1f;
         shootRay.direction = transform.forward;
 
-
-
-        MakeArcMesh(CalculateArcArray());
-
-        //gunLine.enabled = true;
-        gunLine.SetPosition(0, transform.position);
+     MakeArcMesh(CalculateArcArray());
 
         if (Physics.Raycast(shootRay, out shootHit, distance))
         {
             Debug.Log("ok "+ shootHit.collider.gameObject.layer+" " + groundLayer);
             if(shootHit.collider.gameObject.layer == groundLayer) { 
                 Debug.Log("oui");
-                //gunLine.startColor = Color.blue;
-                gunLine.SetPosition(1, shootHit.point);
                 renderer.material = Resources.Load("Correct_zone", typeof(Material)) as Material;
                 right = true;
                 position = shootHit.point;
@@ -161,15 +136,15 @@ public class Teleport : MonoBehaviour
                 {
                     targetRenderer.enabled = true;
                 }
-                target.transform.localPosition = position;
-
-                //renderer.enabled = false;
+                Vector3 pos = new Vector3();
+                pos.x = position.x;
+                pos.y = target.transform.localPosition.y;
+                pos.z = position.z;
+                target.transform.localPosition = pos;
             }
             else
             {
                 Debug.Log("nop "+shootHit.collider.gameObject.name);
-                //gunLine.startColor = Color.red;
-                gunLine.SetPosition(1, shootRay.origin + shootRay.direction * distance);
                 renderer.material = Resources.Load("Bad_zone", typeof(Material)) as Material;
                 right = false;
                 if (targetRenderer.enabled)
@@ -180,8 +155,6 @@ public class Teleport : MonoBehaviour
         }
         else
         {
-            //gunLine.startColor = Color.red;
-            gunLine.SetPosition(1, shootRay.origin + shootRay.direction * distance);
             renderer.material = Resources.Load("Bad_zone", typeof(Material)) as Material;
             Debug.Log("non ");
             if (targetRenderer.enabled)
