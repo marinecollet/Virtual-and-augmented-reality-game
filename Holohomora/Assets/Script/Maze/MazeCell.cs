@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MazeCell : MonoBehaviour
-{ 
+{
     public IntVector2 coordinates;
     private int InitializedEdgeCount;
-    private MazeCellEdge[] edges = new MazeCellEdge[MazeDirections.Count];
+    public MazeCellEdge[] edges = new MazeCellEdge[MazeDirections.Count];
     public MazeRoom room;
 
-    public void Initialize (MazeRoom room)
+    public void Initialize(MazeRoom room)
     {
         room.Add(this);
         transform.GetChild(0).GetComponent<Renderer>().material = room.settings.floorMaterial;
@@ -19,6 +19,12 @@ public class MazeCell : MonoBehaviour
     {
         return edges[(int)direction];
     }
+
+    public MazeCellEdge[] GetEdgeList()
+    {
+        return  edges;
+    }
+
 
     public void SetEdge(MazeDirection direction, MazeCellEdge edge)
     {
@@ -54,5 +60,10 @@ public class MazeCell : MonoBehaviour
         }
     }
 
-
+    public bool Equals(MazeCell other)
+    {
+        if (other == null)
+            return false;
+        return this.coordinates == other.coordinates;
+    }
 }

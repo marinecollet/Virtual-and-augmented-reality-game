@@ -7,11 +7,11 @@ using UnityEngine;
 public class Game_Manager : MonoBehaviour {
 
     public Maze mazePrefab;
-    public GameObject dobby;
+    public Player dobbyPrefab;
     //public float scale;
 
     private Maze mazeInstance;
-    private GameObject dobbyInstance;
+    private Player dobbyInstance;
 
     KeywordRecognizer keywordRecognizer = null;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
@@ -25,34 +25,38 @@ public class Game_Manager : MonoBehaviour {
         });
         keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
 
-        BeginGame();
+        StartCoroutine(BeginGame());
     }
 	
 	void Update ()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    RestartGame();
-        //}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            RestartGame();
+        }
     }
 
-    void BeginGame()
+    IEnumerator BeginGame()
     {
         mazeInstance = Instantiate(mazePrefab) as Maze;
-        StartCoroutine(mazeInstance.Generate());
+        yield return StartCoroutine(mazeInstance.Generate());
         float tempX = Random.Range(0, mazeInstance.size.x);
         float tempZ = Random.Range(0, mazeInstance.size.z);
-        Vector3 dobbySpawn = new Vector3((tempX - mazeInstance.size.x * 0.5f + 0.5f) * 0.1f + 0, -1, (tempZ - mazeInstance.size.z * 0.5f + 0.5f) * 0.1f + 2);
-        dobbyInstance = Instantiate(dobby) as GameObject;
-        dobbyInstance.transform.position = dobbySpawn;
+        //Vector3 dobbySpawn = new Vector3((tempX - mazeInstance.size.x * 0.5f + 0.5f) * 0.1f + 0, -1, (tempZ - mazeInstance.size.z * 0.5f + 0.5f) * 0.1f + 2);
+        dobbyInstance = Instantiate(dobbyPrefab) as Player;
+        dobbyInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
+        //dobbyInstance = Instantiate(dobby) as GameObject;
+        //dobbyInstance.transform.position = dobbySpawn;
     }
 
     void RestartGame()
     {
         StopAllCoroutines();
         Destroy(mazeInstance.gameObject);
-        BeginGame(); StopAllCoroutines();
-        Destroy(mazeInstance.gameObject);
-        BeginGame();
+        if (dobbyInstance != null)
+        {
+            Destroy(dobbyInstance.gameObject);
+        }
+        StartCoroutine(BeginGame());
     }
 }

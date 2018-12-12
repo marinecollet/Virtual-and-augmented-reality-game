@@ -483,7 +483,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1425376276046698}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3df7a6f881d33314998dfbaed276776e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d4620c5474e63946847fa1d5a5d59d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   colliderList: 2
@@ -495,7 +495,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1737433862088492}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3df7a6f881d33314998dfbaed276776e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d4620c5474e63946847fa1d5a5d59d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   colliderList: 8
@@ -507,7 +507,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1904914456027248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3df7a6f881d33314998dfbaed276776e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d4620c5474e63946847fa1d5a5d59d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   colliderList: 0
@@ -522,11 +522,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f1e4edd2540d3a4eadeeea7d4a49f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderer_top: {fileID: 23405618349320324}
-  renderer_left: {fileID: 23899078186814620}
-  renderer_bot: {fileID: 23045316554936318}
-  renderer_right: {fileID: 23005302750059930}
-  renderer_mid: {fileID: 23068882715118420}
 --- !u!114 &114544407174051932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -535,7 +530,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1621598710440886}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3df7a6f881d33314998dfbaed276776e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d4620c5474e63946847fa1d5a5d59d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   colliderList: 6
@@ -547,7 +542,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1013636633696778}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3df7a6f881d33314998dfbaed276776e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d4620c5474e63946847fa1d5a5d59d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   colliderList: 4

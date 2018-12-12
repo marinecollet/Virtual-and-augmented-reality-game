@@ -457,9 +457,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 80, y: -15}
+  m_AnchoredPosition: {x: 50, y: -50}
   m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &319613688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,7 +490,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: New Text
 --- !u!222 &319613689
@@ -546,7 +546,7 @@ Prefab:
       objectReference: {fileID: 1612830707}
     - target: {fileID: 1000011070707148, guid: 3eddd1c29199313478dd3f912bfab2ab, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3eddd1c29199313478dd3f912bfab2ab, type: 2}
@@ -567,7 +567,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &503156709
 AudioListener:
   m_ObjectHideFlags: 0
@@ -621,13 +621,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 503156708}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -40.2}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.5, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &653426855
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,7 +638,6 @@ GameObject:
   m_Component:
   - component: {fileID: 653426858}
   - component: {fileID: 653426857}
-  - component: {fileID: 653426856}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -646,23 +645,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &653426856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 653426855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efc65a768cca85f4c8cfbf7fe5d4b939, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TrackingObject: {fileID: 1046749228358040, guid: c67ef0dc3fd253e48b131aa6bde698cd,
-    type: 2}
-  StatusText: {fileID: 319613688}
-  DefaultColor: {r: 0, g: 1, b: 0, a: 1}
-  TapColor: {r: 0, g: 0, b: 1, a: 1}
-  HoldColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &653426857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -677,7 +659,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mazePrefab: {fileID: 114152155053565448, guid: 17c07acb4e1e11a49a2cea9578c614e4,
     type: 2}
-  dobby: {fileID: 1122042434332882, guid: 105674d7768299449afcba78fae5f03c, type: 2}
+  dobbyPrefab: {fileID: 114561327533330204, guid: 105674d7768299449afcba78fae5f03c,
+    type: 2}
 --- !u!4 &653426858
 Transform:
   m_ObjectHideFlags: 0
@@ -1057,6 +1040,28 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 20770519707920992, guid: d29bc40b7f3df26479d6a0aac211c355,
     type: 2}
   m_PrefabInternal: {fileID: 2063617679}
+--- !u!1 &1034838472 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1850730992894404, guid: d29bc40b7f3df26479d6a0aac211c355,
+    type: 2}
+  m_PrefabInternal: {fileID: 2063617679}
+--- !u!114 &1034838476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1034838472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc65a768cca85f4c8cfbf7fe5d4b939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackingObject: {fileID: 1380552437805888, guid: 95fb583143799ca45a1d9f6084bf16be,
+    type: 2}
+  StatusText: {fileID: 319613688}
+  DefaultColor: {r: 0, g: 1, b: 0, a: 1}
+  TapColor: {r: 0, g: 0, b: 1, a: 1}
+  HoldColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!4 &1310042278 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4587520633816736, guid: d29bc40b7f3df26479d6a0aac211c355,
@@ -1103,7 +1108,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000012072213228, guid: a611e772ef8ddf64d8106a9cbb70f31c, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a611e772ef8ddf64d8106a9cbb70f31c, type: 2}
@@ -1125,7 +1130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1467346150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1173,10 +1178,10 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 1025638058}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
@@ -1243,7 +1248,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010302963436, guid: 2ed75ffdf9031c94e8bce4b3d17b9928, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ed75ffdf9031c94e8bce4b3d17b9928, type: 2}
@@ -1295,7 +1300,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1850730992894404, guid: d29bc40b7f3df26479d6a0aac211c355, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 20770519707920992, guid: d29bc40b7f3df26479d6a0aac211c355,
         type: 2}
@@ -1315,7 +1320,12 @@ Prefab:
     - target: {fileID: 114504390558679740, guid: d29bc40b7f3df26479d6a0aac211c355,
         type: 2}
       propertyPath: NearClipPlane_TransparentDisplay
-      value: 0.1
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 114504390558679740, guid: d29bc40b7f3df26479d6a0aac211c355,
+        type: 2}
+      propertyPath: NearClipPlane_OpaqueDisplay
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d29bc40b7f3df26479d6a0aac211c355, type: 2}

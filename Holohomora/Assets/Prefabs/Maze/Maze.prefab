@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4996590322265610}
   - component: {fileID: 114152155053565448}
+  - component: {fileID: 114650555643188378}
   m_Layer: 0
   m_Name: Maze
   m_TagString: Untagged
@@ -66,7 +67,7 @@ MonoBehaviour:
     type: 2}
   ennemyPrefab: {fileID: 114520052698084144, guid: c1c37530d462a464abcc99296c73a292,
     type: 2}
-  ennemyProbability: 0.1
+  ennemyProbability: 0
   doorProbability: 0.1
   roomSettings:
   - floorMaterial: {fileID: 2100000, guid: d75479ecb30a58c409bcec604bb4fb69, type: 2}
@@ -74,3 +75,14 @@ MonoBehaviour:
   - floorMaterial: {fileID: 2100000, guid: 9f6a7a39c905b4d4784910c6d620f552, type: 2}
     wallMaterial: {fileID: 2100000, guid: a16a2efc1a28ffd4d92a0901840b7772, type: 2}
   scale: 0.1
+--- !u!114 &114650555643188378
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1163812940126582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7746a41bfaebe64ebe15b4e78218630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

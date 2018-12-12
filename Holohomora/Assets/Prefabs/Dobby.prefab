@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 33985989364738734}
   - component: {fileID: 23837962899786286}
   - component: {fileID: 95468730698820286}
+  - component: {fileID: 114561327533330204}
   m_Layer: 0
   m_Name: Dobby
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,3 +107,14 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114561327533330204
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1122042434332882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a874fdedbfc0022458bceb594fc822ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
