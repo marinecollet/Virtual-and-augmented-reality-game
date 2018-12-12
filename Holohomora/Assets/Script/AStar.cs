@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class AStar{
     private static Gradient gradient;
-    private static float max = float.MinValue, min = float.MaxValue;
+    private static float max, min;
 
     class MazeCellWeight : IEquatable<MazeCellWeight>
     {
@@ -145,6 +145,9 @@ public static class AStar{
 
     public static List<MazeCell> resolvePath(MazeCell current, MazeCell target)
     {
+        max = float.MinValue;
+        min = float.MaxValue;
+
         gradient = new Gradient();
         GradientColorKey[] colorKey;
         GradientAlphaKey[] alphaKey;
@@ -166,10 +169,28 @@ public static class AStar{
         gradient.SetKeys(colorKey, alphaKey);
         gradient.mode = GradientMode.Blend;
 
+        if (openList != null)
+        {
+            foreach (MazeCellWeight mc in openList)
+            {
+                Renderer rend = mc.cell.transform.GetChild(0).GetComponent<Renderer>();
+                rend.material = mc.cell.room.settings.floorMaterial;
+            }
+        }
+
+        if (closeList != null)
+        {
+            foreach (MazeCellWeight mc in closeList)
+            {
+                Renderer rend = mc.cell.transform.GetChild(0).GetComponent<Renderer>();
+                rend.material = mc.cell.room.settings.floorMaterial;
+            }
+        }
 
         MazeCellWeight start = new MazeCellWeight(current, current.coordinates.distance(target.coordinates));
         openList = new List<MazeCellWeight>();
         closeList = new List<MazeCellWeight>();
+
         //LinkedList<MazeCell> listCellParsed = new LinkedList<MazeCell>();
 
         openList.Add(start);
@@ -188,14 +209,14 @@ public static class AStar{
 
                 Renderer rend = mazeCellWeight.cell.transform.GetChild(0).GetComponent<Renderer>();
                 Debug.Log("closed " + mazeCellWeight.cell.coordinates.x + " " + mazeCellWeight.cell.coordinates.z + " | " + (float)mazeCellWeight.weight);
-                rend.material.color = gradient.Evaluate((float)mazeCellWeight.weight / (float)max);
+                rend.material.color = gradient.Evaluate((mazeCellWeight.weight - min) / (max- min));
                 Debug.Log("min " + min + " max " + max);
 
                 foreach (MazeCellWeight mc in closeList)
                 {
                     rend = mc.cell.transform.GetChild(0).GetComponent<Renderer>();
                     Debug.Log("closed "+mc.cell.coordinates.x+" "+ mc.cell.coordinates.z + " | " + (float)mc.weight);
-                    rend.material.color = gradient.Evaluate((float)mc.weight / (float)max);
+                    rend.material.color = gradient.Evaluate((mc.weight - min) / (max - min));
                 }
 
                 return  createPath(start, mazeCellWeight);

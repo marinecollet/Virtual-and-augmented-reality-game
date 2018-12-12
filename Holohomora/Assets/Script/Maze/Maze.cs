@@ -134,7 +134,6 @@ public class Maze : MonoBehaviour
             otherCell.Initialize(cell.room);
         }
         passage.Initialize(otherCell, cell, direction.GetOpposite());
-        passage.transform.localScale = passage.transform.localScale * scale;
     }
 
     private void CreatePassageInSameRoom(MazeCell cell, MazeCell otherCell, MazeDirection direction)

@@ -67,7 +67,7 @@ MonoBehaviour:
     type: 2}
   ennemyPrefab: {fileID: 114520052698084144, guid: c1c37530d462a464abcc99296c73a292,
     type: 2}
-  ennemyProbability: 0
+  ennemyProbability: 0.05
   doorProbability: 0.1
   roomSettings:
   - floorMaterial: {fileID: 2100000, guid: d75479ecb30a58c409bcec604bb4fb69, type: 2}
