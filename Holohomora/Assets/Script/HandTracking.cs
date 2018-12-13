@@ -143,14 +143,16 @@ public class HandTracking : MonoBehaviour {
         //obj.transform.localRotation = this.transform.localRotation;
 
         var obj = Instantiate(TrackingObject) as GameObject;
-        obj.transform.SetParent(this.transform.GetChild(0));
-        obj.transform.localRotation = Quaternion.identity;
+        //obj.transform.SetParent(this.transform.GetChild(0));
+
+        obj.transform.localRotation = this.transform.GetChild(0).rotation;
+
 
         Vector3 pos;
 
         if (args.state.sourcePose.TryGetPosition(out pos))
         {
-            obj.transform.localPosition = pos + new Vector3(0f, 0f, 0.5f);
+            obj.transform.localPosition = pos;// + new Vector3(0f, 0f, 0.5f);
         }
         StatusText.text = "obj created at pos " + pos+ "\n" + StatusText.text;
 
@@ -170,7 +172,8 @@ public class HandTracking : MonoBehaviour {
             {
                 if (args.state.sourcePose.TryGetPosition(out pos))
                 {
-                    trackingObject[id].transform.localPosition = pos + new Vector3(0f,0f,0.5f);
+                    trackingObject[id].transform.localRotation = this.transform.GetChild(0).rotation;
+                    trackingObject[id].transform.localPosition = pos;// + new Vector3(0f,0f,0.5f);
                 }
                 StatusText.text = "obj updated at pos " + pos+ "\n" + StatusText.text;
                 if (args.state.sourcePose.TryGetRotation(out rot))

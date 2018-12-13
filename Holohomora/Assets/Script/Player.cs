@@ -3,10 +3,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public float speed;
 
     private MazeCell currentCell;
     private MazeCell targetCell;
+    private MazeCell movingCell;
     private List<MazeCell> path;
+
+    private bool isMoving = false;
 
     public void SetLocation(MazeCell cell)
     {
@@ -41,13 +45,40 @@ public class Player : MonoBehaviour
         {
             Move(MazeDirection.West);
         }
+
+        if (isMoving)
+        {
+            Vector3 dir = movingCell.transform.position - this.transform.position;
+            dir.Normalize();
+            this.transform.position += dir * speed * Time.deltaTime;
+            Quaternion q = Quaternion.LookRotation(-dir);
+            this.transform.localRotation = q;
+            if ((movingCell.transform.position - this.transform.position).sqrMagnitude < 0.001)
+            {
+                currentCell = movingCell;
+                if (movingCell == targetCell)
+                {
+                    isMoving = false;
+                }
+                else
+                {
+                    int idx = path.IndexOf(movingCell);
+                    movingCell = path[idx + 1];
+                }
+                
+            }
+        }
     }
 
     public void SetTargetCell(MazeCell cell)
     {
         targetCell = cell;
         path = AStar.resolvePath(currentCell, targetCell);
-        Debug.Log("player " +path == null);
+        if(path != null)
+        {
+            movingCell = path[1];
+            isMoving = true;
+        }
     }
 
     private void OnDrawGizmos()

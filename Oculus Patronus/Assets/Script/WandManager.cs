@@ -17,6 +17,8 @@ public class WandManager : MonoBehaviour {
     public Transform player;
     [SerializeField]
     public Transform camera;
+    public Transform target;
+    private Quaternion q = Quaternion.identity ;
 
     //private Dictionary<string,List<SpellColliderType>> colliderDictio;
 
@@ -69,6 +71,7 @@ public class WandManager : MonoBehaviour {
         }
 
         spellTree.DebugTree();
+        
     }
 
     public void AddSortCollider(SpellColliderType col)
@@ -212,6 +215,7 @@ public class WandManager : MonoBehaviour {
         }**/
         if (OVRInput.GetDown(OVRInput.RawButton.RThumbstick))
         {
+
             if (!teleport.getRight() && mesh_teleport.activeSelf == true)
             {
                 mesh_teleport.SetActive(false);
@@ -221,17 +225,42 @@ public class WandManager : MonoBehaviour {
             {
                 position = teleport.getPosition();
                 player.position = new Vector3(position.x, player.position.y, position.z);
+                player.transform.localRotation = teleport.getLocalTargetRot();
                 camera.position = new Vector3(position.x, camera.position.y, position.z);
+                player.transform.localRotation = teleport.getLocalTargetRot();
                 mesh_teleport.SetActive(false);
                 SortDetection.SetActive(true);
+
             }
             else
             {
                 SortDetection.SetActive(false);
                 mesh_teleport.SetActive(true);
+                teleport.setRotInitialize();
             }
 
+
         }
+
+        if(mesh_teleport.activeSelf == true)
+        {
+            Vector2 thumb_dir = OVRInput.Get(OVRInput.RawAxis2D.RThumbstick);
+
+            Vector3 direction = new Vector3();
+            direction.x = thumb_dir.x;
+            direction.y = 0;
+            direction.z = thumb_dir.x;
+
+            Debug.Log(direction);
+
+
+            q = Quaternion.LookRotation(direction);
+            q = new Quaternion(0.01f, 0, 0, 0) * q;
+            Debug.Log("quaternion" + q);
+            teleport.setLocalTargetRot(q);
+
+        }
+
 
         if (mesh_teleport.activeSelf && (OVRInput.Get(OVRInput.RawButton.RThumbstickUp) || OVRInput.Get(OVRInput.RawButton.RThumbstickDown)))
         {

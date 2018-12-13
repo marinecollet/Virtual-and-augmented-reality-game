@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -236,7 +236,7 @@ LineRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 264766327}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -739,7 +739,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1518782368962556, guid: f51d459211c9a1e4d8471a0b587ef480, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 23430299654878650, guid: f51d459211c9a1e4d8471a0b587ef480,
         type: 2}
@@ -755,7 +755,7 @@ Prefab:
         type: 2}
       propertyPath: targetPrefab
       value: 
-      objectReference: {fileID: 4287672327605846, guid: 68b402557fc79904db5e71dee2528698,
+      objectReference: {fileID: 4904163027372458, guid: 92d79779c0c61e3458f1b4a92a8c099c,
         type: 2}
     - target: {fileID: 114724895617072224, guid: f51d459211c9a1e4d8471a0b587ef480,
         type: 2}
@@ -792,7 +792,19 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 64324823890000994, guid: f51d459211c9a1e4d8471a0b587ef480,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114724895617072224, guid: f51d459211c9a1e4d8471a0b587ef480,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 4904163027372458, guid: 92d79779c0c61e3458f1b4a92a8c099c,
+        type: 2}
+    m_RemovedComponents:
+    - {fileID: 64324823890000994, guid: f51d459211c9a1e4d8471a0b587ef480, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: f51d459211c9a1e4d8471a0b587ef480, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &1672908433

@@ -9,6 +9,7 @@ public class Teleport : MonoBehaviour
 
     Ray shootRay;
     RaycastHit shootHit;
+    LineRenderer gunLine;
     int groundLayer;
     Mesh mesh;
     [SerializeField]
@@ -21,11 +22,12 @@ public class Teleport : MonoBehaviour
     public int resolution = 10;
     public Transform targetPrefab;
     private Transform target;
+    public Transform cameraTransform;
+    public Transform spellShotSpawn;
     private Renderer targetRenderer;
     float g; //force of gravity on the y axis
     float radianAngle;
     private Renderer renderer;
-    private Quaternion localTargetRot;
     Vector3 position = new Vector3();
     bool right;
     float distance = 5;
@@ -47,13 +49,14 @@ public class Teleport : MonoBehaviour
         mesh = GetComponent<MeshFilter>().mesh;
         g = Mathf.Abs(Physics2D.gravity.y);
         renderer = GetComponent<Renderer>();
-        groundLayer = 11;
+        groundLayer = 10;
         MakeArcMesh(CalculateArcArray());
-        //GetComponent<MeshCollider>().sharedMesh = mesh;
+        GetComponent<MeshCollider>().sharedMesh = mesh;
         target = Instantiate(targetPrefab) as Transform;
         targetRenderer = target.GetComponent<Renderer>();
         targetRenderer.enabled = false;
-        localTargetRot = Quaternion.identity;
+        cameraTransform = Camera.main.GetComponent<Transform>();
+
     }
 
     void MakeArcMesh(Vector3[] arcVerts)
@@ -93,7 +96,7 @@ public class Teleport : MonoBehaviour
         Vector3[] arcArray = new Vector3[resolution + 1];
         radianAngle = Mathf.Deg2Rad * angle;
 
-        float maxDistance = Mathf.Sqrt(Mathf.Pow((position.z - shootRay.origin.z), 2) + Mathf.Pow((position.x - shootRay.origin.x), 2));
+        float maxDistance = Mathf.Sqrt(Mathf.Pow((position.z - spellShotSpawn.position.z), 2) + Mathf.Pow((position.x - spellShotSpawn.position.x), 2)) + 3;
         //float maxDistance = Mathf.Sqrt(Mathf.Pow((position.z - shootRay.origin.z), 2) + Mathf.Pow((position.y - shootRay.origin.y) + Mathf.Pow(position.x - shootRay.origin.x,2), 2));
 
 
@@ -116,23 +119,20 @@ public class Teleport : MonoBehaviour
     }
 
 
+
     public void Update()
     {
-
-        shootRay.origin = transform.position + transform.forward * 0.1f;
-        shootRay.direction = transform.forward;
+        shootRay.origin = cameraTransform.position + cameraTransform.forward*0.1f;
+        shootRay.direction = cameraTransform.forward;
 
         MakeArcMesh(CalculateArcArray());
 
         if (Physics.Raycast(shootRay, out shootHit, distance))
         {
-            Debug.Log("ok " + shootHit.collider.gameObject.layer + " " + groundLayer);
-            if (shootHit.collider.gameObject.layer == groundLayer) {
-                Debug.Log("oui");
+            if(shootHit.collider.gameObject.layer == groundLayer) { 
                 renderer.material = Resources.Load("Correct_zone", typeof(Material)) as Material;
                 right = true;
                 position = shootHit.point;
-
 
                 if (!targetRenderer.enabled)
                 {
@@ -140,13 +140,15 @@ public class Teleport : MonoBehaviour
                 }
                 Vector3 pos = new Vector3();
                 pos.x = position.x;
-                pos.y = target.transform.localPosition.y;
+                pos.y = position.y + 0.001f;
                 pos.z = position.z;
                 target.transform.localPosition = pos;
+                Debug.Log("oui "+pos);
+
             }
             else
             {
-                Debug.Log("nop " + shootHit.collider.gameObject.name);
+                Debug.Log("nop "+shootHit.collider.gameObject.name + " "+ groundLayer);
                 renderer.material = Resources.Load("Bad_zone", typeof(Material)) as Material;
                 right = false;
                 if (targetRenderer.enabled)
@@ -154,7 +156,6 @@ public class Teleport : MonoBehaviour
                     targetRenderer.enabled = false;
                 }
             }
-
         }
         else
         {
@@ -165,17 +166,6 @@ public class Teleport : MonoBehaviour
                 targetRenderer.enabled = false;
             }
         }
-
-        Vector3 direction = new Vector3();
-        direction.x = position.x - shootRay.origin.x;
-        direction.y = 0;
-        direction.z = position.z - shootRay.origin.z;
-
-
-        Quaternion q = Quaternion.Euler(-90, 0, 0);
-        q = localTargetRot * Quaternion.LookRotation(-direction) * q;
-
-        target.transform.localRotation = q;
 
     }
 
@@ -198,17 +188,4 @@ public class Teleport : MonoBehaviour
             return false;
     }
 
-    public void setLocalTargetRot(Quaternion q) {
-        localTargetRot = localTargetRot * q;
-    }
-
-    public Quaternion getLocalTargetRot()
-    {
-        return localTargetRot ;
-    }
-
-    public void setRotInitialize()
-    {
-        localTargetRot = Quaternion.identity;
-    }
 }

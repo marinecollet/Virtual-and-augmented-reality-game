@@ -9,7 +9,15 @@ public class WandManager : MonoBehaviour {
 
     public float range = 100f;
     public List<SpellDefinition> spellList;
-    
+    public Transform cameraTransform;
+
+    public Teleport teleport;
+    public GameObject mesh_teleport;
+    //public GameObject SortDetection;
+    public float shotSpeed;
+    public Transform spellShotSpawn;
+
+
     //private Dictionary<string,List<SpellColliderType>> colliderDictio;
 
     private SpellTree spellTree;
@@ -50,6 +58,8 @@ public class WandManager : MonoBehaviour {
         }
 
         spellTree.DebugTree();
+
+        cameraTransform = Camera.main.GetComponent<Transform>();
     }
 
     public void AddSortCollider(SpellColliderType col)
@@ -81,45 +91,65 @@ public class WandManager : MonoBehaviour {
             case "shot":
                 GameObject wand = GameObject.FindGameObjectWithTag("Wand");
                 GameObject projectile = Instantiate(spellShot) as GameObject;
-                projectile.transform.position = transform.position + wand.transform.forward;
+                projectile.transform.position = spellShotSpawn.position;
                 Rigidbody rb = projectile.GetComponent<Rigidbody>();
-                rb.velocity = wand.transform.forward * 20;
+
+                shootRay.origin = cameraTransform.position;
+                shootRay.direction = cameraTransform.forward;
+                
+                if (Physics.Raycast(shootRay, out shootHit, range))
+                {
+
+                    rb.velocity = (shootHit.point - spellShotSpawn.position).normalized * shotSpeed; 
+
+                    //Set the second position of the line renderer to the point the raycast hit.
+                    gunLine.SetPosition(1, shootHit.point);
+                }
+                else
+                {
+                    rb.velocity = wand.transform.forward * shotSpeed;
+                    gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
+                }
+
                 break;
-            //case "lave":
-            //    //Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
-            //    Debug.Log("rayCast");
-            //    Debug.Log(transform.position);
+            case "tp":
+                if (!teleport.getRight() && mesh_teleport.activeSelf == true)
+                {
+                    Debug.Log("nop");
+                    mesh_teleport.SetActive(false);
+                   // SortDetection.SetActive(true);
+                }
+                else if (teleport.getRight() && mesh_teleport.activeSelf == true)
+                {
+                    Debug.Log("yep");
+                    shootRay.origin = cameraTransform.position;
+                    shootRay.direction = cameraTransform.forward;
+                    gunLine.SetPosition(0, spellShotSpawn.position);
 
-            //    gunLine.enabled = true;
-            //    gunLine.SetPosition(0, transform.position);
+                    if (Physics.Raycast(shootRay, out shootHit, range))
+                    {
+                        MazeCell mc = shootHit.transform.GetComponentInParent<MazeCell>();
 
-            //    shootRay.origin = transform.position;
-            //    shootRay.direction = transform.forward;
+                        if (mc != null)
+                        {
+                            Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
+                            player.SetTargetCell(mc);
+                        }
 
-            //    if (Physics.Raycast(shootRay, out shootHit, range, movableMask))
-            //    {
-            //        Debug.Log("rayCast success");
-            //        // Try and find an EnemyHealth script on the gameobject hit.
-            //        changedParentGameObject = shootHit.collider.GetComponent<ChangeParent>();
-            //        shootHit.transform.parent = this.transform.parent;
-            //        //If the EnemyHealth component exist...
-            //        if (changedParentGameObject != null)
-            //        {
-            //            Debug.Log("change success");
-            //            //... the enemy should take damage.
-            //            changedParentGameObject.Change(this.gameObject);
-            //        }
+                        //Set the second position of the line renderer to the point the raycast hit.
+                        gunLine.SetPosition(1, shootHit.point);
+                    }
 
-            //        //Set the second position of the line renderer to the point the raycast hit.
-            //        gunLine.SetPosition(1, shootHit.point);
-            //    }
-            //    else
-            //    {
-            //        Debug.Log("rayCast fail");
-            //        //... set the second position of the line renderer to the fullest extent of the gun's range.
-            //        gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
-            //    }
-            //    break;
+                    mesh_teleport.SetActive(false);
+                    //SortDetection.SetActive(true);
+                }
+                else
+                {
+                    Debug.Log("mb");
+                    //SortDetection.SetActive(false);
+                    mesh_teleport.SetActive(true);
+                }
+                break;
             default:
                 break;
         }
