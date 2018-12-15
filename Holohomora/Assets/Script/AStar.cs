@@ -116,9 +116,9 @@ public static class AStar{
                 closeList.Add(mazeCellWeight);
 
                 Renderer rend = mazeCellWeight.cell.transform.GetChild(0).GetComponent<Renderer>();
-                //Debug.Log("closed " + mazeCellWeight.cell.coordinates.x + " " + mazeCellWeight.cell.coordinates.z + " | " + (float)mazeCellWeight.weight);
-                rend.material.color = gradient.Evaluate((mazeCellWeight.weight - min) / (max- min));
-                //Debug.Log("min " + min + " max " + max);
+                Debug.Log("closed " + mazeCellWeight.cell.coordinates.x + " " + mazeCellWeight.cell.coordinates.z + " | " + (float)mazeCellWeight.weight);
+                rend.material.color = gradient.Evaluate((mazeCellWeight.weight - min) / (max - min));
+                Debug.Log("min " + min + " max " + max);
 
                 foreach (MazeCellWeight mc in closeList)
                 {
@@ -134,11 +134,26 @@ public static class AStar{
             {
                 if (otherCell.otherCell != null && otherCell is MazePassage)
                 {
-                    MazeCellWeight newCellWeight = new MazeCellWeight(otherCell.otherCell, otherCell.otherCell.coordinates.distance(target.coordinates));
-
-                    if (!closeList.Contains(newCellWeight) && !openList.Contains(newCellWeight))
+                    if(otherCell is MazeDoor)
                     {
-                        openList.Add(newCellWeight);
+                        if(((MazeDoor) otherCell).isOpen)
+                        {
+                            MazeCellWeight newCellWeight = new MazeCellWeight(otherCell.otherCell, otherCell.otherCell.coordinates.distance(target.coordinates));
+
+                            if (!closeList.Contains(newCellWeight) && !openList.Contains(newCellWeight))
+                            {
+                                openList.Add(newCellWeight);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MazeCellWeight newCellWeight = new MazeCellWeight(otherCell.otherCell, otherCell.otherCell.coordinates.distance(target.coordinates));
+
+                        if (!closeList.Contains(newCellWeight) && !openList.Contains(newCellWeight))
+                        {
+                            openList.Add(newCellWeight);
+                        }
                     }
                 }
             }

@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
 {
     public float speed;
 
-    private MazeCell currentCell;
+    public MazeCell currentCell { get; private set; }
     private MazeCell targetCell;
     private MazeCell movingCell;
     private List<MazeCell> path;

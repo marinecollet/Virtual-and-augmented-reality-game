@@ -19,6 +19,7 @@ public class WandManager : MonoBehaviour {
     public Transform camera;
     public Transform target;
     private Quaternion q = Quaternion.identity ;
+    public Renderer shield;
 
     //private Dictionary<string,List<SpellColliderType>> colliderDictio;
 
@@ -168,6 +169,10 @@ public class WandManager : MonoBehaviour {
                     gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
                 }
                 break;
+            case "protego":
+                shield.enabled = true;
+                break;
+
             default:
                 break;
         }
@@ -227,7 +232,7 @@ public class WandManager : MonoBehaviour {
                 player.position = new Vector3(position.x, player.position.y, position.z);
                 player.transform.localRotation = teleport.getLocalTargetRot();
                 camera.position = new Vector3(position.x, camera.position.y, position.z);
-                player.transform.localRotation = teleport.getLocalTargetRot();
+                camera.transform.localRotation = teleport.getLocalTargetRot();
                 mesh_teleport.SetActive(false);
                 SortDetection.SetActive(true);
 
@@ -245,19 +250,14 @@ public class WandManager : MonoBehaviour {
         if(mesh_teleport.activeSelf == true)
         {
             Vector2 thumb_dir = OVRInput.Get(OVRInput.RawAxis2D.RThumbstick);
-
-            Vector3 direction = new Vector3();
-            direction.x = thumb_dir.x;
-            direction.y = 0;
-            direction.z = thumb_dir.x;
-
-            Debug.Log(direction);
+            if (Mathf.Abs(thumb_dir.x)>0.1f)
+            {
+                Quaternion q_rotate = Quaternion.Euler(0,10*thumb_dir.x,0);
+                teleport.setLocalTargetRot(q_rotate);
+            }
 
 
-            q = Quaternion.LookRotation(direction);
-            q = new Quaternion(0.01f, 0, 0, 0) * q;
-            Debug.Log("quaternion" + q);
-            teleport.setLocalTargetRot(q);
+
 
         }
 

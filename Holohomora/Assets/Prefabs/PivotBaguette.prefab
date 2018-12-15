@@ -285,7 +285,7 @@ MonoBehaviour:
   resolution: 10
   targetPrefab: {fileID: 4287672327605846, guid: 92e075a6e873b224db638604ea07b88f,
     type: 2}
-  CameraTransform: {fileID: 0}
+  cameraTransform: {fileID: 0}
   spellShotSpawn: {fileID: 4112796639831338}
 --- !u!114 &114923017581884962
 MonoBehaviour:
@@ -304,6 +304,8 @@ MonoBehaviour:
     colliderOrder: 0600000002000000
   - spellName: tp
     colliderOrder: 0400000000000000
+  - spellName: holohomora
+    colliderOrder: 0000000004000000
   cameraTransform: {fileID: 0}
   teleport: {fileID: 114240637870983194}
   mesh_teleport: {fileID: 1862825994513622}

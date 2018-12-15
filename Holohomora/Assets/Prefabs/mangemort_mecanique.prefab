@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 95081237807062152}
   - component: {fileID: 136348955032339236}
   - component: {fileID: 114520052698084144}
+  - component: {fileID: 114023379879631996}
+  - component: {fileID: 65360049806022282}
   m_Layer: 0
   m_Name: mangemort_mecanique
   m_TagString: Untagged
@@ -39,6 +41,21 @@ GameObject:
   - component: {fileID: 4014907603647406}
   m_Layer: 0
   m_Name: Wheel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1549227757954078
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4582990761105590}
+  m_Layer: 0
+  m_Name: ShotSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,7 +144,8 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0.000000007450581, w: 1}
   m_LocalPosition: {x: 0.40354812, y: 0.000000020637515, z: 0.5965496}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4582990761105590}
   m_Father: {fileID: 4385109491961112}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -161,6 +179,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4582990761105590
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549227757954078}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.873, y: 1.039, z: -0.57}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4230036219063974}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4627071115490826
 Transform:
   m_ObjectHideFlags: 1
@@ -188,6 +219,18 @@ Transform:
   m_Father: {fileID: 4564378012405796}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65360049806022282
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1364422521800488}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 3, y: 2, z: 3}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &95081237807062152
 Animator:
   serializedVersion: 3
@@ -197,7 +240,7 @@ Animator:
   m_GameObject: {fileID: 1364422521800488}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 2b113fbc3e44b334cb54af80ee87d763, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a383d915836df3247a03ea97a76158f3, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -206,6 +249,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114023379879631996
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1364422521800488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8481fe5b1f8190d44a92372d3dff4ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotSpeed: 0
+  shootingSpeed: 5
+  spellShot: {fileID: 1474511498535222, guid: 51e7122db72490946bda24caea4fd26b, type: 2}
+  spellShotSpawn: {fileID: 4582990761105590}
+  shotSpeed: 0.5
 --- !u!114 &114520052698084144
 MonoBehaviour:
   m_ObjectHideFlags: 1

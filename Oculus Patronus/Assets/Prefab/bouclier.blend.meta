@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: cc1e67cccba3fb04594fb2fcdaa8c3c7
+guid: 7386ad4895a4780488c6f42ffd4eb12d
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Circle
+    2100000: Shield
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Circle
+    4300000: Sphere
     7400000: Default Take
     9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Circle
-    second: {fileID: 2100000, guid: aa4c229ab3bc2c14e8610fa81108e69a, type: 2}
+      name: Shield
+    second: {fileID: 2100000, guid: 2574322aab51c6441bfe13dfe5f1aa66, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

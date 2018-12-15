@@ -48,8 +48,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1962922950931630}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b437e4ccf9c06764da7ff03fdd282ee7, type: 3}
+  m_Script: {fileID: 11500000, guid: cab3d72ab589397418e2dc5caeb6460c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazePrefab: {fileID: 114152155053565448, guid: 8b73b1eac83fdca498c54ad87619c17f,
+  mazePrefab: {fileID: 114152155053565448, guid: 17c07acb4e1e11a49a2cea9578c614e4,
+    type: 2}
+  dobbyPrefab: {fileID: 114561327533330204, guid: 105674d7768299449afcba78fae5f03c,
+    type: 2}
+  socketPrefab: {fileID: 114256825371227276, guid: 5342f9fd58731194e889dfb6eba02836,
     type: 2}

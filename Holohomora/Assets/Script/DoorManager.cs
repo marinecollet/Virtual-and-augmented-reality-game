@@ -21,6 +21,7 @@ public class DoorManager : MonoBehaviour {
             {
                 //... the enemy should take damage.
                 otherAnim.SetBool("isOpen", true);
+                otherDoor.isOpen = true;
             }
 
         }
@@ -30,6 +31,7 @@ public class DoorManager : MonoBehaviour {
         {
             //... the enemy should take damage.
             anim.SetBool("isOpen", true);
+            mazeDoor.isOpen = true;
         }
     }
 }

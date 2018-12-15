@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class MazeDoor : MazePassage
 {
+    public bool isOpen;// { get; set; }
+
+    public void Awake()
+    {
+        this.isOpen = false;
+    }
 
     public override void Initialize(MazeCell primary, MazeCell other, MazeDirection direction)
     {

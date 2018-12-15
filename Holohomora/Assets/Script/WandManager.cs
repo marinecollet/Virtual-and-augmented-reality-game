@@ -29,7 +29,7 @@ public class WandManager : MonoBehaviour {
     RaycastHit shootHit;
  //   ParticleSystem spellParticles;
     LineRenderer gunLine;
-    int movableMask;
+    int movableMask, doorMask;
 
     private Collider spellCollider;
 
@@ -43,7 +43,7 @@ public class WandManager : MonoBehaviour {
 
         isReading = false;
         movableMask = LayerMask.GetMask("Movable");
-
+        doorMask = LayerMask.GetMask("Door");
 
         spellShot = Resources.Load("Sphere") as GameObject;
 
@@ -148,6 +148,33 @@ public class WandManager : MonoBehaviour {
                     Debug.Log("mb");
                     //SortDetection.SetActive(false);
                     mesh_teleport.SetActive(true);
+                }
+                break;
+            case "holohomora":
+                //Set the shootRay so that it starts at the end of the wand and points forward.
+
+                gunLine.enabled = true;
+                gunLine.SetPosition(0, transform.position);
+
+                shootRay.origin = transform.position;
+                shootRay.direction = transform.forward;
+
+                if (Physics.Raycast(shootRay, out shootHit, range, doorMask))
+                {
+                    DoorManager doorManager = shootHit.collider.GetComponent<DoorManager>();
+                    if (doorManager != null)
+                    {
+                        doorManager.openTheDoor();
+                    }
+
+                    //Set the second position of the line renderer to the point the raycast hit.
+                    gunLine.SetPosition(1, shootHit.point);
+                }
+                else
+                {
+                    //Debug.Log("holohomora rayCast fail");
+                    //... set the second position of the line renderer to the fullest extent of the gun's range.
+                    gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
                 }
                 break;
             default:

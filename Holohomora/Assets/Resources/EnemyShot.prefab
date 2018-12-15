@@ -24,8 +24,8 @@ GameObject:
   - component: {fileID: 135689660175156796}
   - component: {fileID: 54259843758343958}
   m_Layer: 0
-  m_Name: Sphere
-  m_TagString: Shot
+  m_Name: EnemyShot
+  m_TagString: EnemyShot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 721445035affc3449b8e687a17984fb2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
