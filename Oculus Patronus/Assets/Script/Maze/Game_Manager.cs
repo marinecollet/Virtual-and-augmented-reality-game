@@ -5,8 +5,11 @@ using UnityEngine;
 public class Game_Manager : MonoBehaviour {
 
     public Maze mazePrefab;
+    public First_room roomPrefab;
 
     private Maze mazeInstance;
+    private First_room roomInstance;
+ 
 
 	void Start ()
     {
@@ -23,12 +26,15 @@ public class Game_Manager : MonoBehaviour {
 
     void BeginGame()
     {
+        //roomInstance = Instantiate(roomPrefab) as First_room;
         mazeInstance = Instantiate(mazePrefab) as Maze;
         mazeInstance.Generate();
+
     }
 
     void RestartGame()
     {
+        //Destroy(roomInstance.gameObject);
         Destroy(mazeInstance.gameObject);
         BeginGame();
     }
