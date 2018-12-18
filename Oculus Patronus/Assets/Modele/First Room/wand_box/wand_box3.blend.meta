@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 1f8bbad93b2e9604ebad876dde13e064
+guid: d031aee01b45b6a42aef3cc4611ecd0c
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Shield
+    2100000: Box__panne-de-velours-rouge_jpg
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Sphere
+    4300000: Cube
     7400000: Default Take
     9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Shield
-    second: {fileID: 2100000, guid: 2574322aab51c6441bfe13dfe5f1aa66, type: 2}
+      name: Box__panne-de-velours-rouge_jpg
+    second: {fileID: 2100000, guid: 8d85193e81f14da4bafbc9af9047dad0, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

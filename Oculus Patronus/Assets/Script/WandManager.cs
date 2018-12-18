@@ -19,7 +19,7 @@ public class WandManager : MonoBehaviour {
     public Transform camera;
     public Transform target;
     private Quaternion q = Quaternion.identity ;
-    public Renderer shield;
+    public GameObject shield;
 
     //private Dictionary<string,List<SpellColliderType>> colliderDictio;
 
@@ -170,7 +170,8 @@ public class WandManager : MonoBehaviour {
                 }
                 break;
             case "protego":
-                shield.enabled = true;
+                shield.SetActive(true);
+                SortDetection.SetActive(false);
                 break;
 
             default:
