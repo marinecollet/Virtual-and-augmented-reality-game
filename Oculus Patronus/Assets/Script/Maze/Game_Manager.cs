@@ -6,7 +6,6 @@ public class Game_Manager : MonoBehaviour {
     public static bool isSetup = false;
     public Maze mazePrefab;
     public First_room roomPrefab;
-    public bool loadMaze;
 
     private Maze mazeInstance;
     private First_room roomInstance;
@@ -27,25 +26,19 @@ public class Game_Manager : MonoBehaviour {
 
     void BeginGame()
     {
-        if(loadMaze)
-        {
-            mazeInstance = Instantiate(mazePrefab) as Maze;
-            mazeInstance.Generate();
-            isSetup = true;
-        }
-        else
-            roomInstance = Instantiate(roomPrefab) as First_room;
+
+        roomInstance = Instantiate(roomPrefab) as First_room;
+        mazeInstance = Instantiate(mazePrefab) as Maze;
+        mazeInstance.Generate();
+        isSetup = true;
+
     }
 
     void RestartGame()
     {
-        if (loadMaze)
-        {
-            Destroy(mazeInstance.gameObject);
-            isSetup = false;
-        }
-        else
-            Destroy(roomInstance.gameObject);
+        Destroy(roomInstance.gameObject);
+        Destroy(mazeInstance.gameObject);
+        isSetup = false;
 
         BeginGame();
     }
