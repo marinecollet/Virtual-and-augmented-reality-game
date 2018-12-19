@@ -53,3 +53,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mazePrefab: {fileID: 114152155053565448, guid: 4e3bc9f417802f747bf97a0927b0b7b5,
     type: 2}
+  roomPrefab: {fileID: 114692792853607808, guid: 1976a50b2a7ae1449aaf0eb150082d48,
+    type: 2}
+  loadMaze: 0
