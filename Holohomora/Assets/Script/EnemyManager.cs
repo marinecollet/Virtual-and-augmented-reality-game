@@ -9,44 +9,67 @@ public class EnemyManager : MonoBehaviour {
     public GameObject spellShot;
     public Transform spellShotSpawn;
     public float shotSpeed;
+    public float maxDistTargeting;
 
-    private Transform target;
     private bool isShooting;
+    private bool isTargeting;
     private float timeSinceLastShot;
+    private Transform player;
 
-	// Use this for initialization
-	void Awake () {
-        target = null;
+    // Use this for initialization
+    void Awake () {
         timeSinceLastShot = -1;
         isShooting = false;
+        isTargeting = false;
+        player = null;
     }
-	
-	// Update is called once per frame
-	void OnTriggerEnter(Collider collider) {
-		if(collider.tag == "Shot")
+
+    //// Update is called once per frame
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.tag == "Shot")
         {
             Destroy(collider.gameObject);
             Destroy(this.gameObject);
         }
         if (collider.tag == "Player")
         {
-            target = collider.transform;
+            player = collider.transform;
         }
     }
     void OnTriggerExit(Collider collider)
     {
         if (collider.tag == "Player")
         {
-            target = null;
+            player = null;
         }
     }
 
+    private void FixedUpdate()
+    {
+        if(player != null)
+        {
+            Vector3 dir = player.position - this.transform.position;
+            if (dir.sqrMagnitude < maxDistTargeting)
+            {
+                isTargeting = true;
+            }
+            else
+            {
+                isTargeting = false;
+            }
+        }
+    }
 
     private void Update()
     {
-        if(target != null)
+        if(Game_Manager.isSetup && player == null )
         {
-            Vector3 dir = target.position - this.transform.position;
+            player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        }
+        if (isTargeting && player != null)
+        {
+            Vector3 dir = player.position - this.transform.position;
             this.transform.localRotation = Quaternion.LookRotation(dir.normalized, Vector3.up);
             if (timeSinceLastShot > shootingSpeed)
             {
@@ -54,7 +77,7 @@ public class EnemyManager : MonoBehaviour {
                 projectile.transform.position = spellShotSpawn.position;
                 Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
-                rb.velocity = (new Vector3(target.position.x, target.position.y + 0.08f, target.position.z)- spellShotSpawn.position).normalized * shotSpeed;
+                rb.velocity = (new Vector3(player.position.x, player.position.y + 0.08f, player.position.z)- spellShotSpawn.position).normalized * shotSpeed;
                 timeSinceLastShot = 0;
             }
             else if(timeSinceLastShot < shootingSpeed)

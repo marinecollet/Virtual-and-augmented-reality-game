@@ -5,6 +5,7 @@ using UnityEngine.Windows.Speech;
 using UnityEngine;
 
 public class Game_Manager : MonoBehaviour {
+    public static bool isSetup = false;
 
     public Maze mazePrefab;
     public Player dobbyPrefab;
@@ -50,6 +51,7 @@ public class Game_Manager : MonoBehaviour {
         dobbyInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
         socketInstance = Instantiate(socketPrefab) as Socket;
         socketInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
+        isSetup = true;
         //dobbyInstance = Instantiate(dobby) as GameObject;
         //dobbyInstance.transform.position = dobbySpawn;
     }
@@ -79,6 +81,7 @@ public class Game_Manager : MonoBehaviour {
         {
             Destroy(socketInstance.gameObject);
         }
+        isSetup = false;
         StartCoroutine(BeginGame());
     }
 }

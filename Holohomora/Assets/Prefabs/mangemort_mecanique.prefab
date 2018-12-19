@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 136348955032339236}
   - component: {fileID: 114520052698084144}
   - component: {fileID: 114023379879631996}
-  - component: {fileID: 65360049806022282}
   m_Layer: 0
   m_Name: mangemort_mecanique
   m_TagString: Untagged
@@ -219,18 +218,6 @@ Transform:
   m_Father: {fileID: 4564378012405796}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &65360049806022282
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1364422521800488}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 3, y: 2, z: 3}
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &95081237807062152
 Animator:
   serializedVersion: 3
@@ -265,6 +252,7 @@ MonoBehaviour:
   spellShot: {fileID: 1474511498535222, guid: 51e7122db72490946bda24caea4fd26b, type: 2}
   spellShotSpawn: {fileID: 4582990761105590}
   shotSpeed: 0.5
+  maxDistTargeting: 0.1
 --- !u!114 &114520052698084144
 MonoBehaviour:
   m_ObjectHideFlags: 1
