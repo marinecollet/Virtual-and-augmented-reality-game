@@ -309,7 +309,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 0}
   teleport: {fileID: 114240637870983194}
   mesh_teleport: {fileID: 1862825994513622}
-  shotSpeed: 0.2
+  shotSpeed: 1
   spellShotSpawn: {fileID: 4112796639831338}
   isReading: 0
 --- !u!120 &120382266132085858

@@ -140,7 +140,7 @@ public class Teleport : MonoBehaviour
                 }
                 Vector3 pos = new Vector3();
                 pos.x = position.x;
-                pos.y = target.transform.localPosition.y;
+                pos.y = pos.y + 0.1f;
                 pos.z = position.z;
                 target.transform.localPosition = pos;
             }
@@ -210,5 +210,10 @@ public class Teleport : MonoBehaviour
     public void setRotInitialize()
     {
         localTargetRot = Quaternion.identity;
+    }
+
+    public void haveValid()
+    {
+        targetRenderer.enabled = false;
     }
 }

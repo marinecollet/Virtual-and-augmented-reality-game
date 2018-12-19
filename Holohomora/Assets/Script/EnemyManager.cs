@@ -12,9 +12,11 @@ public class EnemyManager : MonoBehaviour {
     public float maxDistTargeting;
 
     private bool isShooting;
-    private bool isTargeting;
+    public bool isTargeting;
     private float timeSinceLastShot;
     private Transform player;
+    private Ray shootRay;
+    private RaycastHit shootHit;
 
     // Use this for initialization
     void Awake () {
@@ -70,20 +72,28 @@ public class EnemyManager : MonoBehaviour {
         if (isTargeting && player != null)
         {
             Vector3 dir = player.position - this.transform.position;
-            this.transform.localRotation = Quaternion.LookRotation(dir.normalized, Vector3.up);
-            if (timeSinceLastShot > shootingSpeed)
+            shootRay.origin = spellShotSpawn.position;
+            shootRay.direction = dir;
+            if (Physics.Raycast(shootRay, out shootHit, maxDistTargeting))
             {
-                GameObject projectile = Instantiate(spellShot) as GameObject;
-                projectile.transform.position = spellShotSpawn.position;
-                Rigidbody rb = projectile.GetComponent<Rigidbody>();
+                if (shootHit.collider.gameObject.CompareTag("Player"))
+                {
+                    this.transform.localRotation = Quaternion.LookRotation(dir, Vector3.up);
+                    if (timeSinceLastShot > shootingSpeed)
+                    {
+                        GameObject projectile = Instantiate(spellShot) as GameObject;
+                        projectile.transform.position = spellShotSpawn.position;
+                        Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
-                rb.velocity = (new Vector3(player.position.x, player.position.y + 0.08f, player.position.z)- spellShotSpawn.position).normalized * shotSpeed;
-                timeSinceLastShot = 0;
-            }
-            else if(timeSinceLastShot < shootingSpeed)
-            {
-                timeSinceLastShot += Time.deltaTime;
-            }
+                        rb.velocity = (new Vector3(player.position.x, player.position.y + 0.08f, player.position.z) - spellShotSpawn.position).normalized * shotSpeed;
+                        timeSinceLastShot = 0;
+                    }
+                    else if (timeSinceLastShot < shootingSpeed)
+                    {
+                        timeSinceLastShot += Time.deltaTime;
+                    }
+                }
+            }     
         }
     }
 }

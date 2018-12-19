@@ -42,18 +42,10 @@ public class Choose_wand : MonoBehaviour {
             Quaternion rotation = Quaternion.Euler(-45, 0, 0);
             wand.gameObject.transform.localPosition = position;
             wand.gameObject.transform.localRotation = rotation;
+            wand.gameObject.GetComponent<WandManager>().enabled = true;
             rig = wand.gameObject.GetComponent<Rigidbody>();
             rig.useGravity = false;
-            Debug.Log("gravity grab" + (rig.useGravity == false));
 
-        }
-        else if (grabbed && OVRInput.GetDown(OVRInput.RawButton.RHandTrigger))
-        {
-            wand.gameObject.transform.SetParent(null);
-            grabbed = false;
-            collider_sort.SetActive(false);
-            rig.useGravity = true;
-            Debug.Log("gravity degrab" + (rig.useGravity == true));
         }
 
     }

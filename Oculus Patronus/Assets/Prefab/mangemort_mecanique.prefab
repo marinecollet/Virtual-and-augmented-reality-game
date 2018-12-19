@@ -128,7 +128,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1536599528646552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.831, y: 1.055, z: -0.54}
+  m_LocalPosition: {x: -0.711, y: 1.182, z: -0.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4262009679775726}
@@ -195,7 +195,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1280181750138908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.9218616, y: -3.164616, z: 5.9964237}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4161023044741516}
@@ -252,7 +252,9 @@ MonoBehaviour:
   spellShot: {fileID: 1474511498535222, guid: cc5f605705ff81c46be77a69d32017ba, type: 2}
   spellShotSpawn: {fileID: 4123641265751180}
   shotSpeed: 0.5
-  maxDistTargeting: 2
+  maxDistTargeting: 20
+  isTargeting: 0
+  player: {fileID: 0}
 --- !u!114 &114837389507688124
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - EnemyShot
   - Chimney
+  - Shot
   layers:
   - Default
   - TransparentFX

@@ -21,6 +21,7 @@ public class WandManager : MonoBehaviour {
     private Quaternion q = Quaternion.identity ;
     public GameObject shield;
 
+
     //private Dictionary<string,List<SpellColliderType>> colliderDictio;
 
     private SpellTree spellTree;
@@ -104,9 +105,9 @@ public class WandManager : MonoBehaviour {
             case "shot":
                 GameObject wand = GameObject.FindGameObjectWithTag("Wand");
                 GameObject projectile = Instantiate(spellShot) as GameObject;
-                projectile.transform.position = transform.position + wand.transform.forward;
+                projectile.transform.position = transform.position + this.transform.forward;
                 Rigidbody rb = projectile.GetComponent<Rigidbody>();
-                rb.velocity = wand.transform.forward * 20;
+                rb.velocity = this.transform.forward * 20;
                 break;
             case "lave":
                 //Set the shootRay so that it starts at the end of the wand and points forward.
@@ -187,6 +188,7 @@ public class WandManager : MonoBehaviour {
 
     public void Update()
     {
+
         if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger) && changedParentGameObject != null)
         {
             changedParentGameObject.reset();
@@ -236,7 +238,7 @@ public class WandManager : MonoBehaviour {
                 camera.transform.localRotation = teleport.getLocalTargetRot();
                 mesh_teleport.SetActive(false);
                 SortDetection.SetActive(true);
-
+                teleport.haveValid();
             }
             else
             {
@@ -256,9 +258,7 @@ public class WandManager : MonoBehaviour {
                 Quaternion q_rotate = Quaternion.Euler(0,10*thumb_dir.x,0);
                 teleport.setLocalTargetRot(q_rotate);
             }
-
-
-
+            
 
         }
 
@@ -268,6 +268,7 @@ public class WandManager : MonoBehaviour {
             Vector2 vector_joystick = new Vector2();
             vector_joystick = OVRInput.Get(OVRInput.RawAxis2D.RThumbstick);
             teleport.SetVelocity(teleport.velocity + vector_joystick.y *0.1f);
+            
         }
 
         /**if (OVRInput.GetUp(OVRInput.RawButton.LThumbstick))

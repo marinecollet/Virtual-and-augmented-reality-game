@@ -252,7 +252,8 @@ MonoBehaviour:
   spellShot: {fileID: 1474511498535222, guid: 51e7122db72490946bda24caea4fd26b, type: 2}
   spellShotSpawn: {fileID: 4582990761105590}
   shotSpeed: 0.5
-  maxDistTargeting: 0.1
+  maxDistTargeting: 0.2
+  isTargeting: 0
 --- !u!114 &114520052698084144
 MonoBehaviour:
   m_ObjectHideFlags: 1

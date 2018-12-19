@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
+                    //bug when moving and going where we can't
                     int idx = path.IndexOf(movingCell);
                     movingCell = path[idx + 1];
                 }
