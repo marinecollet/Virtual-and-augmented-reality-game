@@ -60,7 +60,3 @@ public class Choose_wand : MonoBehaviour {
 }
 
 
-/** TODO:
- * retirer le trigger du collider de la baguette quand celle ci est sélectionnée afin de ne pas changer sa position si elle entre en contact avec un autre objet
- * 
- * **/

@@ -7,6 +7,8 @@ TagManager:
   - Wand
   - SortDetection
   - Ground
+  - EnemyShot
+  - Chimney
   layers:
   - Default
   - TransparentFX
