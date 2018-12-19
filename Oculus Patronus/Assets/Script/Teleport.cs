@@ -140,7 +140,7 @@ public class Teleport : MonoBehaviour
                 }
                 Vector3 pos = new Vector3();
                 pos.x = position.x;
-                pos.y = pos.y + 0.1f;
+                pos.y = target.transform.localPosition.y;
                 pos.z = position.z;
                 target.transform.localPosition = pos;
             }
@@ -198,7 +198,8 @@ public class Teleport : MonoBehaviour
             return false;
     }
 
-    public void setLocalTargetRot(Quaternion q) {
+    public void setLocalTargetRot(Quaternion q)
+    {
         localTargetRot = localTargetRot * q;
     }
 

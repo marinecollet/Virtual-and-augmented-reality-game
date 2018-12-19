@@ -10,6 +10,7 @@ public class Choose_wand : MonoBehaviour {
     private bool grabbed = false;
     public GameObject collider_sort;
     Rigidbody rig = null;
+    public GameObject objectDisappear;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -42,9 +43,9 @@ public class Choose_wand : MonoBehaviour {
             Quaternion rotation = Quaternion.Euler(-45, 0, 0);
             wand.gameObject.transform.localPosition = position;
             wand.gameObject.transform.localRotation = rotation;
-            wand.gameObject.GetComponent<WandManager>().enabled = true;
             rig = wand.gameObject.GetComponent<Rigidbody>();
             rig.useGravity = false;
+            objectDisappear.SetActive(false);
 
         }
 
