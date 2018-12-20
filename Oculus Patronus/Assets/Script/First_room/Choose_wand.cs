@@ -46,6 +46,9 @@ public class Choose_wand : MonoBehaviour {
             rig = wand.gameObject.GetComponent<Rigidbody>();
             rig.useGravity = false;
             objectDisappear.SetActive(false);
+            Debug.Log("disppear");
+            wand.gameObject.GetComponent<WandManager>().enabled = true;
+            this.GetComponent<SphereCollider>().enabled = false;
 
         }
 

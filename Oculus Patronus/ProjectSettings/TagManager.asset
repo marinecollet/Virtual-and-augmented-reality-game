@@ -10,6 +10,7 @@ TagManager:
   - EnemyShot
   - Chimney
   - Shot
+  - Wall
   layers:
   - Default
   - TransparentFX

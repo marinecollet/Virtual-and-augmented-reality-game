@@ -17,18 +17,21 @@ public class EnemyManager : MonoBehaviour {
     public Transform player;
     private Ray shootRay;
     private RaycastHit shootHit;
-
+    LineRenderer gunLine;
     // Use this for initialization
+
     void Awake () {
-        timeSinceLastShot = -1;
+        timeSinceLastShot = 0;
         isShooting = false;
         isTargeting = false;
         player = null;
+        gunLine = GetComponent<LineRenderer>();
     }
 
     //// Update is called once per frame
     void OnTriggerEnter(Collider collider)
     {
+        Debug.Log("collider");
         if (collider.tag == "Shot")
         {
             Destroy(collider.gameObject);
@@ -36,12 +39,23 @@ public class EnemyManager : MonoBehaviour {
         }
     }
 
-    private void FixedUpdate()
+    //private void FixedUpdate()
+    //{
+        
+    //}
+
+    private void Update()
     {
-        if(player != null)
+        if (Game_Manager.isSetup && player == null)
+        {
+            player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        }
+
+        if (player != null)
         {
             Vector3 dir = player.position - this.transform.position;
-            if (dir.sqrMagnitude < maxDistTargeting)
+            Debug.Log("dir magnitude "+ dir.magnitude);
+            if (dir.magnitude < maxDistTargeting)
             {
                 isTargeting = true;
             }
@@ -50,24 +64,23 @@ public class EnemyManager : MonoBehaviour {
                 isTargeting = false;
             }
         }
-    }
 
-    private void Update()
-    {
-        if (Game_Manager.isSetup && player == null)
-        {
-            player = GameObject.FindWithTag("Player").GetComponent<Transform>();
-        }
         if (isTargeting && player != null)
         {
-            Vector3 dir = player.position - this.transform.position;
+            Vector3 dir = player.position - spellShotSpawn.position;
+            //Debug.Log(player.position + " | "+dir+ " | " + (shootRay.origin + shootRay.direction * maxDistTargeting));
             shootRay.origin = spellShotSpawn.position;
-            shootRay.direction = dir;
+            shootRay.direction = dir.normalized;
+            //gunLine.enabled = true;
+            //gunLine.SetPosition(0, spellShotSpawn.position);
+
             if (Physics.Raycast(shootRay, out shootHit, maxDistTargeting))
             {
-                if (shootHit.collider.gameObject.CompareTag("Player"))
+                if (shootHit.collider.gameObject.CompareTag("Player") || shootHit.collider.gameObject.CompareTag("SortDetection"))
                 {
-                    this.transform.localRotation = Quaternion.LookRotation(dir, Vector3.up);
+                    gunLine.SetPosition(1, shootHit.point);
+
+                    this.transform.localRotation = Quaternion.LookRotation(new Vector3(dir.x,0f,dir.z), Vector3.up);
                     if (timeSinceLastShot > shootingSpeed)
                     {
                         GameObject projectile = Instantiate(spellShot) as GameObject;
@@ -82,6 +95,17 @@ public class EnemyManager : MonoBehaviour {
                         timeSinceLastShot += Time.deltaTime;
                     }
                 }
+                else
+                {
+                    Debug.Log(shootHit.collider.gameObject.name);
+                    //gunLine.SetPosition(1, shootRay.origin + shootRay.direction * maxDistTargeting);
+                }
+            }
+            else
+            {
+                Debug.Log("fail");
+                //gunLine.SetPosition(1, shootRay.origin + shootRay.direction * maxDistTargeting);
+
             }
         }
     }

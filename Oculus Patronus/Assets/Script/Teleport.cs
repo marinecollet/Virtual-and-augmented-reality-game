@@ -94,7 +94,7 @@ public class Teleport : MonoBehaviour
         radianAngle = Mathf.Deg2Rad * angle;
 
         float maxDistance = Mathf.Sqrt(Mathf.Pow((position.z - shootRay.origin.z), 2) + Mathf.Pow((position.x - shootRay.origin.x), 2));
-        //float maxDistance = Mathf.Sqrt(Mathf.Pow((position.z - shootRay.origin.z), 2) + Mathf.Pow((position.y - shootRay.origin.y) + Mathf.Pow(position.x - shootRay.origin.x,2), 2));
+        
 
 
         for (int i = 0; i <= resolution; i++)
@@ -119,13 +119,17 @@ public class Teleport : MonoBehaviour
     public void Update()
     {
 
+
+
         shootRay.origin = transform.position + transform.forward * 0.1f;
         shootRay.direction = transform.forward;
+
 
         MakeArcMesh(CalculateArcArray());
 
         if (Physics.Raycast(shootRay, out shootHit, distance))
         {
+
             Debug.Log("ok " + shootHit.collider.gameObject.layer + " " + groundLayer);
             if (shootHit.collider.gameObject.layer == groundLayer) {
                 Debug.Log("oui");
@@ -143,6 +147,7 @@ public class Teleport : MonoBehaviour
                 pos.y = target.transform.localPosition.y;
                 pos.z = position.z;
                 target.transform.localPosition = pos;
+
             }
             else
             {
@@ -153,6 +158,7 @@ public class Teleport : MonoBehaviour
                 {
                     targetRenderer.enabled = false;
                 }
+
             }
 
         }

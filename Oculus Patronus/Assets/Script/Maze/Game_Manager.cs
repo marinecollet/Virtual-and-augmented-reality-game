@@ -27,7 +27,7 @@ public class Game_Manager : MonoBehaviour {
     void BeginGame()
     {
 
-        roomInstance = Instantiate(roomPrefab) as First_room;
+        //roomInstance = Instantiate(roomPrefab) as First_room;
         mazeInstance = Instantiate(mazePrefab) as Maze;
         mazeInstance.Generate();
         isSetup = true;
@@ -36,7 +36,7 @@ public class Game_Manager : MonoBehaviour {
 
     void RestartGame()
     {
-        Destroy(roomInstance.gameObject);
+        //Destroy(roomInstance.gameObject);
         Destroy(mazeInstance.gameObject);
         isSetup = false;
 

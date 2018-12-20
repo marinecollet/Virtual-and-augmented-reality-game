@@ -233,9 +233,9 @@ public class WandManager : MonoBehaviour {
             {
                 position = teleport.getPosition();
                 player.position = new Vector3(position.x, player.position.y, position.z);
-                player.transform.localRotation = teleport.getLocalTargetRot();
+                player.transform.localRotation = player.transform.localRotation * teleport.getLocalTargetRot();
                 camera.position = new Vector3(position.x, camera.position.y, position.z);
-                camera.transform.localRotation = teleport.getLocalTargetRot();
+                camera.transform.localRotation = camera.transform.localRotation * teleport.getLocalTargetRot();
                 mesh_teleport.SetActive(false);
                 SortDetection.SetActive(true);
                 teleport.haveValid();

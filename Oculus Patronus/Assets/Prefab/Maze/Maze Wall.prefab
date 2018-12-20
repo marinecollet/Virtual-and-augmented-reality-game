@@ -38,9 +38,10 @@ GameObject:
   - component: {fileID: 33988708376283444}
   - component: {fileID: 23620554783577124}
   - component: {fileID: 65140189915145868}
+  - component: {fileID: 114824424515902910}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,3 +142,14 @@ MonoBehaviour:
   otherCell: {fileID: 0}
   direction: 0
   wall: {fileID: 4191011795364824}
+--- !u!114 &114824424515902910
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1919747392287836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a63d7011eae1cb4c8ce8ff099bddc70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

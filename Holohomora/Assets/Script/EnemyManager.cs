@@ -34,17 +34,6 @@ public class EnemyManager : MonoBehaviour {
             Destroy(collider.gameObject);
             Destroy(this.gameObject);
         }
-        if (collider.tag == "Player")
-        {
-            player = collider.transform;
-        }
-    }
-    void OnTriggerExit(Collider collider)
-    {
-        if (collider.tag == "Player")
-        {
-            player = null;
-        }
     }
 
     private void FixedUpdate()
@@ -52,7 +41,7 @@ public class EnemyManager : MonoBehaviour {
         if(player != null)
         {
             Vector3 dir = player.position - this.transform.position;
-            if (dir.sqrMagnitude < maxDistTargeting)
+            if (dir.magnitude < maxDistTargeting)
             {
                 isTargeting = true;
             }
@@ -69,23 +58,25 @@ public class EnemyManager : MonoBehaviour {
         {
             player = GameObject.FindWithTag("Player").GetComponent<Transform>();
         }
+
         if (isTargeting && player != null)
         {
-            Vector3 dir = player.position - this.transform.position;
+            Vector3 dir = player.position - spellShotSpawn.position;
             shootRay.origin = spellShotSpawn.position;
-            shootRay.direction = dir;
+            shootRay.direction = dir.normalized;
+
             if (Physics.Raycast(shootRay, out shootHit, maxDistTargeting))
             {
                 if (shootHit.collider.gameObject.CompareTag("Player"))
                 {
-                    this.transform.localRotation = Quaternion.LookRotation(dir, Vector3.up);
+                    this.transform.localRotation = Quaternion.LookRotation(new Vector3(dir.x, 0f, dir.z), Vector3.up);
                     if (timeSinceLastShot > shootingSpeed)
                     {
                         GameObject projectile = Instantiate(spellShot) as GameObject;
                         projectile.transform.position = spellShotSpawn.position;
                         Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
-                        rb.velocity = (new Vector3(player.position.x, player.position.y + 0.08f, player.position.z) - spellShotSpawn.position).normalized * shotSpeed;
+                        rb.velocity = (new Vector3(player.position.x, player.position.y + Random.Range(0.06f,0.1f), player.position.z) - spellShotSpawn.position).normalized * shotSpeed;
                         timeSinceLastShot = 0;
                     }
                     else if (timeSinceLastShot < shootingSpeed)

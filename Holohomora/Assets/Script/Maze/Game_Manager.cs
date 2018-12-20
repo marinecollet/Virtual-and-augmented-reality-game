@@ -82,6 +82,7 @@ public class Game_Manager : MonoBehaviour {
             Destroy(socketInstance.gameObject);
         }
         isSetup = false;
+        AStar.Reset();
         StartCoroutine(BeginGame());
     }
 }

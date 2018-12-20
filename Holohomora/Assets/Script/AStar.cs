@@ -241,4 +241,13 @@ public static class AStar{
         else
             return 1;
     }
+
+    public static void Reset()
+    {
+        if (openList != null)
+            openList.Clear();
+
+        if (closeList != null)
+            closeList.Clear();
+    }
 }

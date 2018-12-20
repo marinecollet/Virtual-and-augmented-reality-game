@@ -156,8 +156,8 @@ public class WandManager : MonoBehaviour {
                 gunLine.enabled = true;
                 gunLine.SetPosition(0, transform.position);
 
-                shootRay.origin = transform.position;
-                shootRay.direction = transform.forward;
+                shootRay.origin = cameraTransform.position;
+                shootRay.direction = cameraTransform.forward;
 
                 if (Physics.Raycast(shootRay, out shootHit, range, doorMask))
                 {

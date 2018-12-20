@@ -54,8 +54,8 @@ MonoBehaviour:
   cellPrefab: {fileID: 114371738435711358, guid: 29afe719b57800a4f8703a4f6827689d,
     type: 2}
   size:
-    x: 10
-    z: 10
+    x: 20
+    z: 20
   passagePrefab: {fileID: 114002801099025304, guid: 43d30e4754bf34342b2c4f30bca7b324,
     type: 2}
   wallPrefab: {fileID: 114699878219549792, guid: 24c4efbe2466c054fab545cb27518828,
@@ -64,7 +64,7 @@ MonoBehaviour:
     type: 2}
   ennemyPrefab: {fileID: 114837389507688124, guid: 18a945affe5e306409c73eb032e5f0f1,
     type: 2}
-  ennemyProbability: 0.1
+  ennemyProbability: 0.05
   doorProbability: 0.1
   roomSettings:
   - floorMaterial: {fileID: 2100000, guid: 215a5c2208edc4c4a8dec106034c7fbd, type: 2}
