@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 23061845310637876}
   - component: {fileID: 64187352963811928}
   - component: {fileID: 114627689402539336}
+  - component: {fileID: 114427819544489966}
   m_Layer: 10
   m_Name: Quad
   m_TagString: Ground
@@ -149,6 +150,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   room: {fileID: 0}
+--- !u!114 &114427819544489966
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654543117651484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 745b528d6b11ffa4282edcb320ea6629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114627689402539336
 MonoBehaviour:
   m_ObjectHideFlags: 1

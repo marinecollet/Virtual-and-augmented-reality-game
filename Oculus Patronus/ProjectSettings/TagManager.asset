@@ -11,6 +11,7 @@ TagManager:
   - Chimney
   - Shot
   - Wall
+  - cheminette
   layers:
   - Default
   - TransparentFX

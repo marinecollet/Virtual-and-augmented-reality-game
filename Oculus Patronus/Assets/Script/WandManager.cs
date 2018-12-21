@@ -199,13 +199,17 @@ public class WandManager : MonoBehaviour {
         {
             Vector2 vect = OVRInput.Get(OVRInput.RawAxis2D.RThumbstick);
 
-            Vector3 dir = (changedParentGameObject.transform.localPosition - this.transform.position).normalized;
+            Vector3 dir = (changedParentGameObject.transform.position - this.transform.position).normalized;
 
-            Vector3 newPosition = changedParentGameObject.transform.localPosition + dir * vect.y * moveObjectSpeed;
+            gunLine.SetPosition(0, changedParentGameObject.transform.position);
+            gunLine.SetPosition(1, this.transform.position);
+
+
+            Vector3 newPosition = changedParentGameObject.transform.position + dir * vect.y * moveObjectSpeed;
 
             if((newPosition - this.transform.position).sqrMagnitude > 1)
             {
-                changedParentGameObject.transform.localPosition = newPosition;
+                changedParentGameObject.transform.position = newPosition;
             }
         }
 
@@ -244,6 +248,11 @@ public class WandManager : MonoBehaviour {
             {
                 SortDetection.SetActive(false);
                 mesh_teleport.SetActive(true);
+                if(changedParentGameObject != null)
+                {
+                    changedParentGameObject.reset();
+                    changedParentGameObject = null;
+                }
                 teleport.setRotInitialize();
             }
 

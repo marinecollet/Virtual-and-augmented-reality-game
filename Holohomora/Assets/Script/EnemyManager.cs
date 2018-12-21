@@ -10,6 +10,7 @@ public class EnemyManager : MonoBehaviour {
     public Transform spellShotSpawn;
     public float shotSpeed;
     public float maxDistTargeting;
+    public float minDistRotating;
 
     private bool isShooting;
     public bool isTargeting;
@@ -17,6 +18,7 @@ public class EnemyManager : MonoBehaviour {
     private Transform player;
     private Ray shootRay;
     private RaycastHit shootHit;
+    LineRenderer gunline;
 
     // Use this for initialization
     void Awake () {
@@ -24,6 +26,7 @@ public class EnemyManager : MonoBehaviour {
         isShooting = false;
         isTargeting = false;
         player = null;
+        gunline = GetComponent<LineRenderer>();
     }
 
     //// Update is called once per frame
@@ -49,6 +52,8 @@ public class EnemyManager : MonoBehaviour {
             {
                 isTargeting = false;
             }
+            if (dir.magnitude > minDistRotating && isTargeting)
+                this.transform.localRotation = Quaternion.LookRotation(new Vector3(dir.x, 0f, dir.z), Vector3.up);
         }
     }
 
@@ -65,11 +70,15 @@ public class EnemyManager : MonoBehaviour {
             shootRay.origin = spellShotSpawn.position;
             shootRay.direction = dir.normalized;
 
+            gunline.SetPosition(0, shootRay.origin);
+            
+
             if (Physics.Raycast(shootRay, out shootHit, maxDistTargeting))
             {
+                gunline.SetPosition(1, shootHit.point);
                 if (shootHit.collider.gameObject.CompareTag("Player"))
                 {
-                    this.transform.localRotation = Quaternion.LookRotation(new Vector3(dir.x, 0f, dir.z), Vector3.up);
+                    gunline.SetPosition(0, shootRay.origin);
                     if (timeSinceLastShot > shootingSpeed)
                     {
                         GameObject projectile = Instantiate(spellShot) as GameObject;
@@ -78,13 +87,20 @@ public class EnemyManager : MonoBehaviour {
 
                         rb.velocity = (new Vector3(player.position.x, player.position.y + Random.Range(0.06f,0.1f), player.position.z) - spellShotSpawn.position).normalized * shotSpeed;
                         timeSinceLastShot = 0;
+
                     }
                     else if (timeSinceLastShot < shootingSpeed)
                     {
                         timeSinceLastShot += Time.deltaTime;
+                        gunline.SetPosition(1, shootRay.origin + shootRay.direction * maxDistTargeting);
                     }
                 }
-            }     
+            }
+            else
+            {
+                timeSinceLastShot += Time.deltaTime;
+                gunline.SetPosition(1, shootRay.origin + shootRay.direction * maxDistTargeting);
+            }
         }
     }
 }

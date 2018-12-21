@@ -10,13 +10,18 @@ public class Chimney : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name + " " +other.tag);
         if (other.gameObject.CompareTag("Wand"))
         {
             Debug.Log(other.name);
-            player.localPosition = new Vector3(0f,0f,0f);
-            camera.localPosition = new Vector3(0f,0f, 0f);
+            StartCoroutine(Example());
         }
+    }
+    IEnumerator Example()
+    {
+        
+        yield return new WaitForSeconds(5);
+        player.localPosition = new Vector3(0f, 0f, 0f);
+        camera.localPosition = new Vector3(0f, 0f, 0f);
     }
 
 
