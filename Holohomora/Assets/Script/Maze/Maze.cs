@@ -121,8 +121,8 @@ public class Maze : MonoBehaviour
 
         MazePassage passage = Instantiate(prefab) as MazePassage;
         passage.transform.localScale = passage.transform.localScale * scale;
-
         passage.Initialize(cell, otherCell, direction);
+
         passage = Instantiate(prefab) as MazePassage;
         passage.transform.localScale = passage.transform.localScale * scale;
         if (passage is MazeDoor)
@@ -140,6 +140,7 @@ public class Maze : MonoBehaviour
     {
         MazePassage passage = Instantiate(passagePrefab) as MazePassage;
         passage.Initialize(cell, otherCell, direction);
+
         passage = Instantiate(passagePrefab) as MazePassage;
         passage.transform.localScale = passage.transform.localScale * scale;
         passage.Initialize(otherCell, cell, direction.GetOpposite());

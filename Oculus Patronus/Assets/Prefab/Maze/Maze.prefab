@@ -51,11 +51,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f607edab5312154f9c19df623eb0c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellPrefab: {fileID: 114371738435711358, guid: 29afe719b57800a4f8703a4f6827689d,
-    type: 2}
   size:
     x: 20
     z: 20
+  centerPosition: {x: 0, y: 0, z: 0}
+  scale: 1.5
+  cellPrefab: {fileID: 114371738435711358, guid: 29afe719b57800a4f8703a4f6827689d,
+    type: 2}
   passagePrefab: {fileID: 114002801099025304, guid: 43d30e4754bf34342b2c4f30bca7b324,
     type: 2}
   wallPrefab: {fileID: 114699878219549792, guid: 24c4efbe2466c054fab545cb27518828,

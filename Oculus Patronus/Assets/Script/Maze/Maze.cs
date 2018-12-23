@@ -4,23 +4,32 @@ using UnityEngine;
 
 public class Maze : MonoBehaviour
 {
-
-    public MazeCell cellPrefab;
-    private MazeCell[,] cells;
+    //Oculus Version
+    
+    //position, size and scale
     public IntVector2 size;
+    public Vector3 centerPosition;
+    public float scale;
+
+    //prefab
+    public MazeCell cellPrefab;
     public MazePassage passagePrefab;
     public MazeWall wallPrefab;
     public MazeDoor doorPrefab;
     public MazeEnnemy ennemyPrefab;
+
+    //probability
     [Range(0f, 1f)]
     public float ennemyProbability;
     [Range(0f, 1f)]
     public float doorProbability;
+
+    //settings
     public MazeRoomSettings[] roomSettings;
+
+
     private List<MazeRoom> rooms = new List<MazeRoom>();
-
-
-
+    private MazeCell[,] cells;
 
     public MazeCell GetCell(IntVector2 coordinates)
     {
@@ -45,7 +54,8 @@ public class Maze : MonoBehaviour
         newCell.coordinates = coordinates;
         newCell.name = "Maze Cell " + coordinates.x + ", " + coordinates.z;
         newCell.transform.parent = transform;
-        newCell.transform.localPosition = new Vector3(coordinates.x - size.x * 0.5f + 0.5f, 0f, coordinates.z - size.z * 0.5f + 0.5f);
+        newCell.transform.localPosition = new Vector3((coordinates.x - size.x * 0.5f + 0.5f) * scale + centerPosition.x, 0f + centerPosition.y, (coordinates.z - size.z * 0.5f + 0.5f) * scale + centerPosition.z);
+        newCell.transform.localScale = newCell.transform.localScale * scale;
         return newCell;
     }
 
@@ -113,8 +123,11 @@ public class Maze : MonoBehaviour
         }
 
         MazePassage passage = Instantiate(prefab) as MazePassage;
+        passage.transform.localScale = passage.transform.localScale * scale;
         passage.Initialize(cell, otherCell, direction);
+
         passage = Instantiate(prefab) as MazePassage;
+        passage.transform.localScale = passage.transform.localScale * scale;
         if (passage is MazeDoor)
         {
             otherCell.Initialize(CreateRoom(cell.room.settingsIndex));
@@ -129,8 +142,11 @@ public class Maze : MonoBehaviour
     private void CreatePassageInSameRoom(MazeCell cell, MazeCell otherCell, MazeDirection direction)
     {
         MazePassage passage = Instantiate(passagePrefab) as MazePassage;
+        passage.transform.localScale = passage.transform.localScale * scale;
         passage.Initialize(cell, otherCell, direction);
+
         passage = Instantiate(passagePrefab) as MazePassage;
+        passage.transform.localScale = passage.transform.localScale * scale;
         passage.Initialize(otherCell, cell, direction.GetOpposite());
         if (cell.room != otherCell.room)
         {
@@ -144,11 +160,13 @@ public class Maze : MonoBehaviour
     private void CreateWall(MazeCell cell, MazeCell otherCell, MazeDirection direction)
     {
         MazeWall wall = Instantiate(wallPrefab) as MazeWall;
+        wall.transform.localScale = wall.transform.localScale * scale;
         wall.Initialize(cell, otherCell, direction);
         if (otherCell != null)
         {
             wall = Instantiate(wallPrefab) as MazeWall;
             wall.Initialize(otherCell, cell, direction.GetOpposite());
+            wall.transform.localScale = wall.transform.localScale * scale;
         }
     }
 
