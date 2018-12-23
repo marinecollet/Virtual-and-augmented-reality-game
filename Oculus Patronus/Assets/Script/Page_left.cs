@@ -3,28 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Page_left : MonoBehaviour {
-
-    private Renderer renderer;
-
-
+       
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.gameObject.CompareTag("Wand"))
         {
-            renderer = GetComponent<SkinnedMeshRenderer>();
-            renderer.material = Resources.Load("material1", typeof(Material)) as Material;
+            Renderer renderer = GetComponent<SkinnedMeshRenderer>();
+            renderer.material = Resources.Load("material_page_1", typeof(Material)) as Material;
         }
     }
-
-    public void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            renderer = GetComponent<SkinnedMeshRenderer>();
-            renderer.material = Resources.Load("material1", typeof(Material)) as Material;
-        }
-    }
-
-
 }
