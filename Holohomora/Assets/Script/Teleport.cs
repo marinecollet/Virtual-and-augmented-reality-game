@@ -188,4 +188,9 @@ public class Teleport : MonoBehaviour
             return false;
     }
 
+    public void validTp()
+    {
+        targetRenderer.enabled = false;
+        this.gameObject.SetActive(false);
+    }
 }

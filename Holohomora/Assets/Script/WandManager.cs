@@ -140,7 +140,7 @@ public class WandManager : MonoBehaviour {
                         gunLine.SetPosition(1, shootHit.point);
                     }
 
-                    mesh_teleport.SetActive(false);
+                    teleport.validTp();
                     //SortDetection.SetActive(true);
                 }
                 else
