@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -575,86 +575,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 114498383286299966, guid: 1976a50b2a7ae1449aaf0eb150082d48,
-        type: 2}
-      propertyPath: SortDetection
-      value: 
-      objectReference: {fileID: 1765493875}
-    - target: {fileID: 114498383286299966, guid: 1976a50b2a7ae1449aaf0eb150082d48,
+    - target: {fileID: 114599423731554324, guid: 1976a50b2a7ae1449aaf0eb150082d48,
         type: 2}
       propertyPath: player
       value: 
       objectReference: {fileID: 120801976}
-    - target: {fileID: 114498383286299966, guid: 1976a50b2a7ae1449aaf0eb150082d48,
+    - target: {fileID: 114599423731554324, guid: 1976a50b2a7ae1449aaf0eb150082d48,
         type: 2}
       propertyPath: camera
       value: 
       objectReference: {fileID: 1982272392}
-    - target: {fileID: 114498383286299966, guid: 1976a50b2a7ae1449aaf0eb150082d48,
-        type: 2}
-      propertyPath: shield
-      value: 
-      objectReference: {fileID: 22290086}
-    - target: {fileID: 114319308183661462, guid: 1976a50b2a7ae1449aaf0eb150082d48,
-        type: 2}
-      propertyPath: SortDetection
-      value: 
-      objectReference: {fileID: 1765493875}
-    - target: {fileID: 114319308183661462, guid: 1976a50b2a7ae1449aaf0eb150082d48,
-        type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 120801976}
-    - target: {fileID: 114319308183661462, guid: 1976a50b2a7ae1449aaf0eb150082d48,
-        type: 2}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 1982272392}
-    - target: {fileID: 114319308183661462, guid: 1976a50b2a7ae1449aaf0eb150082d48,
-        type: 2}
-      propertyPath: shield
-      value: 
-      objectReference: {fileID: 22290086}
-    - target: {fileID: 114531867590655120, guid: 1976a50b2a7ae1449aaf0eb150082d48,
-        type: 2}
-      propertyPath: SortDetection
-      value: 
-      objectReference: {fileID: 1765493875}
-    - target: {fileID: 114531867590655120, guid: 1976a50b2a7ae1449aaf0eb150082d48,
-        type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 120801976}
-    - target: {fileID: 114531867590655120, guid: 1976a50b2a7ae1449aaf0eb150082d48,
-        type: 2}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 1982272392}
-    - target: {fileID: 114531867590655120, guid: 1976a50b2a7ae1449aaf0eb150082d48,
-        type: 2}
-      propertyPath: shield
-      value: 
-      objectReference: {fileID: 22290086}
-    - target: {fileID: 114292341472173976, guid: 1976a50b2a7ae1449aaf0eb150082d48,
-        type: 2}
-      propertyPath: SortDetection
-      value: 
-      objectReference: {fileID: 1765493875}
-    - target: {fileID: 114292341472173976, guid: 1976a50b2a7ae1449aaf0eb150082d48,
-        type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 120801976}
-    - target: {fileID: 114292341472173976, guid: 1976a50b2a7ae1449aaf0eb150082d48,
-        type: 2}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 1982272392}
-    - target: {fileID: 114292341472173976, guid: 1976a50b2a7ae1449aaf0eb150082d48,
-        type: 2}
-      propertyPath: shield
-      value: 
-      objectReference: {fileID: 22290086}
     - target: {fileID: 114840092695704806, guid: 1976a50b2a7ae1449aaf0eb150082d48,
         type: 2}
       propertyPath: player
@@ -665,45 +595,86 @@ Prefab:
       propertyPath: camera
       value: 
       objectReference: {fileID: 1982272392}
-    - target: {fileID: 114599423731554324, guid: 1976a50b2a7ae1449aaf0eb150082d48,
+    - target: {fileID: 114292341472173976, guid: 1976a50b2a7ae1449aaf0eb150082d48,
+        type: 2}
+      propertyPath: SortDetection
+      value: 
+      objectReference: {fileID: 1765493875}
+    - target: {fileID: 114292341472173976, guid: 1976a50b2a7ae1449aaf0eb150082d48,
         type: 2}
       propertyPath: player
       value: 
       objectReference: {fileID: 120801976}
-    - target: {fileID: 114599423731554324, guid: 1976a50b2a7ae1449aaf0eb150082d48,
+    - target: {fileID: 114292341472173976, guid: 1976a50b2a7ae1449aaf0eb150082d48,
         type: 2}
       propertyPath: camera
       value: 
       objectReference: {fileID: 1982272392}
-    - target: {fileID: 1745712362937688, guid: 1976a50b2a7ae1449aaf0eb150082d48, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571875484784728, guid: 1976a50b2a7ae1449aaf0eb150082d48, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1214323863982376, guid: 1976a50b2a7ae1449aaf0eb150082d48, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1966404869409858, guid: 1976a50b2a7ae1449aaf0eb150082d48, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1084409982969476, guid: 1976a50b2a7ae1449aaf0eb150082d48, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1575508528420348, guid: 1976a50b2a7ae1449aaf0eb150082d48, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114599423731554324, guid: 1976a50b2a7ae1449aaf0eb150082d48,
+    - target: {fileID: 114292341472173976, guid: 1976a50b2a7ae1449aaf0eb150082d48,
         type: 2}
-      propertyPath: FirstRoom
+      propertyPath: shield
       value: 
-      objectReference: {fileID: 1883865355}
+      objectReference: {fileID: 22290086}
+    - target: {fileID: 114531867590655120, guid: 1976a50b2a7ae1449aaf0eb150082d48,
+        type: 2}
+      propertyPath: SortDetection
+      value: 
+      objectReference: {fileID: 1765493875}
+    - target: {fileID: 114531867590655120, guid: 1976a50b2a7ae1449aaf0eb150082d48,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 120801976}
+    - target: {fileID: 114531867590655120, guid: 1976a50b2a7ae1449aaf0eb150082d48,
+        type: 2}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1982272392}
+    - target: {fileID: 114531867590655120, guid: 1976a50b2a7ae1449aaf0eb150082d48,
+        type: 2}
+      propertyPath: shield
+      value: 
+      objectReference: {fileID: 22290086}
+    - target: {fileID: 114319308183661462, guid: 1976a50b2a7ae1449aaf0eb150082d48,
+        type: 2}
+      propertyPath: SortDetection
+      value: 
+      objectReference: {fileID: 1765493875}
+    - target: {fileID: 114319308183661462, guid: 1976a50b2a7ae1449aaf0eb150082d48,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 120801976}
+    - target: {fileID: 114319308183661462, guid: 1976a50b2a7ae1449aaf0eb150082d48,
+        type: 2}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1982272392}
+    - target: {fileID: 114319308183661462, guid: 1976a50b2a7ae1449aaf0eb150082d48,
+        type: 2}
+      propertyPath: shield
+      value: 
+      objectReference: {fileID: 22290086}
+    - target: {fileID: 114498383286299966, guid: 1976a50b2a7ae1449aaf0eb150082d48,
+        type: 2}
+      propertyPath: SortDetection
+      value: 
+      objectReference: {fileID: 1765493875}
+    - target: {fileID: 114498383286299966, guid: 1976a50b2a7ae1449aaf0eb150082d48,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 120801976}
+    - target: {fileID: 114498383286299966, guid: 1976a50b2a7ae1449aaf0eb150082d48,
+        type: 2}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1982272392}
+    - target: {fileID: 114498383286299966, guid: 1976a50b2a7ae1449aaf0eb150082d48,
+        type: 2}
+      propertyPath: shield
+      value: 
+      objectReference: {fileID: 22290086}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1976a50b2a7ae1449aaf0eb150082d48, type: 2}
   m_IsPrefabAsset: 0
@@ -984,11 +955,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1400626711452898, guid: e8012e1ed9af162438f82fde21ebc95c,
     type: 2}
   m_PrefabInternal: {fileID: 685310421}
---- !u!1 &1883865355 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1042398352937030, guid: 1976a50b2a7ae1449aaf0eb150082d48,
-    type: 2}
-  m_PrefabInternal: {fileID: 736194173}
 --- !u!1 &1924255587 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1931367947305534, guid: 6fec008af1d35ae4cb320c16cef02813,
