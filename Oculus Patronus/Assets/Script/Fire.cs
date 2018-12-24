@@ -5,32 +5,25 @@ using UnityEngine;
 public class Fire : MonoBehaviour
 {
 
-    ParticleSystem particle;
-    // Use this for initialization
     public Transform player;
     public Transform camera;
+    public GameObject FirstRoom;
+    ParticleSystem particle;
+
     bool playerIsIn;
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag("Wand"))
-    //    {
-    //        Debug.Log(other.name);
-    //        StartCoroutine(Example());
-    //    }
-    //}
-    IEnumerator Example()
+    IEnumerator MovePlayerAfter()
     {
 
         yield return new WaitForSeconds(3);
         player.localPosition = new Vector3(0f, 0f, 0f);
         camera.localPosition = new Vector3(0f, 0f, 0f);
+        Destroy(FirstRoom);
     }
     void Awake()
     {
         particle = GetComponent<ParticleSystem>();
         playerIsIn = false;
-
     }
 
     // Update is called once per frame
@@ -42,8 +35,9 @@ public class Fire : MonoBehaviour
         }
         if (other.CompareTag("cheminette") && playerIsIn)
         {
+            Destroy(other.gameObject);
             particle.Play();
-            StartCoroutine(Example());
+            StartCoroutine(MovePlayerAfter());
         }
     }
 
