@@ -48,9 +48,9 @@ public class Game_Manager : MonoBehaviour {
         float tempZ = Random.Range(0, mazeInstance.size.z);
         //Vector3 dobbySpawn = new Vector3((tempX - mazeInstance.size.x * 0.5f + 0.5f) * 0.1f + 0, -1, (tempZ - mazeInstance.size.z * 0.5f + 0.5f) * 0.1f + 2);
         dobbyInstance = Instantiate(dobbyPrefab) as Player;
-        dobbyInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
+        dobbyInstance.SetLocation(mazeInstance.GetCell(new IntVector2(0,0)));
         socketInstance = Instantiate(socketPrefab) as Socket;
-        socketInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
+        socketInstance.SetLocation(mazeInstance.GetCell(new IntVector2(mazeInstance.size.x-1, mazeInstance.size.z-1)));
         isSetup = true;
         //dobbyInstance = Instantiate(dobby) as GameObject;
         //dobbyInstance.transform.position = dobbySpawn;

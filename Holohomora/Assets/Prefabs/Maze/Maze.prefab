@@ -52,13 +52,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f607edab5312154f9c19df623eb0c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellPrefab: {fileID: 114371738435711358, guid: dd1037a0230f05c4ebe468a199888888,
-    type: 2}
   generationStepDelay: 0
   size:
     x: 10
     z: 10
   centerPosition: {x: 0, y: -0.9, z: -2}
+  scale: 0.1
+  cellPrefab: {fileID: 114371738435711358, guid: dd1037a0230f05c4ebe468a199888888,
+    type: 2}
   passagePrefab: {fileID: 114002801099025304, guid: 97dc6d2ac12866046bdcc457fff24ff1,
     type: 2}
   wallPrefab: {fileID: 114699878219549792, guid: c2013fc0c0a7db74a838a3bf219c3522,
@@ -67,14 +68,13 @@ MonoBehaviour:
     type: 2}
   ennemyPrefab: {fileID: 114520052698084144, guid: c1c37530d462a464abcc99296c73a292,
     type: 2}
-  ennemyProbability: 0.05
+  numberOfEnemy: 100
   doorProbability: 0.1
   roomSettings:
   - floorMaterial: {fileID: 2100000, guid: d75479ecb30a58c409bcec604bb4fb69, type: 2}
     wallMaterial: {fileID: 2100000, guid: 629c23380e49b044e8185ea4a647f147, type: 2}
   - floorMaterial: {fileID: 2100000, guid: 9f6a7a39c905b4d4784910c6d620f552, type: 2}
     wallMaterial: {fileID: 2100000, guid: a16a2efc1a28ffd4d92a0901840b7772, type: 2}
-  scale: 0.1
 --- !u!114 &114650555643188378
 MonoBehaviour:
   m_ObjectHideFlags: 1
