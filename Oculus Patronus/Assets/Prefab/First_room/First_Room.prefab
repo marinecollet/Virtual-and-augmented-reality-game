@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1229219963843378
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1575508528420348
 GameObject:
   m_ObjectHideFlags: 1
@@ -337,7 +337,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1802831139849494
 GameObject:
   m_ObjectHideFlags: 1
@@ -459,7 +459,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1988027450659850
 GameObject:
   m_ObjectHideFlags: 1
@@ -2310,19 +2310,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b6dca167dae274aa4e095564ce3cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleport: {fileID: 114300972080676056}
+  teleport: {fileID: 114688078237714224}
   range: 100
   spellList:
   - spellName: shot
     colliderOrder: 0600000008000000
   - spellName: lave
-    colliderOrder: 0400000008000000
+    colliderOrder: 0100000004000000060000000000000008000000
   - spellName: holohomora
     colliderOrder: 0000000008000000
   - spellName: protego
     colliderOrder: 0600000004000000
   moveObjectSpeed: 1
-  mesh_teleport: {fileID: 1084409982969476}
+  mesh_teleport: {fileID: 1032768206020426}
   SortDetection: {fileID: 0}
   player: {fileID: 0}
   camera: {fileID: 0}
@@ -2357,19 +2357,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b6dca167dae274aa4e095564ce3cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleport: {fileID: 114852522930930942}
+  teleport: {fileID: 114688078237714224}
   range: 100
   spellList:
   - spellName: shot
     colliderOrder: 0600000008000000
   - spellName: lave
-    colliderOrder: 0400000008000000
+    colliderOrder: 0100000004000000060000000000000008000000
   - spellName: holohomora
     colliderOrder: 0000000008000000
   - spellName: protego
     colliderOrder: 0600000004000000
   moveObjectSpeed: 1
-  mesh_teleport: {fileID: 1745712362937688}
+  mesh_teleport: {fileID: 1032768206020426}
   SortDetection: {fileID: 0}
   player: {fileID: 0}
   camera: {fileID: 0}
@@ -2387,19 +2387,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b6dca167dae274aa4e095564ce3cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleport: {fileID: 114270324907973556}
+  teleport: {fileID: 114688078237714224}
   range: 100
   spellList:
   - spellName: shot
     colliderOrder: 0600000008000000
   - spellName: lave
-    colliderOrder: 0400000008000000
+    colliderOrder: 0100000004000000060000000000000008000000
   - spellName: holohomora
     colliderOrder: 0000000008000000
   - spellName: protego
     colliderOrder: 0600000004000000
   moveObjectSpeed: 1
-  mesh_teleport: {fileID: 1571875484784728}
+  mesh_teleport: {fileID: 1032768206020426}
   SortDetection: {fileID: 0}
   player: {fileID: 0}
   camera: {fileID: 0}
@@ -2423,7 +2423,7 @@ MonoBehaviour:
   - spellName: shot
     colliderOrder: 0600000008000000
   - spellName: lave
-    colliderOrder: 0400000008000000
+    colliderOrder: 0100000004000000060000000000000008000000
   - spellName: holohomora
     colliderOrder: 0000000008000000
   - spellName: protego
@@ -2449,6 +2449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   camera: {fileID: 0}
+  FirstRoom: {fileID: 1042398352937030}
 --- !u!114 &114688078237714224
 MonoBehaviour:
   m_ObjectHideFlags: 1
