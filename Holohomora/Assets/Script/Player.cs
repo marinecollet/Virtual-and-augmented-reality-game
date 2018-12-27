@@ -11,6 +11,12 @@ public class Player : MonoBehaviour
     private List<MazeCell> path;
 
     private bool isMoving = false;
+    private Animator anim;
+
+    public void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     public void SetLocation(MazeCell cell)
     {
@@ -51,7 +57,7 @@ public class Player : MonoBehaviour
             Vector3 dir = movingCell.transform.position - this.transform.position;
             dir.Normalize();
             this.transform.position += dir * speed * Time.deltaTime;
-            Quaternion q = Quaternion.LookRotation(-dir);
+            Quaternion q = Quaternion.LookRotation(dir);
             this.transform.localRotation = q;
             if ((movingCell.transform.position - this.transform.position).sqrMagnitude < 0.001)
             {
@@ -59,6 +65,7 @@ public class Player : MonoBehaviour
                 if (movingCell == targetCell)
                 {
                     isMoving = false;
+                    anim.SetBool("isWalking", false);
                 }
                 else
                 {
@@ -79,6 +86,7 @@ public class Player : MonoBehaviour
         {
             movingCell = path[1];
             isMoving = true;
+            anim.SetBool("isWalking", true);
         }
     }
 

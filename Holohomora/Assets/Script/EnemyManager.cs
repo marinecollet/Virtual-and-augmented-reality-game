@@ -18,7 +18,8 @@ public class EnemyManager : MonoBehaviour {
     private Transform player;
     private Ray shootRay;
     private RaycastHit shootHit;
-    LineRenderer gunline;
+    private LineRenderer gunline;
+    private Animator anim;
 
     // Use this for initialization
     void Awake () {
@@ -27,6 +28,7 @@ public class EnemyManager : MonoBehaviour {
         isTargeting = false;
         player = null;
         gunline = GetComponent<LineRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     //// Update is called once per frame
@@ -64,6 +66,16 @@ public class EnemyManager : MonoBehaviour {
             player = GameObject.FindWithTag("Player").GetComponent<Transform>();
         }
 
+        //if(Input.GetKeyDown(KeyCode.B))
+        //{
+        //    anim.SetBool("isShooting",true);
+        //}
+
+        //if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("YourAnimationName"))
+        //{
+            
+        //}
+
         if (isTargeting && player != null)
         {
             Vector3 dir = player.position - spellShotSpawn.position;
@@ -79,15 +91,16 @@ public class EnemyManager : MonoBehaviour {
                 if (shootHit.collider.gameObject.CompareTag("Player"))
                 {
                     gunline.SetPosition(0, shootRay.origin);
-                    if (timeSinceLastShot > shootingSpeed)
+                    if (timeSinceLastShot > shootingSpeed &&  !isShooting)
                     {
-                        GameObject projectile = Instantiate(spellShot) as GameObject;
-                        projectile.transform.position = spellShotSpawn.position;
-                        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+                        //GameObject projectile = Instantiate(spellShot) as GameObject;
+                        //projectile.transform.position = spellShotSpawn.position;
+                        //Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
-                        rb.velocity = (new Vector3(player.position.x, player.position.y + Random.Range(0.06f,0.1f), player.position.z) - spellShotSpawn.position).normalized * shotSpeed;
-                        timeSinceLastShot = 0;
-
+                        //rb.velocity = (new Vector3(player.position.x, player.position.y + Random.Range(0.06f,0.1f), player.position.z) - spellShotSpawn.position).normalized * shotSpeed;
+                        //timeSinceLastShot = 0;
+                        anim.SetBool("isShooting", true);
+                        isShooting = true;
                     }
                     else if (timeSinceLastShot < shootingSpeed)
                     {
@@ -101,6 +114,18 @@ public class EnemyManager : MonoBehaviour {
                 timeSinceLastShot += Time.deltaTime;
                 gunline.SetPosition(1, shootRay.origin + shootRay.direction * maxDistTargeting);
             }
-        }
+        }   
+    }
+    public void AnimationShotEnded()
+        {
+             //Debug.Log("shot");
+            anim.SetBool("isShooting", false);
+            GameObject projectile = Instantiate(spellShot) as GameObject;
+            projectile.transform.position = spellShotSpawn.position;
+            Rigidbody rb = projectile.GetComponent<Rigidbody>();
+
+            rb.velocity = (new Vector3(player.position.x, player.position.y + Random.Range(0.06f, 0.1f), player.position.z) - spellShotSpawn.position).normalized * shotSpeed;
+            timeSinceLastShot = 0;
+            isShooting = false;
     }
 }

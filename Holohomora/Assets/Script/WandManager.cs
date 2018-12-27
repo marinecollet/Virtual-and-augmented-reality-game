@@ -10,6 +10,7 @@ public class WandManager : MonoBehaviour {
     public float range = 100f;
     public List<SpellDefinition> spellList;
     public Transform cameraTransform;
+    public float wandSpeed;
 
     public Teleport teleport;
     public GameObject mesh_teleport;
@@ -195,14 +196,44 @@ public class WandManager : MonoBehaviour {
         public SpellColliderType[] colliderOrder;
     }
 
-    //public void Update()
-    //{
-    //    if ()
-    //    {
-    //        changedParentGameObject.reset();
-    //        changedParentGameObject = null;
-
-    //    }
-    //}
+    public void Update()
+    {
+        if (Input.GetKey(KeyCode.I))
+        {
+            Vector3 temp = this.transform.localPosition + Vector3.up * wandSpeed;
+            if(temp.y > 6)
+            {
+                temp.y = 6;
+            }
+            this.transform.localPosition = temp;
+        }
+        if (Input.GetKey(KeyCode.K))
+        {
+            Vector3 temp = this.transform.localPosition + Vector3.up * -wandSpeed;
+            if (temp.y < -6)
+            {
+                temp.y = -6;
+            }
+            this.transform.localPosition = temp;
+        }
+        if (Input.GetKey(KeyCode.L))
+        {
+            Vector3 temp = this.transform.localPosition + Vector3.right * wandSpeed;
+            if (temp.x > 6)
+            {
+                temp.x = 6;
+            }
+            this.transform.localPosition = temp;
+        }
+        if (Input.GetKey(KeyCode.J))
+        {
+            Vector3 temp = this.transform.localPosition + Vector3.right * -wandSpeed;
+            if (temp.x < -6)
+            {
+                temp.x = -6;
+            }
+            this.transform.localPosition = temp;
+        }
+    }
 }
 
