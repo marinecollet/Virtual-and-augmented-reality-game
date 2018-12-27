@@ -264,11 +264,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1364422521800488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6acc2f7cea8f9eb458748d0eb16caedc, type: 3}
+  m_Script: {fileID: 11500000, guid: 8691d8d4ece0d7e4c905bbe3ef2e163b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cell: {fileID: 0}
-  otherCell: {fileID: 0}
   direction: 0
 --- !u!120 &120046757297654824
 LineRenderer:

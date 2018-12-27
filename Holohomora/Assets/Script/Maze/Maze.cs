@@ -5,25 +5,32 @@ using UnityEngine;
 public class Maze : MonoBehaviour
 {
 
-    public MazeCell cellPrefab;
-    private MazeCell[,] cells;
+    //position, size and scale
     public float generationStepDelay;
     public IntVector2 size;
     public Vector3 centerPosition;
+    public float scale;
 
+    //prefab
+    public MazeCell cellPrefab;
     public MazePassage passagePrefab;
     public MazeWall wallPrefab;
     public MazeDoor doorPrefab;
-    public MazeEnnemy ennemyPrefab;
-    [Range(0f, 1f)]
-    public float ennemyProbability;
+    public MazeEnemy ennemyPrefab;
+    
+    [Range(0, 100)]
+    public int numberOfEnemy;
+
+    //[Range(0f, 1f)]
+    //public float ennemyProbability;
     [Range(0f, 1f)]
     public float doorProbability;
+
     public MazeRoomSettings[] roomSettings;
+
     private List<MazeRoom> rooms = new List<MazeRoom>();
-    public float scale;
-
-
+    private MazeCell[,] cells;
+    private int[,] entityMap;
 
 
     public MazeCell GetCell(IntVector2 coordinates)
@@ -35,6 +42,7 @@ public class Maze : MonoBehaviour
     {
         WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
         cells = new MazeCell[size.x, size.z];
+        entityMap = new int[size.x, size.z];
         List<MazeCell> activeCells = new List<MazeCell>();
         DoFirstGenerationStep(activeCells);
         while (activeCells.Count > 0)
@@ -42,6 +50,7 @@ public class Maze : MonoBehaviour
             yield return delay;
             DoNextGenerationStep(activeCells);
         }
+        AddEnemy();
     }
 
     public MazeCell CreateCell(IntVector2 coordinates)
@@ -114,10 +123,10 @@ public class Maze : MonoBehaviour
     private void CreatePassage(MazeCell cell, MazeCell otherCell, MazeDirection direction)
     {
         MazePassage prefab = Random.value < doorProbability ? doorPrefab : passagePrefab;
-        if(prefab == passagePrefab)
-        {
-            prefab = Random.value < ennemyProbability ? ennemyPrefab : passagePrefab;
-        }
+        //if(prefab == passagePrefab)
+        //{
+        //    prefab = Random.value < ennemyProbability ? enemyPrefab : passagePrefab;
+        //}
 
         MazePassage passage = Instantiate(prefab) as MazePassage;
         passage.transform.localScale = passage.transform.localScale * scale;
@@ -179,4 +188,33 @@ public class Maze : MonoBehaviour
         return newRoom;
     }
 
+    void AddEnemy()
+    {
+        int enemyCreated = 0;
+
+        int maxEnemy = numberOfEnemy < size.x * size.z - 7 ? numberOfEnemy : size.x * size.z - 7;
+        Debug.Log(maxEnemy);
+        IntVector2 start = new IntVector2(0, 0);
+        IntVector2 end = new IntVector2(size.x - 1, size.z - 1);
+        entityMap[0, 0] = 1;
+        entityMap[1, 0] = 1;
+        entityMap[0, 1] = 1;
+        entityMap[2, 0] = 1;
+        entityMap[1, 1] = 1;
+        entityMap[0, 2] = 1;
+        entityMap[size.x - 1, size.z - 1] = 1;
+        while (enemyCreated < maxEnemy)
+        {
+            IntVector2 cellCoordinate = RandomCoordinates;
+            
+            if (entityMap[cellCoordinate.x, cellCoordinate.z] == 0)
+            {
+                MazeEnemy passage = Instantiate(ennemyPrefab) as MazeEnemy;
+                passage.transform.localScale = passage.transform.localScale * scale;
+                passage.Initialize(cells[cellCoordinate.x, cellCoordinate.z], (MazeDirection)Random.Range(0, 3));
+                entityMap[cellCoordinate.x, cellCoordinate.z] = 1;
+                enemyCreated++;
+            }
+        }
+    }
 }
