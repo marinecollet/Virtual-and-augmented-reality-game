@@ -641,6 +641,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.1
+  life: 10
+  lifeLosePerShot: 2
 --- !u!136 &136505707153950100
 CapsuleCollider:
   m_ObjectHideFlags: 1

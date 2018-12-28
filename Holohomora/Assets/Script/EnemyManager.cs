@@ -15,7 +15,7 @@ public class EnemyManager : MonoBehaviour {
     private bool isShooting;
     public bool isTargeting;
     private float timeSinceLastShot;
-    private Transform player;
+    private Player player;
     private Ray shootRay;
     private RaycastHit shootHit;
     private LineRenderer gunline;
@@ -43,9 +43,9 @@ public class EnemyManager : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if(player != null)
+        if(player != null && !player.isDead)
         {
-            Vector3 dir = player.position - this.transform.position;
+            Vector3 dir = player.transform.position - this.transform.position;
             if (dir.magnitude < maxDistTargeting)
             {
                 isTargeting = true;
@@ -57,13 +57,17 @@ public class EnemyManager : MonoBehaviour {
             if (dir.magnitude > minDistRotating && isTargeting)
                 this.transform.localRotation = Quaternion.LookRotation(new Vector3(dir.x, 0f, dir.z), Vector3.up);
         }
+        else if(player.isDead)
+        {
+            isTargeting = false;
+        }
     }
 
     private void Update()
     {
         if(Game_Manager.isSetup && player == null )
         {
-            player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+            player = GameObject.FindWithTag("Player").GetComponent<Player>();
         }
 
         //if(Input.GetKeyDown(KeyCode.B))
@@ -78,7 +82,7 @@ public class EnemyManager : MonoBehaviour {
 
         if (isTargeting && player != null)
         {
-            Vector3 dir = player.position - spellShotSpawn.position;
+            Vector3 dir = player.transform.position - spellShotSpawn.position;
             shootRay.origin = spellShotSpawn.position;
             shootRay.direction = dir.normalized;
 
@@ -124,7 +128,7 @@ public class EnemyManager : MonoBehaviour {
             projectile.transform.position = spellShotSpawn.position;
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
-            rb.velocity = (new Vector3(player.position.x, player.position.y + Random.Range(0.06f, 0.1f), player.position.z) - spellShotSpawn.position).normalized * shotSpeed;
+            rb.velocity = (new Vector3(player.transform.position.x, player.transform.position.y + Random.Range(0.06f, 0.1f), player.transform.position.z) - spellShotSpawn.position).normalized * shotSpeed;
             timeSinceLastShot = 0;
             isShooting = false;
     }

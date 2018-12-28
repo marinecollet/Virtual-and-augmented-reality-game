@@ -60,11 +60,10 @@ public class Game_Manager : MonoBehaviour {
     {
         if(dobbyInstance && socketInstance)
         {
-            if (dobbyInstance.currentCell == socketInstance.currentCell)
+            if (dobbyInstance.currentCell == socketInstance.currentCell && isSetup)
             {
-                Destroy(dobbyInstance.gameObject);
-                Destroy(socketInstance.gameObject);
-                RestartGame();
+                isSetup = false;
+                StartNextLevel();
             }
         }
     }
@@ -84,5 +83,33 @@ public class Game_Manager : MonoBehaviour {
         isSetup = false;
         AStar.Reset();
         StartCoroutine(BeginGame());
+    }
+    void StartNextLevel()
+    {
+        StopAllCoroutines();
+        Destroy(mazeInstance.gameObject);
+
+        dobbyInstance.gameObject.SetActive(false);
+
+        if (socketInstance != null)
+        {
+            Destroy(socketInstance.gameObject);
+        }
+        
+        AStar.Reset();
+
+        StartCoroutine(GenerateNextLevel());
+    }
+
+    IEnumerator GenerateNextLevel()
+    {
+        mazeInstance = Instantiate(mazePrefab) as Maze;
+        yield return StartCoroutine(mazeInstance.Generate());
+        Debug.Log("done");
+        dobbyInstance.gameObject.SetActive(true);
+        dobbyInstance.SetLocation(mazeInstance.GetCell(new IntVector2(0, 0)));
+        socketInstance = Instantiate(socketPrefab) as Socket;
+        socketInstance.SetLocation(mazeInstance.GetCell(new IntVector2(mazeInstance.size.x - 1, mazeInstance.size.z - 1)));
+        isSetup = true;
     }
 }

@@ -6,16 +6,22 @@ public class Player : MonoBehaviour
     public float speed;
 
     public MazeCell currentCell { get; private set; }
+    public int life;
+    public int lifeLosePerShot;
+    public bool isDead { get; private set; }
+
     private MazeCell targetCell;
     private MazeCell movingCell;
     private List<MazeCell> path;
 
     private bool isMoving = false;
+    private bool isHurt = false;
     private Animator anim;
 
     public void Awake()
     {
         anim = GetComponent<Animator>();
+        isDead = false;
     }
 
     public void SetLocation(MazeCell cell)
@@ -33,26 +39,27 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("EnemyShot"))
+        {
+            Destroy(other.gameObject);
+            this.life -= lifeLosePerShot;
+            if(isMoving)
+                anim.SetBool("isWalking", false);
+            isHurt = true;
+            anim.SetBool("isHurt", true);
+            if (life <= 0)
+            {
+                anim.SetBool("isDead", true);
+                isDead = true;
+            }
+        }
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            Move(MazeDirection.North);
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            Move(MazeDirection.East);
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            Move(MazeDirection.South);
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            Move(MazeDirection.West);
-        }
-
-        if (isMoving)
+        if (isMoving && !isHurt && !isDead)
         {
             Vector3 dir = movingCell.transform.position - this.transform.position;
             dir.Normalize();
@@ -105,6 +112,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void HurtFinished()
+    {
+        if (!isDead)
+        {
+            if (isMoving)
+                anim.SetBool("isWalking", true);
 
+            isHurt = false;
+            anim.SetBool("isHurt", false);
+        }
+    }
 }
 
