@@ -20,7 +20,8 @@ public class EnemyManager : MonoBehaviour
     public Transform player;
     private Ray shootRay;
     private RaycastHit shootHit;
-    LineRenderer gunLine;
+    private LineRenderer gunLine;
+    private Animator anim;
     // Use this for initialization
 
     void Awake()
@@ -30,6 +31,7 @@ public class EnemyManager : MonoBehaviour
         isTargeting = false;
         player = null;
         gunLine = GetComponent<LineRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     //// Update is called once per frame
@@ -80,16 +82,16 @@ public class EnemyManager : MonoBehaviour
             {
                 if (shootHit.collider.gameObject.CompareTag("Player"))
                 {
-                    if (timeSinceLastShot > shootingSpeed)
+                    if (timeSinceLastShot > shootingSpeed && !isShooting)
                     {
-                        GameObject projectile = Instantiate(spellShot) as GameObject;
-                        projectile.transform.position = spellShotSpawn.position;
-                        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+                        //GameObject projectile = Instantiate(spellShot) as GameObject;
+                        //projectile.transform.position = spellShotSpawn.position;
+                        //Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
-                        rb.velocity = (new Vector3(player.position.x, player.position.y + Random.Range(1.2f, 1.7f), player.position.z) - spellShotSpawn.position).normalized * shotSpeed;
-                        timeSinceLastShot = 0;
-                        //gunLine.SetPosition(0, shootHit.point);
-
+                        //rb.velocity = (new Vector3(player.position.x, player.position.y + Random.Range(0.06f,0.1f), player.position.z) - spellShotSpawn.position).normalized * shotSpeed;
+                        //timeSinceLastShot = 0;
+                        anim.SetBool("isShooting", true);
+                        isShooting = true;
                     }
                     else if (timeSinceLastShot < shootingSpeed)
                     {
@@ -106,5 +108,18 @@ public class EnemyManager : MonoBehaviour
                 timeSinceLastShot += Time.deltaTime;
             }
         }
+    }
+
+    public void AnimationShotEnded()
+    {
+        //Debug.Log("shot");
+        anim.SetBool("isShooting", false);
+        GameObject projectile = Instantiate(spellShot) as GameObject;
+        projectile.transform.position = spellShotSpawn.position;
+        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+
+        rb.velocity = (new Vector3(player.position.x, player.position.y + Random.Range(0.06f, 0.1f), player.position.z) - spellShotSpawn.position).normalized * shotSpeed;
+        timeSinceLastShot = 0;
+        isShooting = false;
     }
 }

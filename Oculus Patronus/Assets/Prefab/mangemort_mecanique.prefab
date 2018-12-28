@@ -228,8 +228,8 @@ Animator:
   m_GameObject: {fileID: 1280181750138908}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 2b113fbc3e44b334cb54af80ee87d763, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
+  m_Controller: {fileID: 9100000, guid: a383d915836df3247a03ea97a76158f3, type: 2}
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -254,6 +254,7 @@ MonoBehaviour:
   spellShotSpawn: {fileID: 4123641265751180}
   shotSpeed: 1
   maxDistTargeting: 20
+  minDistRotating: 0
   isTargeting: 0
   player: {fileID: 0}
 --- !u!114 &114837389507688124
@@ -268,7 +269,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cell: {fileID: 0}
-  otherCell: {fileID: 0}
   direction: 0
 --- !u!120 &120698656228696334
 LineRenderer:
