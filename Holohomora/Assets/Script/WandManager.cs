@@ -17,11 +17,14 @@ public class WandManager : MonoBehaviour {
     //public GameObject SortDetection;
     public float shotSpeed;
     public Transform spellShotSpawn;
-
-
+    public ParticleSystem holohomoraParticulePrefab;
+    public Renderer[] cursorRenderer;
+    public Material defaultCursortMaterial, movingCursorMaterial;
     //private Dictionary<string,List<SpellColliderType>> colliderDictio;
 
     private SpellTree spellTree;
+    private ParticleSystem holohomoraParticule;
+    private ParticleSystem failSpellParticule;
 
     [HideInInspector]
     public bool isReading;
@@ -38,19 +41,25 @@ public class WandManager : MonoBehaviour {
 
     GameObject spellShot;
 
-    void Start () {
+    private void Awake()
+    {
+        isReading = false;
+
         spellCollider = this.GetComponent<Collider>();
         gunLine = GetComponent<LineRenderer>();
-
-        isReading = false;
         movableMask = LayerMask.GetMask("Movable");
         doorMask = LayerMask.GetMask("Door");
-
         spellShot = Resources.Load("Sphere") as GameObject;
 
- //       spellParticles = GetComponent<ParticleSystem>();
-
         spellTree = new SpellTree();
+        cameraTransform = Camera.main.GetComponent<Transform>();
+        failSpellParticule = GetComponent<ParticleSystem>();
+    }
+
+    void Start () {
+
+
+ //       spellParticles = GetComponent<ParticleSystem>();
 
 
         foreach (SpellDefinition spell in spellList)
@@ -60,7 +69,10 @@ public class WandManager : MonoBehaviour {
 
         spellTree.DebugTree();
 
-        cameraTransform = Camera.main.GetComponent<Transform>();
+
+        holohomoraParticule = Instantiate(holohomoraParticulePrefab) as ParticleSystem;
+
+
     }
 
     public void AddSortCollider(SpellColliderType col)
@@ -77,6 +89,7 @@ public class WandManager : MonoBehaviour {
         }
         else
         {
+            failSpellParticule.Play();
             spellTree.resetActualNode();
         }
     }
@@ -104,28 +117,32 @@ public class WandManager : MonoBehaviour {
                     rb.velocity = (shootHit.point - spellShotSpawn.position).normalized * shotSpeed; 
 
                     //Set the second position of the line renderer to the point the raycast hit.
-                    gunLine.SetPosition(1, shootHit.point);
+                    //gunLine.SetPosition(1, shootHit.point);
                 }
                 else
                 {
                     rb.velocity = wand.transform.forward * shotSpeed;
-                    gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
+                    //gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
                 }
 
                 break;
             case "tp":
-                if (!teleport.getRight() && mesh_teleport.activeSelf == true)
+                if (!teleport.getRight() && mesh_teleport.activeSelf)
                 {
                     Debug.Log("nop");
+                    foreach (Renderer mat in cursorRenderer) {
+                        mat.material = defaultCursortMaterial;
+                    }
+
                     mesh_teleport.SetActive(false);
-                   // SortDetection.SetActive(true);
+                    // SortDetection.SetActive(true);
                 }
-                else if (teleport.getRight() && mesh_teleport.activeSelf == true)
+                else if (teleport.getRight() && mesh_teleport.activeSelf)
                 {
                     Debug.Log("yep");
                     shootRay.origin = cameraTransform.position;
                     shootRay.direction = cameraTransform.forward;
-                    gunLine.SetPosition(0, spellShotSpawn.position);
+                    //gunLine.SetPosition(0, spellShotSpawn.position);
 
                     if (Physics.Raycast(shootRay, out shootHit, range))
                     {
@@ -138,9 +155,12 @@ public class WandManager : MonoBehaviour {
                         }
 
                         //Set the second position of the line renderer to the point the raycast hit.
-                        gunLine.SetPosition(1, shootHit.point);
+                        //gunLine.SetPosition(1, shootHit.point);
                     }
-
+                    foreach (Renderer mat in cursorRenderer)
+                    {
+                        mat.material = defaultCursortMaterial;
+                    }
                     teleport.validTp();
                     //SortDetection.SetActive(true);
                 }
@@ -149,33 +169,57 @@ public class WandManager : MonoBehaviour {
                     Debug.Log("mb");
                     //SortDetection.SetActive(false);
                     mesh_teleport.SetActive(true);
+                    foreach (Renderer mat in cursorRenderer)
+                    {
+                        mat.material = movingCursorMaterial;
+                    }
                 }
                 break;
             case "holohomora":
                 //Set the shootRay so that it starts at the end of the wand and points forward.
 
-                gunLine.enabled = true;
-                gunLine.SetPosition(0, transform.position);
+                //gunLine.enabled = true;
+                //gunLine.SetPosition(0, transform.position);
 
                 shootRay.origin = cameraTransform.position;
                 shootRay.direction = cameraTransform.forward;
 
-                if (Physics.Raycast(shootRay, out shootHit, range, doorMask))
+                if (Physics.Raycast(shootRay, out shootHit, range,doorMask))
                 {
-                    DoorManager doorManager = shootHit.collider.GetComponent<DoorManager>();
-                    if (doorManager != null)
-                    {
-                        doorManager.openTheDoor();
-                    }
+                    //if (shootHit.collider.CompareTag("Door")) { 
+                        DoorManager doorManager = shootHit.collider.GetComponent<DoorManager>();
+                        holohomoraParticule.transform.position = shootHit.point;
+                        holohomoraParticule.transform.rotation = Quaternion.LookRotation(-shootRay.direction);
+                        holohomoraParticule.startColor = Color.white;
+                        holohomoraParticule.Play();
+                        if (doorManager != null)
+                        {
+                            doorManager.openTheDoor();
+                        }
 
-                    //Set the second position of the line renderer to the point the raycast hit.
-                    gunLine.SetPosition(1, shootHit.point);
+                        //Set the second position of the line renderer to the point the raycast hit.
+                        //gunLine.SetPosition(1, shootHit.point);
+                    //}
+                    //else
+                    //{
+                    //    holohomoraParticule.transform.position = shootHit.point;
+                    //    holohomoraParticule.transform.rotation = Quaternion.LookRotation(-shootRay.direction,Vector3.up);
+                    //    holohomoraParticule.startColor = Color.red;
+                    //    holohomoraParticule.Play();
+                    //}
                 }
                 else
                 {
+                    if (Physics.Raycast(shootRay, out shootHit, range))
+                    {
+                        holohomoraParticule.transform.position = shootHit.point;
+                        holohomoraParticule.transform.rotation = Quaternion.LookRotation(-shootRay.direction, Vector3.up);
+                        holohomoraParticule.startColor = Color.red;
+                        holohomoraParticule.Play();
+                    }
                     //Debug.Log("holohomora rayCast fail");
                     //... set the second position of the line renderer to the fullest extent of the gun's range.
-                    gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
+                    //gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
                 }
                 break;
             default:

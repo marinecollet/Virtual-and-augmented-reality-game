@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65961632266303618}
   m_Layer: 11
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 114012367856875922}
   m_Layer: 11
   m_Name: Maze DoorAnimated
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

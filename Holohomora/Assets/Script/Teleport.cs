@@ -130,7 +130,7 @@ public class Teleport : MonoBehaviour
         if (Physics.Raycast(shootRay, out shootHit, distance))
         {
             if(shootHit.collider.gameObject.layer == groundLayer) { 
-                renderer.material = Resources.Load("Correct_zone", typeof(Material)) as Material;
+                //renderer.material = Resources.Load("Correct_zone", typeof(Material)) as Material;
                 right = true;
                 position = shootHit.point;
 
@@ -148,8 +148,8 @@ public class Teleport : MonoBehaviour
             }
             else
             {
-                Debug.Log("nop "+shootHit.collider.gameObject.name + " "+ groundLayer);
-                renderer.material = Resources.Load("Bad_zone", typeof(Material)) as Material;
+                //Debug.Log("nop " + shootHit.collider.gameObject.name + " " + groundLayer);
+                //renderer.material = Resources.Load("Bad_zone", typeof(Material)) as Material;
                 right = false;
                 if (targetRenderer.enabled)
                 {
@@ -159,8 +159,8 @@ public class Teleport : MonoBehaviour
         }
         else
         {
-            renderer.material = Resources.Load("Bad_zone", typeof(Material)) as Material;
-            Debug.Log("non ");
+            //renderer.material = Resources.Load("Bad_zone", typeof(Material)) as Material;
+            //Debug.Log("non ");
             if (targetRenderer.enabled)
             {
                 targetRenderer.enabled = false;
@@ -189,6 +189,12 @@ public class Teleport : MonoBehaviour
     }
 
     public void validTp()
+    {
+        //targetRenderer.enabled = false;
+        this.gameObject.SetActive(false);
+    }
+
+    public void unValidTp()
     {
         targetRenderer.enabled = false;
         this.gameObject.SetActive(false);

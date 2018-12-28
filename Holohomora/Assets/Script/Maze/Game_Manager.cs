@@ -8,12 +8,12 @@ public class Game_Manager : MonoBehaviour {
     public static bool isSetup = false;
 
     public Maze mazePrefab;
-    public Player dobbyPrefab;
+    public Player dobbyInstance;
     public Socket socketPrefab;
     //public float scale;
 
     private Maze mazeInstance;
-    private Player dobbyInstance;
+    //private Player dobbyInstance;
     private Socket socketInstance;
 
 
@@ -47,7 +47,8 @@ public class Game_Manager : MonoBehaviour {
         float tempX = Random.Range(0, mazeInstance.size.x);
         float tempZ = Random.Range(0, mazeInstance.size.z);
         //Vector3 dobbySpawn = new Vector3((tempX - mazeInstance.size.x * 0.5f + 0.5f) * 0.1f + 0, -1, (tempZ - mazeInstance.size.z * 0.5f + 0.5f) * 0.1f + 2);
-        dobbyInstance = Instantiate(dobbyPrefab) as Player;
+        //dobbyInstance = Instantiate(dobbyPrefab) as Player;
+        dobbyInstance.gameObject.SetActive(true);
         dobbyInstance.SetLocation(mazeInstance.GetCell(new IntVector2(0,0)));
         socketInstance = Instantiate(socketPrefab) as Socket;
         socketInstance.SetLocation(mazeInstance.GetCell(new IntVector2(mazeInstance.size.x-1, mazeInstance.size.z-1)));
@@ -72,10 +73,9 @@ public class Game_Manager : MonoBehaviour {
     {
         StopAllCoroutines();
         Destroy(mazeInstance.gameObject);
-        if (dobbyInstance != null)
-        {
-            Destroy(dobbyInstance.gameObject);
-        }
+        dobbyInstance.reset();
+        dobbyInstance.gameObject.SetActive(false);
+
         if (socketInstance != null)
         {
             Destroy(socketInstance.gameObject);

@@ -57,7 +57,7 @@ public class EnemyManager : MonoBehaviour {
             if (dir.magnitude > minDistRotating && isTargeting)
                 this.transform.localRotation = Quaternion.LookRotation(new Vector3(dir.x, 0f, dir.z), Vector3.up);
         }
-        else if(player.isDead)
+        else if(player!= null && player.isDead)
         {
             isTargeting = false;
         }
@@ -86,15 +86,15 @@ public class EnemyManager : MonoBehaviour {
             shootRay.origin = spellShotSpawn.position;
             shootRay.direction = dir.normalized;
 
-            gunline.SetPosition(0, shootRay.origin);
+            //gunline.SetPosition(0, shootRay.origin);
             
 
             if (Physics.Raycast(shootRay, out shootHit, maxDistTargeting))
             {
-                gunline.SetPosition(1, shootHit.point);
+                //gunline.SetPosition(1, shootHit.point);
                 if (shootHit.collider.gameObject.CompareTag("Player"))
                 {
-                    gunline.SetPosition(0, shootRay.origin);
+                    //gunline.SetPosition(0, shootRay.origin);
                     if (timeSinceLastShot > shootingSpeed &&  !isShooting)
                     {
                         //GameObject projectile = Instantiate(spellShot) as GameObject;
@@ -109,14 +109,14 @@ public class EnemyManager : MonoBehaviour {
                     else if (timeSinceLastShot < shootingSpeed)
                     {
                         timeSinceLastShot += Time.deltaTime;
-                        gunline.SetPosition(1, shootRay.origin + shootRay.direction * maxDistTargeting);
+                        //gunline.SetPosition(1, shootRay.origin + shootRay.direction * maxDistTargeting);
                     }
                 }
             }
             else
             {
                 timeSinceLastShot += Time.deltaTime;
-                gunline.SetPosition(1, shootRay.origin + shootRay.direction * maxDistTargeting);
+                //gunline.SetPosition(1, shootRay.origin + shootRay.direction * maxDistTargeting);
             }
         }   
     }

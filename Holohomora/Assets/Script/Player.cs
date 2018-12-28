@@ -6,13 +6,15 @@ public class Player : MonoBehaviour
     public float speed;
 
     public MazeCell currentCell { get; private set; }
-    public int life;
+    public int lifeAtStart;
     public int lifeLosePerShot;
     public bool isDead { get; private set; }
+    public Teleport teleport;
 
     private MazeCell targetCell;
     private MazeCell movingCell;
     private List<MazeCell> path;
+    private int life;
 
     private bool isMoving = false;
     private bool isHurt = false;
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         isDead = false;
+        life = lifeAtStart;
     }
 
     public void SetLocation(MazeCell cell)
@@ -95,6 +98,10 @@ public class Player : MonoBehaviour
             isMoving = true;
             anim.SetBool("isWalking", true);
         }
+        else
+        {
+            teleport.unValidTp();
+        }
     }
 
     private void OnDrawGizmos()
@@ -122,6 +129,11 @@ public class Player : MonoBehaviour
             isHurt = false;
             anim.SetBool("isHurt", false);
         }
+    }
+
+    public void reset()
+    {
+        life = lifeAtStart;
     }
 }
 
