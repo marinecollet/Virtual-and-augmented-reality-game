@@ -29,7 +29,7 @@ public class Maze : MonoBehaviour
 
     //settings
     public MazeRoomSettings[] roomSettings;
-
+    public MazeTarget targetPrefab;
 
     private List<MazeRoom> rooms = new List<MazeRoom>();
     private MazeCell[,] cells;
@@ -52,6 +52,21 @@ public class Maze : MonoBehaviour
             DoNextGenerationStep(activeCells);
         }
         AddEnemy();
+        if (targetPrefab != null)
+        {
+            MazeTarget targetInstance = Instantiate(targetPrefab) as MazeTarget;
+            IntVector2 cellCoordinate = RandomCoordinates;
+            targetInstance.Initialize(cells[cellCoordinate.x, cellCoordinate.z]);
+        }
+    }
+
+    public void Generate(LevelSettings levelSettings)
+    {
+        this.numberOfEnemy = levelSettings.numberOfEnemy;
+        this.roomSettings = levelSettings.roomSettings;
+        this.size = levelSettings.size;
+        this.targetPrefab = levelSettings.target;
+        Generate();
     }
 
     public MazeCell CreateCell(IntVector2 coordinates)
@@ -201,9 +216,9 @@ public class Maze : MonoBehaviour
             IntVector2 cellCoordinate = RandomCoordinates;
             if(entityMap[cellCoordinate.x,cellCoordinate.z] ==0)
             {
-                MazeEnemy passage = Instantiate(ennemyPrefab) as MazeEnemy;
+                MazeEnemy enemy = Instantiate(ennemyPrefab) as MazeEnemy;
                 //passage.transform.localScale = passage.transform.localScale * scale;
-                passage.Initialize(cells[cellCoordinate.x, cellCoordinate.z], (MazeDirection)Random.Range(0,3));
+                enemy.Initialize(cells[cellCoordinate.x, cellCoordinate.z], (MazeDirection)Random.Range(0,3));
                 entityMap[cellCoordinate.x, cellCoordinate.z] = 1;
                 enemyCreated++;
             }

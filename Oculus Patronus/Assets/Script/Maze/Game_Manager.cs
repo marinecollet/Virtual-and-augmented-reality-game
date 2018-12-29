@@ -6,12 +6,18 @@ public class Game_Manager : MonoBehaviour {
     public static bool isSetup = false;
     public Maze mazePrefab;
     public First_room roomPrefab;
+    public LevelSettings[] levels;
 
     private Maze mazeInstance;
     private First_room roomInstance;
- 
+    private int actualLevel;
 
-	void Start ()
+    private void Awake()
+    {
+        actualLevel = 1;
+    }
+
+    void Start ()
     {
         BeginGame();
 	}
@@ -29,7 +35,14 @@ public class Game_Manager : MonoBehaviour {
 
         //roomInstance = Instantiate(roomPrefab) as First_room;
         mazeInstance = Instantiate(mazePrefab) as Maze;
-        mazeInstance.Generate();
+        if (levels != null && levels.Length > 0)
+        {
+            mazeInstance.Generate(levels[actualLevel -1]);
+        }
+        else
+        {
+            mazeInstance.Generate();
+        }
         isSetup = true;
 
     }
@@ -39,6 +52,18 @@ public class Game_Manager : MonoBehaviour {
         //Destroy(roomInstance.gameObject);
         Destroy(mazeInstance.gameObject);
         isSetup = false;
+
+        BeginGame();
+    }
+
+    public void NextLevel()
+    {
+        Destroy(mazeInstance.gameObject);
+        if(levels != null && levels.Length > 0) {
+            actualLevel++;
+            if (actualLevel > levels.Length)
+                actualLevel = levels.Length;
+        }
 
         BeginGame();
     }

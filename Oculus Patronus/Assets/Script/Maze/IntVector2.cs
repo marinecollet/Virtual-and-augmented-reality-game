@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public struct IntVector2
 {
-
+    [Range(1,50)]
     public int x, z;
 
     public IntVector2(int x, int z)

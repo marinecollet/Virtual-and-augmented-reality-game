@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea072130fa19b047a03e5a51ff0e9ea, type: 3}
+  m_Name: level1
+  m_EditorClassIdentifier: 
+  numberOfEnemy: 5
+  target: {fileID: 114758908661664600, guid: ee37418119005a345bb7c93c243e1000, type: 2}
+  roomSettings:
+  - {fileID: 11400000, guid: cd07285b3026cd64ea9d98773fd86f79, type: 2}
+  - {fileID: 11400000, guid: 0b64b2c8bbee74345a69b6b92c6febd3, type: 2}
+  size:
+    x: 15
+    z: 10

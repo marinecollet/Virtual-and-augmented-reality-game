@@ -12,6 +12,7 @@ TagManager:
   - Shot
   - Wall
   - cheminette
+  - Target
   layers:
   - Default
   - TransparentFX

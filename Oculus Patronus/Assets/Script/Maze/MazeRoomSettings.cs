@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[Serializable]
-public class MazeRoomSettings{
+[Serializable, CreateAssetMenu()]
+public class MazeRoomSettings : ScriptableObject{
 
     public Material floorMaterial, wallMaterial;
 

@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b0bf6f60de0bd84fb0bf29b34a658eb, type: 3}
+  m_Name: greenRoom
+  m_EditorClassIdentifier: 
+  floorMaterial: {fileID: 2100000, guid: 346011b4806bb6648bb4f5309deb0c6a, type: 2}
+  wallMaterial: {fileID: 2100000, guid: 38b130a77d7a26041889ba8b5c07cc04, type: 2}
