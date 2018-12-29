@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public Transform wand;
     public Transform spellDetector;
     public int life;
+    public Transform localAvatar;
 
     private bool isHurt = false;
     private float fadeOutTime;
@@ -61,5 +62,10 @@ public class Player : MonoBehaviour
     {
         life = lifeAtStart;
     }
-}
 
+    public void move(Vector3 newPosition){
+        this.transform.localPosition = newPosition;
+        localAvatar.localPosition = newPosition;
+    }
+
+}

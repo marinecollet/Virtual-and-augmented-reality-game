@@ -5,8 +5,7 @@ using UnityEngine;
 public class Fire : MonoBehaviour
 {
 
-    public Transform player;
-    public Transform camera;
+    public Player player;
     public GameObject FirstRoom;
     ParticleSystem particle;
 
@@ -16,10 +15,10 @@ public class Fire : MonoBehaviour
     {
 
         yield return new WaitForSeconds(3);
-        player.localPosition = new Vector3(0f, 0f, 0f);
-        camera.localPosition = new Vector3(0f, 0f, 0f);
+        player.move(new Vector3(0f, 0f, 0f));
         Destroy(FirstRoom);
     }
+
     void Awake()
     {
         particle = GetComponent<ParticleSystem>();

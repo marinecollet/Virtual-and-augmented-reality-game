@@ -7,6 +7,7 @@ public class Game_Manager : MonoBehaviour {
     public Maze mazePrefab;
     public First_room roomPrefab;
     public LevelSettings[] levels;
+    public Player player;
 
     private Maze mazeInstance;
     private First_room roomInstance;
@@ -66,5 +67,6 @@ public class Game_Manager : MonoBehaviour {
         }
 
         BeginGame();
+        player.move(new Vector3(0, 0));
     }
 }

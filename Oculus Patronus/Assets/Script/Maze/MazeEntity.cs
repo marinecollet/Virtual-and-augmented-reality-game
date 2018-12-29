@@ -7,7 +7,9 @@ public class MazeEntity : MonoBehaviour{
 
     public virtual void Initialize(MazeCell cell)
     {
-        this.cell = cell;        
+        this.cell = cell;
+        Vector3 tempLocalPosition = this.transform.localPosition;
         transform.parent = cell.transform;
+        transform.localPosition = tempLocalPosition;
     }
 }

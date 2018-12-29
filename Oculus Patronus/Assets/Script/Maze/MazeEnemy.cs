@@ -10,6 +10,5 @@ public class MazeEnemy : MazeEntity {
         base.Initialize(cell);
         this.direction = direction;
         transform.localRotation = direction.ToRotation();
-        transform.localPosition = Vector3.zero;
     }
 }
