@@ -13,6 +13,8 @@ TagManager:
   - Wall
   - cheminette
   - Target
+  - restart
+  - quit
   layers:
   - Default
   - TransparentFX

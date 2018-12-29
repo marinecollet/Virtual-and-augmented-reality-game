@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using System.Collections;
+
 
 public class Player : MonoBehaviour
 {
@@ -12,9 +14,19 @@ public class Player : MonoBehaviour
     public Transform spellDetector;
     public int life;
     public Transform localAvatar;
+    public Transform FirstRoom;
 
     private bool isHurt = false;
     private float fadeOutTime;
+
+    private IEnumerator MoveToFirstRoomAfter()
+    {
+        yield return new WaitForSeconds(3);
+        FirstRoom.gameObject.SetActive(true);
+        this.move(new Vector3(28,0,0));
+        life = lifeAtStart;
+        isDead = false;
+    }
 
     public void Awake()
     {
@@ -40,6 +52,7 @@ public class Player : MonoBehaviour
                 isDead = true;
                 Destroy(wand.gameObject);
                 Destroy(spellDetector.gameObject);
+                StartCoroutine(MoveToFirstRoomAfter());
             }
         }
     }

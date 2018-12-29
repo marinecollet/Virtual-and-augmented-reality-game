@@ -16,7 +16,7 @@ public class Fire : MonoBehaviour
 
         yield return new WaitForSeconds(3);
         player.move(new Vector3(0f, 0f, 0f));
-        Destroy(FirstRoom);
+        FirstRoom.SetActive(false);
     }
 
     void Awake()

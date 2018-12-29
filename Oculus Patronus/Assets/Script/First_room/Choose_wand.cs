@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Choose_wand : MonoBehaviour {
 
@@ -14,11 +15,25 @@ public class Choose_wand : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.tag);
+
         if (other.gameObject.CompareTag("Wand"))
         {
             Debug.Log(other.name);
             wand = other;
             canGrab = true;
+        }
+
+        if (other.gameObject.CompareTag("quit"))
+        {
+            Debug.Log("quit");
+            Application.Quit();
+        }
+
+        if (other.gameObject.CompareTag("restart"))
+        {
+            Debug.Log("restart");
+            SceneManager.LoadScene("SceneCasque 1");
         }
     }
 
@@ -49,7 +64,6 @@ public class Choose_wand : MonoBehaviour {
             Debug.Log("disppear");
             wand.gameObject.GetComponent<WandManager>().enabled = true;
             this.GetComponent<SphereCollider>().enabled = false;
-
         }
 
     }

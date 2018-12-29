@@ -390,7 +390,6 @@ GameObject:
   - component: {fileID: 23465281900286450}
   - component: {fileID: 95423277428752576}
   - component: {fileID: 65323287727881228}
-  - component: {fileID: 114840092695704806}
   - component: {fileID: 54015309263032776}
   m_Layer: 0
   m_Name: chimney
@@ -2448,7 +2447,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  camera: {fileID: 0}
   FirstRoom: {fileID: 1042398352937030}
 --- !u!114 &114688078237714224
 MonoBehaviour:
@@ -2478,19 +2476,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31083400f35df0f498bb57c302c389f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114840092695704806
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1863797772957542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b092ac9e6cd400c4ba47df609e1f772b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  camera: {fileID: 0}
 --- !u!114 &114852522930930942
 MonoBehaviour:
   m_ObjectHideFlags: 1
