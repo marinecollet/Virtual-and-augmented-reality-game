@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -435,6 +435,10 @@ Prefab:
       propertyPath: shield
       value: 
       objectReference: {fileID: 22290086}
+    - target: {fileID: 1042398352937030, guid: 1976a50b2a7ae1449aaf0eb150082d48, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1976a50b2a7ae1449aaf0eb150082d48, type: 2}
   m_IsPrefabAsset: 0
@@ -769,6 +773,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1737286754879014, guid: e8012e1ed9af162438f82fde21ebc95c, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8012e1ed9af162438f82fde21ebc95c, type: 2}
   m_IsPrefabAsset: 0
@@ -1024,6 +1032,7 @@ MonoBehaviour:
   life: 0
   localAvatar: {fileID: 120801976}
   FirstRoom: {fileID: 699740941}
+  grimoire: {fileID: 0}
 --- !u!1 &1088840802
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,6 +1245,10 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816897842225544, guid: 6fec008af1d35ae4cb320c16cef02813, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fec008af1d35ae4cb320c16cef02813, type: 2}

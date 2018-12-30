@@ -188,12 +188,13 @@ public class WandManager : MonoBehaviour {
                 {
                     //if (shootHit.collider.CompareTag("Door")) { 
                         DoorManager doorManager = shootHit.collider.GetComponent<DoorManager>();
-                        holohomoraParticule.transform.position = shootHit.point;
-                        holohomoraParticule.transform.rotation = Quaternion.LookRotation(-shootRay.direction);
-                        holohomoraParticule.startColor = Color.white;
-                        holohomoraParticule.Play();
+
                         if (doorManager != null)
                         {
+                            holohomoraParticule.transform.position = shootHit.point;
+                            holohomoraParticule.transform.rotation = Quaternion.LookRotation(-shootRay.direction);
+                            holohomoraParticule.startColor = Color.white;
+                            holohomoraParticule.Play();
                             doorManager.openTheDoor();
                         }
 

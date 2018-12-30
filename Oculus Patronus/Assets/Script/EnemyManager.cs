@@ -112,6 +112,10 @@ public class EnemyManager : MonoBehaviour
                 timeSinceLastShot += Time.deltaTime;
             }
         }
+        else if( player != null)
+        {
+                timeSinceLastShot += Time.deltaTime;
+        }
     }
 
     public void AnimationShotEnded()

@@ -39,7 +39,6 @@ public class PlayerSansCasque : Player
         child = this.transform.GetChild(0);
     }
 
-
     public override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("EnemyShot"))

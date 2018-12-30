@@ -20,6 +20,7 @@ public class WandManager : MonoBehaviour {
     public Transform target;
     private Quaternion q = Quaternion.identity ;
     public GameObject shield;
+    public ParticleSystem holohomoraParticulePrefab;
 
 
     //private Dictionary<string,List<SpellColliderType>> colliderDictio;
@@ -31,7 +32,8 @@ public class WandManager : MonoBehaviour {
 
     Ray shootRay;
     RaycastHit shootHit;
-    ParticleSystem spellParticles;
+    private ParticleSystem failSpellParticule;
+    private ParticleSystem holohomoraParticule;
     LineRenderer gunLine;
 
     int movableMask;
@@ -63,8 +65,6 @@ public class WandManager : MonoBehaviour {
 
         spellShot = Resources.Load("Sphere") as GameObject;
 
-        spellParticles = GetComponent<ParticleSystem>();
-
         spellTree = new SpellTree();
 
         foreach (SpellDefinition spell in spellList)
@@ -72,8 +72,8 @@ public class WandManager : MonoBehaviour {
             spellTree.addSpell(new List<SpellColliderType>(spell.colliderOrder) , spell.spellName);
         }
 
-        spellTree.DebugTree();
-        
+        failSpellParticule = GetComponent<ParticleSystem>();
+        holohomoraParticule = Instantiate(holohomoraParticulePrefab) as ParticleSystem;
     }
 
     public void AddSortCollider(SpellColliderType col)
@@ -90,14 +90,13 @@ public class WandManager : MonoBehaviour {
         }
         else
         {
+            failSpellParticule.Play();
             spellTree.resetActualNode();
         }
     }
 
     void launchSpell(string spell)
     {
-        spellParticles.Stop();
-        spellParticles.Play();
 
         switch (spell)
         {
@@ -114,8 +113,8 @@ public class WandManager : MonoBehaviour {
                 //Debug.Log("rayCast");
                 //Debug.Log(transform.position);
 
-                gunLine.enabled = true;
-                gunLine.SetPosition(0, transform.position);
+                //gunLine.enabled = true;
+                //gunLine.SetPosition(0, transform.position);
 
                 shootRay.origin = transform.position;
                 shootRay.direction = transform.forward;
@@ -134,20 +133,20 @@ public class WandManager : MonoBehaviour {
                     }
 
                     //Set the second position of the line renderer to the point the raycast hit.
-                    gunLine.SetPosition(1, shootHit.point);
+                    //gunLine.SetPosition(1, shootHit.point);
                 }
                 else
                 {
                     //Debug.Log("rayCast fail");
                     //... set the second position of the line renderer to the fullest extent of the gun's range.
-                    gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
+                    //gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
                 }
                 break;
             case "holohomora":
                 //Set the shootRay so that it starts at the end of the wand and points forward.
 
-                gunLine.enabled = true;
-                gunLine.SetPosition(0, transform.position);
+                //gunLine.enabled = true;
+                //gunLine.SetPosition(0, transform.position);
 
                 shootRay.origin = transform.position;
                 shootRay.direction = transform.forward;
@@ -157,17 +156,28 @@ public class WandManager : MonoBehaviour {
                     DoorManager doorManager = shootHit.collider.GetComponent<DoorManager>();
                     if(doorManager!= null)
                     {
+                        holohomoraParticule.transform.position = shootHit.point;
+                        holohomoraParticule.transform.rotation = Quaternion.LookRotation(-shootRay.direction);
+                        holohomoraParticule.startColor = Color.white;
+                        holohomoraParticule.Play();
                         doorManager.openTheDoor();
                     }
 
                     //Set the second position of the line renderer to the point the raycast hit.
-                    gunLine.SetPosition(1, shootHit.point);
+                    //gunLine.SetPosition(1, shootHit.point);
                 }
                 else
                 {
+                    if (Physics.Raycast(shootRay, out shootHit, range))
+                    {
+                        holohomoraParticule.transform.position = shootHit.point;
+                        holohomoraParticule.transform.rotation = Quaternion.LookRotation(-shootRay.direction, Vector3.up);
+                        holohomoraParticule.startColor = Color.red;
+                        holohomoraParticule.Play();
+                    }
                     //Debug.Log("holohomora rayCast fail");
                     //... set the second position of the line renderer to the fullest extent of the gun's range.
-                    gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
+                    //gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
                 }
                 break;
             case "protego":
@@ -201,8 +211,8 @@ public class WandManager : MonoBehaviour {
 
             Vector3 dir = (changedParentGameObject.transform.position - this.transform.position).normalized;
 
-            gunLine.SetPosition(0, changedParentGameObject.transform.position);
-            gunLine.SetPosition(1, this.transform.position);
+            //gunLine.SetPosition(0, changedParentGameObject.transform.position);
+            //gunLine.SetPosition(1, this.transform.position);
 
 
             Vector3 newPosition = changedParentGameObject.transform.position + dir * vect.y * moveObjectSpeed;
