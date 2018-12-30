@@ -13,7 +13,7 @@ public class ChangeParent : MonoBehaviour {
 
     public void changeParent(GameObject gameObject)
     {
-        transform.parent= gameObject.transform.parent;
+        transform.parent = gameObject.transform.parent;
         rb.isKinematic = true;
         rb.useGravity = false;
     }

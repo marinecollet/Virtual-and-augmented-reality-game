@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Game_Manager : MonoBehaviour
-{
+public class Game_Managersanscasque : MonoBehaviour {
+
     public static bool isSetup = false;
     public Maze mazePrefab;
     public First_room roomPrefab;
     public LevelSettings[] levels;
-    public Player player;
+    public PlayerSansCasque player;
 
     private Maze mazeInstance;
     private First_room roomInstance;
@@ -71,9 +71,6 @@ public class Game_Manager : MonoBehaviour
         }
 
         BeginGame();
-        if(player is PlayerSansCasque)
-            player.move(new Vector3(0, 1.6f, 0));
-        else
-            player.move(new Vector3(0, 0f, 0));
+        player.move(new Vector3(0, 0));
     }
 }

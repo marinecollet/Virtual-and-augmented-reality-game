@@ -6,6 +6,7 @@ public class Fire : MonoBehaviour
 {
 
     public Player player;
+
     public GameObject FirstRoom;
     ParticleSystem particle;
 
@@ -15,7 +16,13 @@ public class Fire : MonoBehaviour
     {
 
         yield return new WaitForSeconds(3);
-        player.move(new Vector3(0f, 0f, 0f));
+        if(player is PlayerSansCasque)
+        {
+            player.move(new Vector3(0f, 1.6f, 0f));
+            player.spellDetector.gameObject.SetActive(true);
+        }
+        else
+            player.move(new Vector3(0f, 0f, 0f));
         FirstRoom.SetActive(false);
     }
 

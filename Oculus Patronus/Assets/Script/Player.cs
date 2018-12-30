@@ -8,18 +8,19 @@ public class Player : MonoBehaviour
 {
     public int lifeAtStart;
     public int lifeLosePerShot;
-    public bool isDead { get; private set; }
+    public bool isDead { get; protected set; }
     public Image damageOverlay;
     public Transform wand;
     public Transform spellDetector;
     public int life;
     public Transform localAvatar;
     public Transform FirstRoom;
+    public GrimoireController grimoire;
 
-    private bool isHurt = false;
-    private float fadeOutTime;
+    protected bool isHurt = false;
+    protected float fadeOutTime;
 
-    private IEnumerator MoveToFirstRoomAfter()
+    protected virtual IEnumerator MoveToFirstRoomAfter()
     {
         yield return new WaitForSeconds(3);
         FirstRoom.gameObject.SetActive(true);
@@ -28,14 +29,14 @@ public class Player : MonoBehaviour
         isDead = false;
     }
 
-    public void Awake()
+    public virtual void Awake()
     {
         isDead = false;
         life = lifeAtStart;
         damageOverlay.canvasRenderer.SetAlpha(0);
     }
 
-    public void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("EnemyShot"))
         {
@@ -71,12 +72,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void reset()
+    public virtual void reset()
     {
         life = lifeAtStart;
     }
 
-    public void move(Vector3 newPosition){
+    public virtual void move(Vector3 newPosition){
         this.transform.localPosition = newPosition;
         localAvatar.localPosition = newPosition;
     }
