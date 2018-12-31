@@ -15,8 +15,10 @@ public class Maze : MonoBehaviour
     public MazeCell cellPrefab;
     public MazePassage passagePrefab;
     public MazeWall[] wallPrefabs;
+    //public KeyValuePair<MazeWall, int>[] wallPrefabs;
     public MazeDoor doorPrefab;
     public MazeEnemy ennemyPrefab;
+    public Transform roof;
 
     [Range(0, 100)]
     public int numberOfEnemy;
@@ -58,6 +60,10 @@ public class Maze : MonoBehaviour
             IntVector2 cellCoordinate = RandomCoordinates;
             targetInstance.Initialize(cells[cellCoordinate.x, cellCoordinate.z]);
         }
+        Transform obj = Instantiate(roof);
+        obj.parent = transform;
+        obj.position = new Vector3(0, 2 * scale, 0);
+        obj.localScale = new Vector3(size.x * scale, size.z * scale, 1);
     }
 
     public void Generate(LevelSettings levelSettings)
@@ -146,6 +152,7 @@ public class Maze : MonoBehaviour
 
         MazePassage passage = Instantiate(prefab) as MazePassage;
         passage.transform.localScale = passage.transform.localScale * scale;
+
         passage.Initialize(cell, otherCell, direction);
 
         passage = Instantiate(prefab) as MazePassage;
@@ -182,15 +189,48 @@ public class Maze : MonoBehaviour
     private void CreateWall(MazeCell cell, MazeCell otherCell, MazeDirection direction)
     {
         MazeWall wall = Instantiate(wallPrefabs[Random.Range(0, wallPrefabs.Length)]) as MazeWall;
-        wall.transform.localScale = wall.transform.localScale * scale;
+        wall.transform.localScale = new Vector3(wall.transform.localScale.x * scale, wall.transform.localScale.y * scale, wall.transform.localScale.z * scale);
         wall.Initialize(cell, otherCell, direction);
         if (otherCell != null)
         {
             wall = Instantiate(wallPrefabs[Random.Range(0, wallPrefabs.Length)]) as MazeWall;
             wall.Initialize(otherCell, cell, direction.GetOpposite());
-            wall.transform.localScale = wall.transform.localScale * scale;
+            //wall.transform.localScale = wall.transform.localScale * scale;
+            wall.transform.localScale = new Vector3(wall.transform.localScale.x * scale, wall.transform.localScale.y * scale, wall.transform.localScale.z * scale);
         }
     }
+
+    //private void CreateWall(MazeCell cell, MazeCell otherCell, MazeDirection direction)
+    //{
+    //    int[] nbIterationOfWalls = cell.room.settings.nbIterationOfWalls;
+    //    int idx;
+    //    do
+    //    {
+    //        idx = Random.Range(0, nbIterationOfWalls.Length);
+    //    } while (nbIterationOfWalls[idx] == 0);
+
+    //    MazeWall wall = Instantiate(cell.room.settings.wallPrefabs[idx]) as MazeWall;
+    //    nbIterationOfWalls[idx]--;
+
+    //    wall.transform.localScale = new Vector3(wall.transform.localScale.x * scale, wall.transform.localScale.y * scale, wall.transform.localScale.z * scale);
+    //    wall.Initialize(cell, otherCell, direction);
+    //    if (otherCell != null)
+    //    {
+    //        nbIterationOfWalls = cell.room.settings.nbIterationOfWalls;
+    //        do
+    //        {
+    //            idx = Random.Range(0, nbIterationOfWalls.Length);
+    //        } while (nbIterationOfWalls[idx] == 0);
+
+    //        wall = Instantiate(cell.room.settings.wallPrefabs[idx]) as MazeWall;
+    //        nbIterationOfWalls[idx]--;
+
+    //        //wall = Instantiate(wallPrefabs[Random.Range(0, wallPrefabs.Length)]) as MazeWall;
+    //        wall.Initialize(otherCell, cell, direction.GetOpposite());
+    //        //wall.transform.localScale = wall.transform.localScale * scale;
+    //        wall.transform.localScale = new Vector3(wall.transform.localScale.x * scale, wall.transform.localScale.y * scale, wall.transform.localScale.z * scale);
+    //    }
+    //}
 
     private MazeRoom CreateRoom(int indexToExclude)
     {

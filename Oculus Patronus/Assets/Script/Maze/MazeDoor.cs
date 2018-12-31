@@ -12,5 +12,7 @@ public class MazeDoor : MazePassage
         {
             Transform child = transform.GetChild(i);
         }
+        MeshRenderer a = this.transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>();
+        a.material = cell.room.settings.wallMaterial;
     }
 }

@@ -55,7 +55,7 @@ MonoBehaviour:
     x: 20
     z: 20
   centerPosition: {x: 0, y: 0, z: 0}
-  scale: 1.5
+  scale: 2
   cellPrefab: {fileID: 114371738435711358, guid: 29afe719b57800a4f8703a4f6827689d,
     type: 2}
   passagePrefab: {fileID: 114002801099025304, guid: 43d30e4754bf34342b2c4f30bca7b324,
@@ -64,17 +64,17 @@ MonoBehaviour:
   - {fileID: 114977191693920946, guid: d3311a980685d224ab0cb9c72bd837ce, type: 2}
   - {fileID: 114553604438214402, guid: aaad5fca9da276d4489cadebcc007972, type: 2}
   - {fileID: 114699878219549792, guid: 24c4efbe2466c054fab545cb27518828, type: 2}
-  - {fileID: 114803365557475644, guid: 17cb00470633e404b84873f418573384, type: 2}
+  - {fileID: 114068894592288818, guid: 9188eb7167154af449b9fbfdfeb73d3e, type: 2}
   - {fileID: 114755917320931562, guid: cdbb4c65bd094ad4d8e67095e1a59dfc, type: 2}
   - {fileID: 114775606985598064, guid: cb74a90a971ba494fb22f9c6f6a665d8, type: 2}
   - {fileID: 114539746161452258, guid: bc0bcc5a257f762469c1754acb4fa314, type: 2}
   - {fileID: 114781249132020548, guid: b5cc81da485ee6c47afdfd1e9ce95e13, type: 2}
   - {fileID: 114764232298269170, guid: 1f227e9a7b0e50d44889caaa537390ad, type: 2}
-  - {fileID: 114068894592288818, guid: 9188eb7167154af449b9fbfdfeb73d3e, type: 2}
   doorPrefab: {fileID: 114670218479797860, guid: e5096b490761adc468d8c76a99de0032,
     type: 2}
   ennemyPrefab: {fileID: 114878174218277916, guid: 18a945affe5e306409c73eb032e5f0f1,
     type: 2}
+  roof: {fileID: 4207809257478154, guid: a69d7843ccddc774a80883b3cd27c05f, type: 2}
   numberOfEnemy: 30
   doorProbability: 0.1
   roomSettings:

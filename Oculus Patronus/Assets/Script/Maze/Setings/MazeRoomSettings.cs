@@ -7,5 +7,7 @@ using System;
 public class MazeRoomSettings : ScriptableObject{
 
     public Material floorMaterial, wallMaterial;
-
+    public MazeWall[] wallPrefabs;
+    [SerializeField]
+    public int[] nbIterationOfWalls;
 }

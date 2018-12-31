@@ -13,3 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorMaterial: {fileID: 2100000, guid: 346011b4806bb6648bb4f5309deb0c6a, type: 2}
   wallMaterial: {fileID: 2100000, guid: 38b130a77d7a26041889ba8b5c07cc04, type: 2}
+  wallPrefabs:
+  - {fileID: 114699878219549792, guid: 24c4efbe2466c054fab545cb27518828, type: 2}
+  - {fileID: 114539746161452258, guid: bc0bcc5a257f762469c1754acb4fa314, type: 2}
+  - {fileID: 114764232298269170, guid: 1f227e9a7b0e50d44889caaa537390ad, type: 2}
+  - {fileID: 114803365557475644, guid: 17cb00470633e404b84873f418573384, type: 2}
+  nbIterationOfWalls: f4010000010000000100000001000000
