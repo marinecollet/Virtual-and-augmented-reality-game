@@ -12,6 +12,8 @@ ModelImporter:
     400004: //RootNode
     400006: Cylinder
     2100000: Crystal_ball
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: Cylinder
     7400000: Default Take
     7400002: Floatting_down
