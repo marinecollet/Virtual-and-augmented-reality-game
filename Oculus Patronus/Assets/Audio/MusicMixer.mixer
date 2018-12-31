@@ -21,7 +21,7 @@ AudioMixerController:
     - 8b962661cef125b428e01f2649d38031
     - c23482f570e5d2446942cb757fea1019
     - c115dbc995a30ea489ed24cf1fc7931e
-    name: View
+    name: Master
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
 --- !u!243 &24300002
