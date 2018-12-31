@@ -53,8 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mazePrefab: {fileID: 114152155053565448, guid: 4e3bc9f417802f747bf97a0927b0b7b5,
     type: 2}
-  roomPrefab: {fileID: 114692792853607808, guid: 1976a50b2a7ae1449aaf0eb150082d48,
-    type: 2}
   levels:
   - {fileID: 11400000, guid: 728407674edcea94a9451ad076af0457, type: 2}
   - {fileID: 11400000, guid: daab6e36e66039c4f89a0731fd135ffc, type: 2}
+  player: {fileID: 0}
+  in_game: {fileID: 245583479159752276, guid: 4ef25b42b981a5d48a9b34f8393a4b0a, type: 2}

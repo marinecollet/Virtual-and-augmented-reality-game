@@ -6,13 +6,13 @@ public class Game_Manager : MonoBehaviour
 {
     public static bool isSetup = false;
     public Maze mazePrefab;
-    public First_room roomPrefab;
     public LevelSettings[] levels;
     public Player player;
 
     private Maze mazeInstance;
-    private First_room roomInstance;
     private int actualLevel;
+    
+
 
     private void Awake()
     {
@@ -31,6 +31,7 @@ public class Game_Manager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             RestartGame();
+
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -41,7 +42,6 @@ public class Game_Manager : MonoBehaviour
     void BeginGame()
     {
 
-        //roomInstance = Instantiate(roomPrefab) as First_room;
         mazeInstance = Instantiate(mazePrefab) as Maze;
         if (levels != null && levels.Length > 0)
         {
@@ -57,7 +57,7 @@ public class Game_Manager : MonoBehaviour
 
     void RestartGame()
     {
-        //Destroy(roomInstance.gameObject);
+
         Destroy(mazeInstance.gameObject);
         isSetup = false;
 

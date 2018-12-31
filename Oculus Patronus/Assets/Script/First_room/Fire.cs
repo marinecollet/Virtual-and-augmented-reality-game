@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Fire : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class Fire : MonoBehaviour
     ParticleSystem particle;
 
     bool playerIsIn;
+
+    /** changement de musique **/
+    public AudioMixerSnapshot in_game;
 
     IEnumerator MovePlayerAfter()
     {
@@ -24,6 +28,8 @@ public class Fire : MonoBehaviour
         else
             player.move(new Vector3(0f, 0f, 0f));
         FirstRoom.SetActive(false);
+
+        in_game.TransitionTo(60 / 128);
     }
 
     void Awake()
