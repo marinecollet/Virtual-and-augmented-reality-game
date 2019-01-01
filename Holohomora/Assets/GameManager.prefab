@@ -53,7 +53,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mazePrefab: {fileID: 114152155053565448, guid: 17c07acb4e1e11a49a2cea9578c614e4,
     type: 2}
-  dobbyPrefab: {fileID: 114561327533330204, guid: 105674d7768299449afcba78fae5f03c,
-    type: 2}
-  socketPrefab: {fileID: 114256825371227276, guid: 5342f9fd58731194e889dfb6eba02836,
+  dobbyInstance: {fileID: 0}
+  socketPrefab: {fileID: 114949593609569724, guid: 646b82868e3ad0c4487ab45a15b8e4b8,
     type: 2}

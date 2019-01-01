@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class Game_Manager : MonoBehaviour {
     public static bool isSetup = false;
-    public AudioSource audioSource;
 
     public Maze mazePrefab;
     public Player dobbyInstance;
@@ -64,10 +63,12 @@ public class Game_Manager : MonoBehaviour {
         {
             if (dobbyInstance.currentCell == socketInstance.currentCell && isSetup)
             {
-                Debug.Log(audioSource);
-                audioSource.Play();
+                // Check if we have reached beyond 2 seconds.
+                // Subtracting two is more accurate over time than resetting to zero.
+                
                 isSetup = false;
                 StartNextLevel();
+                
             }
         }
     }
