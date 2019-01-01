@@ -12,6 +12,7 @@ public class EnemyManager : MonoBehaviour
     public float shotSpeed;
     public float maxDistTargeting;
     public float minDistRotating;
+    public AudioSource audioSource;
 
 
     private bool isShooting;
@@ -95,6 +96,7 @@ public class EnemyManager : MonoBehaviour
                         //rb.velocity = (new Vector3(player.position.x, player.position.y + Random.Range(0.06f,0.1f), player.position.z) - spellShotSpawn.position).normalized * shotSpeed;
                         //timeSinceLastShot = 0;
                         anim.SetBool("isShooting", true);
+                        audioSource.Play();
                         isShooting = true;
                     }
                     else if (timeSinceLastShot < shootingSpeed)
