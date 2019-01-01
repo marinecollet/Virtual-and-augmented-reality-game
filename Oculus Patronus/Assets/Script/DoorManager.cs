@@ -6,6 +6,9 @@ public class DoorManager : MonoBehaviour {
 
     private MazeDoor mazeDoor;
 
+
+    public AudioSource audioSource;
+
     void Start()
     {
         mazeDoor = gameObject.GetComponent<MazeDoor>();
@@ -31,5 +34,7 @@ public class DoorManager : MonoBehaviour {
             //... the enemy should take damage.
             anim.SetBool("isOpen", true);
         }
+
+        audioSource.Play();
     }
 }
