@@ -249,6 +249,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4075245084386872}
   - component: {fileID: 137346356225804018}
+  - component: {fileID: 65112381378851110}
+  - component: {fileID: 114137208081810500}
   m_Layer: 0
   m_Name: pages_R
   m_TagString: Untagged
@@ -311,7 +313,7 @@ GameObject:
   - component: {fileID: 4185770536645526}
   - component: {fileID: 137983607891725980}
   - component: {fileID: 65312947867288276}
-  - component: {fileID: 114204782510346280}
+  - component: {fileID: 114054737329164128}
   m_Layer: 0
   m_Name: pages_L
   m_TagString: Untagged
@@ -628,6 +630,18 @@ Transform:
   m_Father: {fileID: 4115592696685546}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65112381378851110
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1733732615927384}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.18857172, y: 0.24677646, z: 0.054245263}
+  m_Center: {x: -0.0172664, y: 0.0000013075588, z: -0.7372774}
 --- !u!65 &65312947867288276
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -658,7 +672,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114204782510346280
+--- !u!114 &114054737329164128
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -669,6 +683,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f8a05fad05ea2e4c86dd40a3297d63c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  page_right: {fileID: 137346356225804018}
+--- !u!114 &114137208081810500
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1733732615927384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d0e4a5058c605049856925801151f8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  page_left: {fileID: 137983607891725980}
 --- !u!114 &114312662689685310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -708,7 +735,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 03831076c5e5350438766a884e9bbc30, type: 2}
+  - {fileID: 2100000, guid: 68d3d4288fcf0d84e9b961a1a87f5164, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -834,7 +861,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 31a9da98203815142bb3da7b56edd99c, type: 2}
+  - {fileID: 2100000, guid: 9b8812453414bad4cb399655abe9e903, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
