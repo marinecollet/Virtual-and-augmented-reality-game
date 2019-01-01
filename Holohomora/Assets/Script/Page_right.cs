@@ -34,16 +34,6 @@ public class Page_right : MonoBehaviour {
                 break;
 
             case "material_page_2 (Instance)":
-                page_left.material = Resources.Load("material_page_3", typeof(Material)) as Material;
-                page_right.material = Resources.Load("material_page_3", typeof(Material)) as Material;
-                break;
-
-            case "material_page_3 (Instance)":
-                page_left.material = Resources.Load("material_page_4", typeof(Material)) as Material;
-                page_right.material = Resources.Load("material_page_4", typeof(Material)) as Material;
-                break;
-
-            case "material_page_4 (Instance)":
                 break;
 
             default:
