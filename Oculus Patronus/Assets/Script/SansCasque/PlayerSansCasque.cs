@@ -25,7 +25,7 @@ public class PlayerSansCasque : Player
         yield return new WaitForSeconds(3);
         FirstRoom.gameObject.SetActive(true);
         this.move(new Vector3(28,1.6f,0));
-        life = lifeAtStart;
+        //life = lifeAtStart;
         isDead = false;
         fakeHands.SetActive(true);
     }

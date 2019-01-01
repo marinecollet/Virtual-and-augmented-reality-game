@@ -5,8 +5,21 @@ using UnityEngine;
 public class MazeRoom : ScriptableObject
 {
     public int settingsIndex;
-    public MazeRoomSettings settings;
+    private MazeRoomSettings settings;
+    public MazeRoomSettings Settings
+    {
+        get
+        {
+            return settings;
+        }
+        set {
+            settings = value;
+            this.nbWallInRoom = new int[value.nbIterationOfWalls.Length];
+        }
+    }
+
     private List<MazeCell> cells = new List<MazeCell>();
+    public int[] nbWallInRoom;
 
     public void Add (MazeCell cell)
     {

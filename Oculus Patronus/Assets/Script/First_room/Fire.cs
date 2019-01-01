@@ -22,11 +22,11 @@ public class Fire : MonoBehaviour
         yield return new WaitForSeconds(3);
         if(player is PlayerSansCasque)
         {
-            player.move(new Vector3(0f, 1.6f, 0f));
+            player.move(new Vector3(0.5f, 1.6f, 0.5f));
             player.spellDetector.gameObject.SetActive(true);
         }
         else
-            player.move(new Vector3(0f, 0f, 0f));
+            player.move(new Vector3(0.5f, 0f, 0.5f));
         FirstRoom.SetActive(false);
 
         in_game.TransitionTo(60 / 128);

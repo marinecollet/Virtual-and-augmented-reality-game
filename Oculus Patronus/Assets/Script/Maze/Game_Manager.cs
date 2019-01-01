@@ -76,8 +76,8 @@ public class Game_Manager : MonoBehaviour
 
         BeginGame();
         if(player is PlayerSansCasque)
-            player.move(new Vector3(0, 1.6f, 0));
+            player.move(new Vector3(0.5f, 1.6f, 0.5f));
         else
-            player.move(new Vector3(0, 0f, 0));
+            player.move(new Vector3(0.5f, 0f, 0.5f));
     }
 }
