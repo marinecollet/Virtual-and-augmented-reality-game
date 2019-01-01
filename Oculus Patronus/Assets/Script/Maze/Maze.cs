@@ -278,6 +278,7 @@ public class Maze : MonoBehaviour
             MazeEntity targetTransformInstance = Instantiate(targetTransform) as MazeEntity;
             IntVector2 cellCoordinate = RandomCoordinates;
             targetTransformInstance.Initialize(cells[cellCoordinate.x, cellCoordinate.z]);
+            entityMap[cellCoordinate.x, cellCoordinate.z] = 2;
             if (targetPrefab != null)
             {
                 MazeTarget targetInstance = Instantiate(targetPrefab) as MazeTarget;

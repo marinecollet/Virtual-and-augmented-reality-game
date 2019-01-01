@@ -53,6 +53,8 @@ public class Player : MonoBehaviour
                 isDead = true;
                 Destroy(wand.gameObject);
                 Destroy(spellDetector.gameObject);
+                GameObject maze = GameObject.Find("Maze(Clone)");
+                Destroy(maze);
                 StartCoroutine(MoveToFirstRoomAfter());
             }
         }
@@ -81,5 +83,4 @@ public class Player : MonoBehaviour
         this.transform.localPosition = newPosition;
         localAvatar.localPosition = newPosition;
     }
-
 }

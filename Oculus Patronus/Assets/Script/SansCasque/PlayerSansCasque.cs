@@ -25,7 +25,7 @@ public class PlayerSansCasque : Player
         yield return new WaitForSeconds(3);
         FirstRoom.gameObject.SetActive(true);
         this.move(new Vector3(28,1.6f,0));
-        //life = lifeAtStart;
+        life = lifeAtStart;
         isDead = false;
         fakeHands.SetActive(true);
     }
@@ -49,13 +49,14 @@ public class PlayerSansCasque : Player
             isHurt = true;
 
             damageOverlay.canvasRenderer.SetAlpha((lifeAtStart - life)/ lifeAtStart);
-            Debug.Log("a "+ (float)((lifeAtStart - life) / lifeAtStart));
             fadeOutTime = lifeAtStart - life;
             if (life <= 0)
             {
                 isDead = true;
                 Destroy(wand.gameObject);
                 Destroy(spellDetector.gameObject);
+                GameObject maze = GameObject.Find("Maze(Clone)");
+                Destroy(maze);
                 StartCoroutine(MoveToFirstRoomAfter());
             }
         }
