@@ -302,6 +302,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fda11be2bf5f5254180e4f7cb6889831, type: 2}
   m_IsPrefabAsset: 0
+--- !u!82 &773325592 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 82816831718006618, guid: fda11be2bf5f5254180e4f7cb6889831,
+    type: 2}
+  m_PrefabInternal: {fileID: 773325591}
 --- !u!137 &776251273 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 137000012467287548, guid: a611e772ef8ddf64d8106a9cbb70f31c,
@@ -601,6 +606,11 @@ Prefab:
       propertyPath: dobbyInstance
       value: 
       objectReference: {fileID: 1650808022}
+    - target: {fileID: 114104862142972212, guid: e005fec759b17414abbcc10d1b19951b,
+        type: 2}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 773325592}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e005fec759b17414abbcc10d1b19951b, type: 2}
   m_IsPrefabAsset: 0

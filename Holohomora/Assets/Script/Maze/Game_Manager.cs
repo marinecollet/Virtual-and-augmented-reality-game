@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Game_Manager : MonoBehaviour {
     public static bool isSetup = false;
+    public AudioSource audioSource;
 
     public Maze mazePrefab;
     public Player dobbyInstance;
@@ -63,6 +64,8 @@ public class Game_Manager : MonoBehaviour {
         {
             if (dobbyInstance.currentCell == socketInstance.currentCell && isSetup)
             {
+                Debug.Log(audioSource);
+                audioSource.Play();
                 isSetup = false;
                 StartNextLevel();
             }
