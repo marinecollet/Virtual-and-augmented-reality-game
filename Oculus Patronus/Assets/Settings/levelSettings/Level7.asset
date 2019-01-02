@@ -9,16 +9,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bea072130fa19b047a03e5a51ff0e9ea, type: 3}
-  m_Name: Level2
+  m_Name: Level7
   m_EditorClassIdentifier: 
   enemyType:
   - {fileID: 114916575696900256, guid: 188f8021c37a2a04d921c011942a2e17, type: 2}
   - {fileID: 114851838730543858, guid: 3925485ea2ca9754ba21c16c86192f03, type: 2}
-  numberOfEnemy: 0a00000002000000
-  target: {fileID: 114327895128821852, guid: cb5588041a496684491dab5ffc204c8f, type: 2}
+  - {fileID: 114878174218277916, guid: 18a945affe5e306409c73eb032e5f0f1, type: 2}
+  numberOfEnemy: 070000000a00000002000000
+  target: {fileID: 114390496896510930, guid: f4d2d11b5c378794594bf55a0f0a2d9b, type: 2}
   roomSettings:
   - {fileID: 11400000, guid: f85c87dc258e5164e9ac370f164af9cc, type: 2}
   - {fileID: 11400000, guid: 0b64b2c8bbee74345a69b6b92c6febd3, type: 2}
+  - {fileID: 11400000, guid: cd07285b3026cd64ea9d98773fd86f79, type: 2}
   size:
-    x: 20
-    z: 20
+    x: 30
+    z: 30

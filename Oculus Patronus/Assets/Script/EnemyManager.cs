@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[SerializeField]
 public class EnemyManager : MonoBehaviour
 {
-
     public float rotSpeed;
     public float shootingSpeed;
     public GameObject spellShot;
@@ -16,9 +16,9 @@ public class EnemyManager : MonoBehaviour
 
 
     private bool isShooting;
-    public bool isTargeting;
+    private bool isTargeting;
     private float timeSinceLastShot;
-    public Player player;
+    private Player player;
     private Ray shootRay;
     private RaycastHit shootHit;
     private LineRenderer gunLine;
@@ -105,6 +105,12 @@ public class EnemyManager : MonoBehaviour
                         //gunLine.SetPosition(1, shootRay.origin + shootRay.direction * maxDistTargeting);
 
                     }
+                }
+                else
+                {
+                    //gunLine.SetPosition(1, shootRay.origin + shootRay.direction * maxDistTargeting);
+
+                    timeSinceLastShot += Time.deltaTime;
                 }
             }
             else

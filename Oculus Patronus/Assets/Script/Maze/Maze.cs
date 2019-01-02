@@ -17,11 +17,11 @@ public class Maze : MonoBehaviour
     public MazeWall[] wallPrefabs;
     //public KeyValuePair<MazeWall, int>[] wallPrefabs;
     public MazeDoor doorPrefab;
-    public MazeEnemy ennemyPrefab;
     public Transform roof;
 
+    public MazeEnemy[] mazeEnemiesPrefab;
     [Range(0, 100)]
-    public int numberOfEnemy;
+    public int[] numberOfEnemyType;
 
     //probability
     //[Range(0f, 1f)]
@@ -74,7 +74,8 @@ public class Maze : MonoBehaviour
 
     public void Generate(LevelSettings levelSettings)
     {
-        this.numberOfEnemy = levelSettings.numberOfEnemy;
+        this.mazeEnemiesPrefab = levelSettings.enemyType;
+        this.numberOfEnemyType = levelSettings.numberOfEnemy;
         this.roomSettings = levelSettings.roomSettings;
         this.size = levelSettings.size;
         this.targetPrefab = levelSettings.target;
@@ -254,20 +255,32 @@ public class Maze : MonoBehaviour
 
     void AddEnemy(){
         int enemyCreated = 0;
-
-        int maxEnemy = numberOfEnemy < size.x * size.z - 1 ? numberOfEnemy : size.x * size.z - 1;
-        Debug.Log(maxEnemy);
-        while (enemyCreated < maxEnemy)
+        int numberOfEnemy = 0;
+        int instanceOfEnemyType = 0;
+        foreach (int j in numberOfEnemyType)
         {
-            IntVector2 cellCoordinate = RandomCoordinates;
-            if(entityMap[cellCoordinate.x,cellCoordinate.z] ==0)
+            numberOfEnemy += j;
+        }
+        int maxEnemy = numberOfEnemy < size.x * size.z - 1 ? numberOfEnemy : size.x * size.z - 1;
+
+        for (int i = 0; i < mazeEnemiesPrefab.Length; ++i)
+        {
+            MazeEnemy ennemyPrefab;
+            while (enemyCreated < maxEnemy && instanceOfEnemyType < numberOfEnemyType[i])
             {
-                MazeEnemy enemy = Instantiate(ennemyPrefab) as MazeEnemy;
-                //passage.transform.localScale = passage.transform.localScale * scale;
-                enemy.Initialize(cells[cellCoordinate.x, cellCoordinate.z], (MazeDirection)Random.Range(0,3));
-                entityMap[cellCoordinate.x, cellCoordinate.z] = 1;
-                enemyCreated++;
+                ennemyPrefab = mazeEnemiesPrefab[i];
+                IntVector2 cellCoordinate = RandomCoordinates;
+                if (entityMap[cellCoordinate.x, cellCoordinate.z] == 0)
+                {
+                    MazeEnemy enemy = Instantiate(ennemyPrefab) as MazeEnemy;
+                    //passage.transform.localScale = passage.transform.localScale * scale;
+                    enemy.Initialize(cells[cellCoordinate.x, cellCoordinate.z], (MazeDirection)Random.Range(0, 3));
+                    entityMap[cellCoordinate.x, cellCoordinate.z] = 1;
+                    enemyCreated++;
+                    instanceOfEnemyType++;
+                }
             }
+            instanceOfEnemyType = 0;
         }
     }
 
