@@ -15,4 +15,6 @@ MonoBehaviour:
   wallMaterial: {fileID: 2100000, guid: 61d5d9db788374b4888c4b55fb891fe2, type: 2}
   wallPrefabs:
   - {fileID: 114699878219549792, guid: 24c4efbe2466c054fab545cb27518828, type: 2}
-  nbIterationOfWalls: f4010000
+  - {fileID: 114973884003044902, guid: a6dc4ada7139324479a02ec4a69a7f7f, type: 2}
+  - {fileID: 114940804236241248, guid: aebe65e95368d184ba3cb0ca125e574c, type: 2}
+  nbIterationOfWalls: f40100000100000001000000

@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b0bf6f60de0bd84fb0bf29b34a658eb, type: 3}
-  m_Name: Hedge Bush Maze
+  m_Name: Cave
   m_EditorClassIdentifier: 
-  floorMaterial: {fileID: 2100000, guid: eb4c74b8f21103d43b25c46d293abbba, type: 2}
-  wallMaterial: {fileID: 2100000, guid: 40684721a5892494980ac3d5a98adfa3, type: 2}
+  floorMaterial: {fileID: 2100000, guid: ff63087c073900343a601f7b3b62e713, type: 2}
+  wallMaterial: {fileID: 2100000, guid: a694c34c8eaeb254793e89553bc1752c, type: 2}
   wallPrefabs:
   - {fileID: 114699878219549792, guid: 24c4efbe2466c054fab545cb27518828, type: 2}
   nbIterationOfWalls: f4010000
