@@ -893,7 +893,6 @@ MonoBehaviour:
   life: 0
   localAvatar: {fileID: 120801976}
   FirstRoom: {fileID: 699740941}
-  grimoire: {fileID: 0}
 --- !u!1 &1112347905 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1144691416076828, guid: 1976a50b2a7ae1449aaf0eb150082d48,

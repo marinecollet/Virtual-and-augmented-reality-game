@@ -71,7 +71,13 @@ public class Game_Manager : MonoBehaviour
         {
             actualLevel++;
             if (actualLevel > levels.Length)
-                actualLevel = levels.Length;
+            {
+                Destroy(mazeInstance.gameObject);
+
+                StartCoroutine(player.moveToFirstRoomAfter());
+                //actualLevel = levels.Length;
+
+            }
         }
 
         BeginGame();

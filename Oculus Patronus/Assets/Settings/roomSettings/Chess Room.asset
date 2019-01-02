@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b0bf6f60de0bd84fb0bf29b34a658eb, type: 3}
-  m_Name: chessRoom
+  m_Name: Chess Room
   m_EditorClassIdentifier: 
   floorMaterial: {fileID: 2100000, guid: 5bdec6cdbab847c41b0a2f5d8f2b7c58, type: 2}
   wallMaterial: {fileID: 2100000, guid: eff2c6f106f4fa84f90749b4823d0282, type: 2}

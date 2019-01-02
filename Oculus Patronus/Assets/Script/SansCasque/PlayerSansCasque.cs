@@ -11,8 +11,9 @@ public class PlayerSansCasque : Player
     public float speed;
 
     private Animator grimAnimator;
-    public Transform child;
+    private Transform child;
     public GameObject fakeHands;
+    public GrimoireController grimoire;
 
     public float speedH = 2.0f;
     public float speedV = 2.0f;
@@ -20,7 +21,7 @@ public class PlayerSansCasque : Player
     private float yaw = 0.0f;
     private float pitch = 0.0f;
 
-    protected override IEnumerator MoveToFirstRoomAfter()
+    public override IEnumerator moveToFirstRoomAfter()
     {
         yield return new WaitForSeconds(3);
         FirstRoom.gameObject.SetActive(true);
@@ -57,7 +58,7 @@ public class PlayerSansCasque : Player
                 Destroy(spellDetector.gameObject);
                 GameObject maze = GameObject.Find("Maze(Clone)");
                 Destroy(maze);
-                StartCoroutine(MoveToFirstRoomAfter());
+                StartCoroutine(moveToFirstRoomAfter());
             }
         }
     }

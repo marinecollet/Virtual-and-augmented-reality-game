@@ -20,5 +20,10 @@ public struct IntVector2
         a.z += b.z;
         return a;
     }
+
+    public int dist(IntVector2 a)
+    {
+        return Mathf.Abs(this.x - a.x) + Mathf.Abs(this.z - a.z);
+    }
 }
 

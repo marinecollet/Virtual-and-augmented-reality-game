@@ -12,15 +12,14 @@ public class Player : MonoBehaviour
     public Image damageOverlay;
     public Transform wand;
     public Transform spellDetector;
-    public int life;
+    protected int life;
     public Transform localAvatar;
     public Transform FirstRoom;
-    public GrimoireController grimoire;
 
     protected bool isHurt = false;
     protected float fadeOutTime;
 
-    protected virtual IEnumerator MoveToFirstRoomAfter()
+    public virtual IEnumerator moveToFirstRoomAfter()
     {
         yield return new WaitForSeconds(3);
         FirstRoom.gameObject.SetActive(true);
@@ -55,7 +54,7 @@ public class Player : MonoBehaviour
                 Destroy(spellDetector.gameObject);
                 GameObject maze = GameObject.Find("Maze(Clone)");
                 Destroy(maze);
-                StartCoroutine(MoveToFirstRoomAfter());
+                StartCoroutine(moveToFirstRoomAfter());
             }
         }
     }
