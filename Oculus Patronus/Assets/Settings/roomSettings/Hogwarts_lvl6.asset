@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b0bf6f60de0bd84fb0bf29b34a658eb, type: 3}
-  m_Name: Hogwarts
+  m_Name: Hogwarts_lvl6
   m_EditorClassIdentifier: 
   floorMaterial: {fileID: 2100000, guid: 08615fca9327e3f4c93bcc2746c02147, type: 2}
   wallMaterial: {fileID: 2100000, guid: 1f399a314dcd129429891e8410cf7712, type: 2}
@@ -27,4 +27,5 @@ MonoBehaviour:
   - {fileID: 114132270887743184, guid: 74c58b2b64a60fd4eaa2360bb81a25fa, type: 2}
   - {fileID: 114553604438214402, guid: aaad5fca9da276d4489cadebcc007972, type: 2}
   - {fileID: 114977191693920946, guid: d3311a980685d224ab0cb9c72bd837ce, type: 2}
-  nbIterationOfWalls: f4010000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  - {fileID: 114239158629207858, guid: d87df9dcae01af542a7209dfcbeae040, type: 2}
+  nbIterationOfWalls: f401000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
