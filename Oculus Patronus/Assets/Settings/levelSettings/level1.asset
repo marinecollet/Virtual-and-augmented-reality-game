@@ -16,6 +16,7 @@ MonoBehaviour:
   roomSettings:
   - {fileID: 11400000, guid: cd07285b3026cd64ea9d98773fd86f79, type: 2}
   - {fileID: 11400000, guid: f85c87dc258e5164e9ac370f164af9cc, type: 2}
+  - {fileID: 11400000, guid: 0b64b2c8bbee74345a69b6b92c6febd3, type: 2}
   size:
     x: 15
     z: 10
