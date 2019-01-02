@@ -14,6 +14,7 @@ MonoBehaviour:
   floorMaterial: {fileID: 2100000, guid: 5bdec6cdbab847c41b0a2f5d8f2b7c58, type: 2}
   wallMaterial: {fileID: 2100000, guid: eff2c6f106f4fa84f90749b4823d0282, type: 2}
   wallPrefabs:
+  - {fileID: 114699878219549792, guid: 24c4efbe2466c054fab545cb27518828, type: 2}
   - {fileID: 114550555130647972, guid: cdbb4c65bd094ad4d8e67095e1a59dfc, type: 2}
   - {fileID: 114856080750884782, guid: 147ab32dc59eb864ab36012f5e32f4ec, type: 2}
   - {fileID: 114368939701339958, guid: bdb1c5ad346e2324a98a0b5584cd7d9f, type: 2}
@@ -21,4 +22,4 @@ MonoBehaviour:
   - {fileID: 114123440189559640, guid: e15fd0d22847c534d8f8580c8c0cf4d6, type: 2}
   - {fileID: 114732972934863752, guid: 926f7dcf2b0a89b47801c0d7e404291b, type: 2}
   - {fileID: 114586730065115298, guid: d541e8ae1c9cd4548b5ebfaec63a09ce, type: 2}
-  nbIterationOfWalls: 01000000010000000100000001000000010000000100000001000000
+  nbIterationOfWalls: f401000001000000010000000100000001000000010000000100000001000000
