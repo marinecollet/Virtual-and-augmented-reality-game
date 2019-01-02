@@ -18,7 +18,8 @@ public class Maze : MonoBehaviour
     //public KeyValuePair<MazeWall, int>[] wallPrefabs;
     public MazeDoor doorPrefab;
     public Transform roof;
-
+    public MazeEntity lightPrefab;
+    public int lightOffset ;
     public MazeEnemy[] mazeEnemiesPrefab;
     [Range(0, 100)]
     public int[] numberOfEnemyType;
@@ -54,6 +55,7 @@ public class Maze : MonoBehaviour
         {
             DoNextGenerationStep(activeCells);
         }
+        PlaceLight();
         AddEnemy();
         CreateTarget();
 
@@ -301,6 +303,22 @@ public class Maze : MonoBehaviour
                 MazeTarget targetInstance = Instantiate(targetPrefab) as MazeTarget;
                 targetInstance.transform.parent = targetTransformInstance.transform;
                 targetInstance.transform.localPosition = new Vector3();
+            }
+        }
+    }
+
+    private void PlaceLight()
+    {
+        int offsetH = (size.x/(size.x / lightOffset)) / 2;
+        int offsetV = (size.z/(size.z / lightOffset)) / 2;
+        Debug.Log(offsetH + " " + offsetV);
+        for(int i = offsetH; i <= size.x; i+= lightOffset)
+        {
+            for (int j = offsetH; j <= size.z; j+= lightOffset)
+            {
+                MazeEntity lightInstance = Instantiate(lightPrefab) as MazeEntity;
+                lightInstance.Initialize(cells[i, j]);
+                entityMap[i, j] = 2;
             }
         }
     }

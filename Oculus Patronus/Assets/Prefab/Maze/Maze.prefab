@@ -73,6 +73,9 @@ MonoBehaviour:
   doorPrefab: {fileID: 114670218479797860, guid: e5096b490761adc468d8c76a99de0032,
     type: 2}
   roof: {fileID: 4207809257478154, guid: a69d7843ccddc774a80883b3cd27c05f, type: 2}
+  lightPrefab: {fileID: 114550241105241248, guid: c2eec481a8ee60048be4de358a8f053d,
+    type: 2}
+  lightOffset: 4
   mazeEnemiesPrefab:
   - {fileID: 114851838730543858, guid: 3925485ea2ca9754ba21c16c86192f03, type: 2}
   numberOfEnemyType: 0a000000
