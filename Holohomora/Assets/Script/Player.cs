@@ -111,10 +111,13 @@ public class Player : MonoBehaviour
         {
             foreach(MazeCell mc in path)
             {
-                //Renderer rend2 = mc.transform.GetChild(0).GetComponent<Renderer>();
-                //rend2.material.color = Color.blue;
-                Vector3 pos = new Vector3(mc.transform.position.x, -0.8f, mc.transform.position.z);
-                Gizmos.DrawCube(pos, Vector3.one*0.02f);
+                if(mc != null)
+                {
+                    //Renderer rend2 = mc.transform.GetChild(0).GetComponent<Renderer>();
+                    //rend2.material.color = Color.blue;
+                    Vector3 pos = new Vector3(mc.transform.position.x, -0.8f, mc.transform.position.z);
+                    Gizmos.DrawCube(pos, Vector3.one * 0.02f);
+                }
             }
         }
     }
