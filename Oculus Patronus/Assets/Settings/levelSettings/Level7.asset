@@ -19,7 +19,7 @@ MonoBehaviour:
   target: {fileID: 114390496896510930, guid: f4d2d11b5c378794594bf55a0f0a2d9b, type: 2}
   roomSettings:
   - {fileID: 11400000, guid: 7cbfc641bbbb1c24091f09c3710307c8, type: 2}
-  - {fileID: 11400000, guid: ec3356a037261034c881c9cc880ad09d, type: 2}
+  - {fileID: 11400000, guid: 4c6e3eff280163e46999afc701e88f0e, type: 2}
   size:
     x: 30
     z: 30

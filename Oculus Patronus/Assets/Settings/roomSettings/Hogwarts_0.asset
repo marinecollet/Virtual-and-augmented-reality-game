@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b0bf6f60de0bd84fb0bf29b34a658eb, type: 3}
+  m_Name: Hogwarts_0
+  m_EditorClassIdentifier: 
+  floorMaterial: {fileID: 2100000, guid: 08615fca9327e3f4c93bcc2746c02147, type: 2}
+  wallMaterial: {fileID: 2100000, guid: 1f399a314dcd129429891e8410cf7712, type: 2}
+  wallPrefabs:
+  - {fileID: 114699878219549792, guid: 24c4efbe2466c054fab545cb27518828, type: 2}
+  - {fileID: 114405041021046720, guid: 304ae6f47a8948e40ba722400118da93, type: 2}
+  - {fileID: 114775606985598064, guid: cb74a90a971ba494fb22f9c6f6a665d8, type: 2}
+  - {fileID: 114539746161452258, guid: bc0bcc5a257f762469c1754acb4fa314, type: 2}
+  - {fileID: 114781249132020548, guid: b5cc81da485ee6c47afdfd1e9ce95e13, type: 2}
+  - {fileID: 114764232298269170, guid: 1f227e9a7b0e50d44889caaa537390ad, type: 2}
+  - {fileID: 114068894592288818, guid: 9188eb7167154af449b9fbfdfeb73d3e, type: 2}
+  - {fileID: 114553604438214402, guid: aaad5fca9da276d4489cadebcc007972, type: 2}
+  - {fileID: 114977191693920946, guid: d3311a980685d224ab0cb9c72bd837ce, type: 2}
+  - {fileID: 114098576056992568, guid: 8d2768d97f56e12468c4ec47282b24f8, type: 2}
+  nbIterationOfWalls: f401000001000000010000000100000001000000010000000100000001000000010000000a000000
