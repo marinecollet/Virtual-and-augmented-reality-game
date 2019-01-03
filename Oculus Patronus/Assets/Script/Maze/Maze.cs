@@ -38,6 +38,7 @@ public class Maze : MonoBehaviour
     private List<MazeRoom> rooms = new List<MazeRoom>();
     private MazeCell[,] cells;
     private int[,] entityMap;
+    private int entityOnMap;
 
     public MazeCell GetCell(IntVector2 coordinates)
     {
@@ -46,7 +47,8 @@ public class Maze : MonoBehaviour
 
     public void Generate()
     {
-        cells = new MazeCell[size.x, size.z];
+        entityOnMap = 0;
+           cells = new MazeCell[size.x, size.z];
         entityMap = new int[size.x, size.z];
 
         List<MazeCell> activeCells = new List<MazeCell>();
@@ -263,7 +265,7 @@ public class Maze : MonoBehaviour
         {
             numberOfEnemy += j;
         }
-        int maxEnemy = numberOfEnemy < size.x * size.z - 1 ? numberOfEnemy : size.x * size.z - 1;
+        int maxEnemy = numberOfEnemy < size.x * size.z - 1 - entityOnMap ? numberOfEnemy : size.x * size.z - 1;
 
         for (int i = 0; i < mazeEnemiesPrefab.Length; ++i)
         {
@@ -295,9 +297,10 @@ public class Maze : MonoBehaviour
             do
             {
                 cellCoordinate = RandomCoordinates;
-            } while (cellCoordinate.dist(new IntVector2(0, 0)) >= 5); 
+            } while (cellCoordinate.dist(new IntVector2(0, 0)) >= 5 && entityMap[cellCoordinate.x,cellCoordinate.z] != 0); 
             targetTransformInstance.Initialize(cells[cellCoordinate.x, cellCoordinate.z]);
             entityMap[cellCoordinate.x, cellCoordinate.z] = 2;
+            entityOnMap++;
             if (targetPrefab != null)
             {
                 MazeTarget targetInstance = Instantiate(targetPrefab) as MazeTarget;
@@ -309,16 +312,18 @@ public class Maze : MonoBehaviour
 
     private void PlaceLight()
     {
-        int offsetH = (size.x/(size.x / lightOffset)) / 2;
-        int offsetV = (size.z/(size.z / lightOffset)) / 2;
-        Debug.Log(offsetH + " " + offsetV);
-        for(int i = offsetH; i <= size.x; i+= lightOffset)
+        int offsetH = (int) Mathf.Floor((float)(size.x/(size.x / lightOffset +1)) / 2f);
+        int offsetV = (int) Mathf.Floor((float)(size.z/(size.z / lightOffset+1)) / 2f);
+
+        Debug.Log("offset "+offsetH + " " + offsetV);
+        for(int i = offsetH; i < size.x; i+= lightOffset)
         {
-            for (int j = offsetH; j <= size.z; j+= lightOffset)
+            for (int j = offsetV; j < size.z; j+= lightOffset)
             {
                 MazeEntity lightInstance = Instantiate(lightPrefab) as MazeEntity;
                 lightInstance.Initialize(cells[i, j]);
-                entityMap[i, j] = 2;
+                entityMap[i, j] = 3;
+                entityOnMap++;
             }
         }
     }

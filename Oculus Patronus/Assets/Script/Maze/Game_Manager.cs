@@ -74,7 +74,7 @@ public class Game_Manager : MonoBehaviour
             {
                 Destroy(mazeInstance.gameObject);
 
-                StartCoroutine(player.moveToFirstRoomAfter());
+                player.moveToFirstRoomAfter();
                 //actualLevel = levels.Length;
 
             }

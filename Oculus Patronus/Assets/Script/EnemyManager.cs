@@ -13,7 +13,7 @@ public class EnemyManager : MonoBehaviour
     public float maxDistTargeting;
     public float minDistRotating;
     public AudioSource audioSource;
-
+    public int life;
 
     private bool isShooting;
     private bool isTargeting;
@@ -42,7 +42,11 @@ public class EnemyManager : MonoBehaviour
         if (collider.tag == "Shot")
         {
             Destroy(collider.gameObject);
-            Destroy(this.gameObject);
+            life--;
+            if(life == 0)
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 

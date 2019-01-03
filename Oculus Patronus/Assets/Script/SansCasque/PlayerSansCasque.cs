@@ -21,14 +21,22 @@ public class PlayerSansCasque : Player
     private float yaw = 0.0f;
     private float pitch = 0.0f;
 
-    public override IEnumerator moveToFirstRoomAfter()
+    //public override IEnumerator moveToFirstRoomAfter()
+    //{
+    //    yield return new WaitForSeconds(3);
+    //    FirstRoom.gameObject.SetActive(true);
+    //    this.move(new Vector3(28,1.6f,0));
+    //    life = lifeAtStart;
+    //    isDead = false;
+    //    fakeHands.SetActive(true);
+    //}
+
+    public override void moveToFirstRoomAfter()
     {
-        yield return new WaitForSeconds(3);
         FirstRoom.gameObject.SetActive(true);
-        this.move(new Vector3(28,1.6f,0));
+        this.move(new Vector3(28, 1.6f, 0));
         life = lifeAtStart;
         isDead = false;
-        fakeHands.SetActive(true);
     }
 
     public override void  Awake()
@@ -58,7 +66,7 @@ public class PlayerSansCasque : Player
                 Destroy(spellDetector.gameObject);
                 GameObject maze = GameObject.Find("Maze(Clone)");
                 Destroy(maze);
-                StartCoroutine(moveToFirstRoomAfter());
+                moveToFirstRoomAfter();
             }
         }
     }

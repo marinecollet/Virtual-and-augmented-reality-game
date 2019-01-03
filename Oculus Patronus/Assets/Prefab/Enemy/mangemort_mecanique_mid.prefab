@@ -365,6 +365,7 @@ MonoBehaviour:
   maxDistTargeting: 20
   minDistRotating: 0
   audioSource: {fileID: 82836045999895810}
+  life: 2
 --- !u!120 &120086500504514462
 LineRenderer:
   m_ObjectHideFlags: 1

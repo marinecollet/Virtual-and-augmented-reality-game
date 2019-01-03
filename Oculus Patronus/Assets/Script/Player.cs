@@ -19,11 +19,19 @@ public class Player : MonoBehaviour
     protected bool isHurt = false;
     protected float fadeOutTime;
 
-    public virtual IEnumerator moveToFirstRoomAfter()
+    //public virtual IEnumerator moveToFirstRoomAfter(int a)
+    //{
+    //    yield return new WaitForSeconds(a);
+    //    FirstRoom.gameObject.SetActive(true);
+    //    this.move(new Vector3(28,0,0));
+    //    life = lifeAtStart;
+    //    isDead = false;
+    //}
+
+    public virtual void moveToFirstRoomAfter()
     {
-        yield return new WaitForSeconds(3);
         FirstRoom.gameObject.SetActive(true);
-        this.move(new Vector3(28,0,0));
+        this.move(new Vector3(28, 0, 0));
         life = lifeAtStart;
         isDead = false;
     }
@@ -54,7 +62,7 @@ public class Player : MonoBehaviour
                 Destroy(spellDetector.gameObject);
                 GameObject maze = GameObject.Find("Maze(Clone)");
                 Destroy(maze);
-                StartCoroutine(moveToFirstRoomAfter());
+                moveToFirstRoomAfter();
             }
         }
     }
