@@ -37,6 +37,7 @@ public class PlayerSansCasque : Player
         this.move(new Vector3(28, 1.6f, 0));
         life = lifeAtStart;
         isDead = false;
+        fakeHands.SetActive(true);
     }
 
     public override void  Awake()

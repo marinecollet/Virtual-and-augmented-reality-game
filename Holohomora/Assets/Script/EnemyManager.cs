@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour {
 
-    public float rotSpeed;
     public float shootingSpeed;
     public GameObject spellShot;
     public Transform spellShotSpawn;
@@ -71,16 +70,6 @@ public class EnemyManager : MonoBehaviour {
             player = GameObject.FindWithTag("Player").GetComponent<Player>();
         }
 
-        //if(Input.GetKeyDown(KeyCode.B))
-        //{
-        //    anim.SetBool("isShooting",true);
-        //}
-
-        //if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("YourAnimationName"))
-        //{
-            
-        //}
-
         if (isTargeting && player != null)
         {
             Vector3 dir = player.transform.position - spellShotSpawn.position;
@@ -113,6 +102,11 @@ public class EnemyManager : MonoBehaviour {
                         timeSinceLastShot += Time.deltaTime;
                         //gunline.SetPosition(1, shootRay.origin + shootRay.direction * maxDistTargeting);
                     }
+                }
+                else
+                {
+                    timeSinceLastShot += Time.deltaTime;
+                    //gunline.SetPosition(1, shootRay.origin + shootRay.direction * maxDistTargeting);
                 }
             }
             else

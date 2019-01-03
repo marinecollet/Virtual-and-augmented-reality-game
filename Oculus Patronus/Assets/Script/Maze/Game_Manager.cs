@@ -8,6 +8,7 @@ public class Game_Manager : MonoBehaviour
     public Maze mazePrefab;
     public LevelSettings[] levels;
     public Player player;
+    public Light dirLight;
 
     private Maze mazeInstance;
     private int actualLevel;
@@ -23,6 +24,10 @@ public class Game_Manager : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        if(QualitySettings.GetQualityLevel() < 2)
+        {
+            dirLight.gameObject.SetActive(true);
+        }
         BeginGame();
     }
 

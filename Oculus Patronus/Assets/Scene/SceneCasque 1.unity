@@ -172,6 +172,11 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 1021132413}
+    - target: {fileID: 114609099526698760, guid: 320cf6135ab4493419b01520f37b2541,
+        type: 2}
+      propertyPath: dirLight
+      value: 
+      objectReference: {fileID: 170076734}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 320cf6135ab4493419b01520f37b2541, type: 2}
   m_IsPrefabAsset: 0
