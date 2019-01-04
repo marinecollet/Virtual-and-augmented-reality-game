@@ -73,8 +73,9 @@ public class chooseWandAlone : MonoBehaviour {
             objectDisappear.SetActive(false);
             Debug.Log("disppear");
             wand.gameObject.GetComponent<WandManagerAlone>().enabled = true;
-            this.GetComponent<BoxCollider>().enabled = false;
-            this.GetComponent<Renderer>().enabled = false;
+            this.gameObject.SetActive(false);
+            //this.GetComponent<BoxCollider>().enabled = false;
+            //this.GetComponent<Renderer>().enabled = false;
         }
 
     }

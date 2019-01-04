@@ -38,6 +38,7 @@ public class PlayerSansCasque : Player
         life = lifeAtStart;
         isDead = false;
         fakeHands.SetActive(true);
+        Debug.Log("a");
     }
 
     public override void  Awake()

@@ -15,7 +15,7 @@ MonoBehaviour:
   - {fileID: 114916575696900256, guid: 188f8021c37a2a04d921c011942a2e17, type: 2}
   - {fileID: 114851838730543858, guid: 3925485ea2ca9754ba21c16c86192f03, type: 2}
   - {fileID: 114878174218277916, guid: 18a945affe5e306409c73eb032e5f0f1, type: 2}
-  numberOfEnemy: 070000000a00000002000000
+  numberOfEnemy: 080000000a00000002000000
   target: {fileID: 114474042684214636, guid: 96ab0612819c92645a7befc55733d84b, type: 2}
   roomSettings:
   - {fileID: 11400000, guid: f205f6b6dd745e54ca8e6e247f00fe71, type: 2}
