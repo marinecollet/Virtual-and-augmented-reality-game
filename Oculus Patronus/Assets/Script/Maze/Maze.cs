@@ -297,7 +297,7 @@ public class Maze : MonoBehaviour
             do
             {
                 cellCoordinate = RandomCoordinates;
-            } while (cellCoordinate.dist(new IntVector2(0, 0)) >= 5 && entityMap[cellCoordinate.x,cellCoordinate.z] != 0); 
+            } while (cellCoordinate.dist(new IntVector2(size.x/2, size.z/2)) >= 5 && entityMap[cellCoordinate.x,cellCoordinate.z] != 0); 
             targetTransformInstance.Initialize(cells[cellCoordinate.x, cellCoordinate.z]);
             entityMap[cellCoordinate.x, cellCoordinate.z] = 2;
             entityOnMap++;
