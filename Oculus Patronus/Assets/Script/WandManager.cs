@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class WandManager : MonoBehaviour {
@@ -194,6 +195,22 @@ public class WandManager : MonoBehaviour {
 
 
         // Enable the line renderer and set it's first position to be the end of the gun.
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+
+        if (other.gameObject.CompareTag("quit"))
+        {
+            Debug.Log("quit");
+            Application.Quit();
+        }
+
+        if (other.gameObject.CompareTag("restart"))
+        {
+            Debug.Log("restart");
+            SceneManager.LoadScene("SceneSansCasque autonome");
+        }
     }
 
     public void Update()

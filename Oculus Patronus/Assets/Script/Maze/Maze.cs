@@ -65,15 +65,6 @@ public class Maze : MonoBehaviour
         obj.parent = transform;
         obj.position = new Vector3(0, 2 * scale, 0);
         obj.localScale = new Vector3(size.x * scale, size.z * scale, 1);
-
-        foreach(MazeRoom room in rooms)
-        {
-            Debug.Log("room " + room.settingsIndex);
-            for(int i = 0; i < room.nbWallInRoom.Length; ++i)
-            {
-                Debug.Log(room.nbWallInRoom[i] + " " + room.Settings.nbIterationOfWalls[i]);
-            }
-        }
     }
 
     public void Generate(LevelSettings levelSettings)
@@ -297,7 +288,7 @@ public class Maze : MonoBehaviour
             do
             {
                 cellCoordinate = RandomCoordinates;
-            } while (cellCoordinate.dist(new IntVector2(size.x/2, size.z/2)) >= 5 && entityMap[cellCoordinate.x,cellCoordinate.z] != 0); 
+            } while (cellCoordinate.dist(new IntVector2(size.x/2, size.z/2)) <= 5 || entityMap[cellCoordinate.x,cellCoordinate.z] != 0);
             targetTransformInstance.Initialize(cells[cellCoordinate.x, cellCoordinate.z]);
             entityMap[cellCoordinate.x, cellCoordinate.z] = 2;
             entityOnMap++;
@@ -315,7 +306,6 @@ public class Maze : MonoBehaviour
         int offsetH = (int) Mathf.Floor((float)(size.x/(size.x / lightOffset +1)) / 2f);
         int offsetV = (int) Mathf.Floor((float)(size.z/(size.z / lightOffset+1)) / 2f);
 
-        Debug.Log("offset "+offsetH + " " + offsetV);
         for(int i = offsetH; i < size.x; i+= lightOffset)
         {
             for (int j = offsetV; j < size.z; j+= lightOffset)

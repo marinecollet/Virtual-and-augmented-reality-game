@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WandManagerAlone : MonoBehaviour {
     // Use this for initialization
@@ -297,4 +298,19 @@ public class WandManagerAlone : MonoBehaviour {
         }**/
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+
+        if (other.gameObject.CompareTag("quit"))
+        {
+            Debug.Log("quit");
+            Application.Quit();
+        }
+
+        if (other.gameObject.CompareTag("restart"))
+        {
+            Debug.Log("restart");
+            SceneManager.LoadScene("SceneSansCasque autonome");
+        }
+    }
 }
