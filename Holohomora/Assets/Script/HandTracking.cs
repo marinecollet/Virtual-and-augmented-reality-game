@@ -16,8 +16,8 @@ public class HandTracking : MonoBehaviour {
     }
 
     public GameObject TrackingObject;
-    //public TextMesh StatusText;
-    public Text StatusText;
+    public TextMesh StatusText;
+    //public Text StatusText;
     public Color DefaultColor = Color.green;
     public Color TapColor = Color.blue;
     public Color HoldColor = Color.red;
@@ -27,6 +27,7 @@ public class HandTracking : MonoBehaviour {
     private Dictionary<uint, GameObject> trackingObject = new Dictionary<uint, GameObject>();
     private GestureRecognizer gestureRecognizer;
     private uint activeId;
+    private GameObject o;
 
     void Awake()
     {
@@ -41,36 +42,9 @@ public class HandTracking : MonoBehaviour {
         gestureRecognizer.HoldCompleted += GestureRecognizer_HoldCompleted;
         gestureRecognizer.HoldCanceled += GestureRecognizer_HoldCanceled;
         gestureRecognizer.StartCapturingGestures();
-        StatusText.text = "READY\n"+ StatusText.text;
+        //StatusText.text = "READY\n"+ StatusText.text;
     }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        var obj = Instantiate(TrackingObject) as GameObject;
-    //        obj.transform.SetParent(this.transform.GetChild(0));
-    //        obj.transform.localRotation = Quaternion.identity;
-
-    //        Vector3 pos;
-
-
-    //        obj.transform.localPosition = new Vector3(0.0f, -0.1f, 0.6f);
-
-    //        StatusText.text = "obj created at pos " + new Vector3(0.0f, -0.1f, 0.6f) + "\n" + StatusText.text;
-
-
-    //        trackingObject.Add(1, obj);
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.C))
-    //    {
-    //        var obj = trackingObject[1];
-    //        trackingObject.Remove(1);
-    //        Destroy(obj);
-    //        StatusText.text = "obj destroyed \n" + StatusText.text;
-    //    }
-    //}
-    
     void ChangeObjectColor(GameObject obj, Color color)
     {
         var rend = obj.GetComponentInChildren<Renderer>();
@@ -80,7 +54,6 @@ public class HandTracking : MonoBehaviour {
             Debug.LogFormat("Color Change: {0}", color.ToString());
         }
     }
-
 
     private void GestureRecognizer_HoldStarted(HoldStartedEventArgs args)
     {
@@ -175,7 +148,7 @@ public class HandTracking : MonoBehaviour {
                     trackingObject[id].transform.localRotation = this.transform.GetChild(0).rotation;
                     trackingObject[id].transform.localPosition = pos;// + new Vector3(0f,0f,0.5f);
                 }
-                StatusText.text = "obj updated at pos " + pos+ "\n" + StatusText.text;
+                //StatusText.text = "obj updated at pos " + pos+ "\n" + StatusText.text;
                 if (args.state.sourcePose.TryGetRotation(out rot))
                 {
                     trackingObject[id].transform.rotation = rot;
@@ -203,7 +176,7 @@ public class HandTracking : MonoBehaviour {
             var obj = trackingObject[id];
             trackingObject.Remove(id);
             Destroy(obj);
-            StatusText.text = "obj destroyed \n" + StatusText.text;
+            //StatusText.text = "obj destroyed \n" + StatusText.text;
         }
         if (trackedHands.Count > 0)
         {
