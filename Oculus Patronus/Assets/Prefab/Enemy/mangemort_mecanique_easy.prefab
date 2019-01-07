@@ -355,6 +355,8 @@ MonoBehaviour:
   minDistRotating: 0
   audioSource: {fileID: 82426189189995738}
   life: 1
+  dieParticule: {fileID: 198033925037884884, guid: aff36bdfec2a5224b8f35a6e9ffc187d,
+    type: 2}
 --- !u!114 &114916575696900256
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -536,7 +538,7 @@ ParticleSystem:
   stopAction: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1

@@ -14,6 +14,7 @@ public class EnemyManager : MonoBehaviour
     public float minDistRotating;
     public AudioSource audioSource;
     public int life;
+    public ParticleSystem dieParticule;
 
     private ParticleSystem particule;
     private bool isShooting;
@@ -48,7 +49,10 @@ public class EnemyManager : MonoBehaviour
             life--;
             if(life == 0)
             {
-                Destroy(this.gameObject);
+                ParticleSystem part = Instantiate(dieParticule) as ParticleSystem;
+                part.transform.position = this.transform.position;
+                part.Play();
+                Destroy(this.gameObject, 0.35f);
             }
         }
     }
