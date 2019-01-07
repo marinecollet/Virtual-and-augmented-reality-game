@@ -12,6 +12,8 @@ public class Choose_wand : MonoBehaviour {
     public GameObject collider_sort;
     Rigidbody rig = null;
     public GameObject objectDisappear;
+    public GameObject SortDetection;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -42,7 +44,6 @@ public class Choose_wand : MonoBehaviour {
         if (other.gameObject.CompareTag("Wand") && !grabbed)
         {
             wand = null;
-            Debug.Log("OK");
             canGrab = false;
         }
     }
@@ -61,10 +62,10 @@ public class Choose_wand : MonoBehaviour {
             rig = wand.gameObject.GetComponent<Rigidbody>();
             rig.useGravity = false;
             objectDisappear.SetActive(false);
-            Debug.Log("disppear");
             wand.gameObject.GetComponent<WandManager>().enabled = true;
             this.GetComponent<SphereCollider>().enabled = false;
-        }
+            SortDetection.SetActive(true);
+}
 
     }
 }
