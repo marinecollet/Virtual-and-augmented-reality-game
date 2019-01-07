@@ -82,6 +82,7 @@ MonoBehaviour:
   entityPrefab:
   - {fileID: 114735504160715120, guid: e5534abe4d4d3dd4198636a815198e19, type: 2}
   - {fileID: 114470541671697414, guid: 97e4f62685ad7254d8ebc286cc7c3582, type: 2}
+  - {fileID: 114834169517790374, guid: 1ba2e914da6445a418e15f154270d064, type: 2}
   doorProbability: 0.1
   roomSettings:
   - {fileID: 11400000, guid: cd07285b3026cd64ea9d98773fd86f79, type: 2}
@@ -91,4 +92,4 @@ MonoBehaviour:
   targetTransform: {fileID: 114464685503887288, guid: c4858835014a93a43a7104272d78d2d6,
     type: 2}
   targetPrefab: {fileID: 0}
-  maxEntity: 8
+  maxEntity: 10

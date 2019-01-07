@@ -331,7 +331,7 @@ public class Maze : MonoBehaviour
             {
                 cellCoordinate = RandomCoordinates;
             } while (entityMap[cellCoordinate.x, cellCoordinate.z] != 0);
-            targetTransformInstance.Initialize(cells[cellCoordinate.x, cellCoordinate.z]);
+            targetTransformInstance.Initialize(cells[cellCoordinate.x, cellCoordinate.z], (MazeDirection)Random.Range(0, 3));
             entityMap[cellCoordinate.x, cellCoordinate.z] = 2;
         }
     }
