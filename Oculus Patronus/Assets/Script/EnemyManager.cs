@@ -17,9 +17,9 @@ public class EnemyManager : MonoBehaviour
 
     private ParticleSystem particule;
     private bool isShooting;
-    public bool isTargeting;
-    public float timeSinceLastShot;
-    public Player player;
+    private bool isTargeting;
+    private float timeSinceLastShot;
+    private Player player;
     private Ray shootRay;
     private RaycastHit shootHit;
     private LineRenderer gunLine;
@@ -85,7 +85,7 @@ public class EnemyManager : MonoBehaviour
 
         if (isTargeting && player != null)
         {
-            Vector3 dir = player.transform.position - spellShotSpawn.position;
+            Vector3 dir = (player.transform.position + Vector3.up) - spellShotSpawn.position;
             shootRay.origin = spellShotSpawn.position;
             shootRay.direction = dir.normalized;
             //gunLine.enabled = true;
@@ -106,6 +106,8 @@ public class EnemyManager : MonoBehaviour
                         anim.SetBool("isShooting", true);
                         audioSource.Play();
                         isShooting = true;
+                        //gunLine.SetPosition(1, shootHit.point);
+
                     }
                     else if (timeSinceLastShot < shootingSpeed)
                     {
@@ -146,4 +148,10 @@ public class EnemyManager : MonoBehaviour
         timeSinceLastShot = 0;
         isShooting = false;
     }
+
+    //void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawWireSphere(transform.position, maxDistTargeting);
+    //}
 }

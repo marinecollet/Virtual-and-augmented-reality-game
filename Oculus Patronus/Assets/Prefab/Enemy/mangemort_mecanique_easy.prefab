@@ -351,7 +351,7 @@ MonoBehaviour:
   spellShot: {fileID: 1474511498535222, guid: cc5f605705ff81c46be77a69d32017ba, type: 2}
   spellShotSpawn: {fileID: 4308302021723526}
   shotSpeed: 2
-  maxDistTargeting: 40
+  maxDistTargeting: 30
   minDistRotating: 0
   audioSource: {fileID: 82426189189995738}
   life: 1
