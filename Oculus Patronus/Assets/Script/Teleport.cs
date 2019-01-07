@@ -42,7 +42,7 @@ public class Teleport : MonoBehaviour
         }
     }**/
 
-    void Start()
+    void Awake()
     {
         mesh = GetComponent<MeshFilter>().mesh;
         g = Mathf.Abs(Physics2D.gravity.y);

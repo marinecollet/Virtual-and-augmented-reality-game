@@ -54,8 +54,8 @@ public class Choose_wand : MonoBehaviour {
             grabbed = true;
             canGrab = false;
             collider_sort.SetActive(true);
-            Vector3 position = new Vector3(0f,0.07f,0.07f);
-            Quaternion rotation = Quaternion.Euler(-45, 0, 0);
+            Vector3 position = new Vector3(0f,0.04f,0.07f);
+            Quaternion rotation = Quaternion.Euler(-35, 0, 0);
             wand.gameObject.transform.localPosition = position;
             wand.gameObject.transform.localRotation = rotation;
             rig = wand.gameObject.GetComponent<Rigidbody>();

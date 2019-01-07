@@ -22,11 +22,14 @@ public class WandManager : MonoBehaviour {
     private Quaternion q = Quaternion.identity ;
     public GameObject shield;
     public ParticleSystem holohomoraParticulePrefab;
-
-
+    public Transform laveShot;
     //private Dictionary<string,List<SpellColliderType>> colliderDictio;
 
     private SpellTree spellTree;
+    private Color colorBegin;
+    private Color colorEnd;
+    private float Delay = 0.75f;
+    private float colorDt;
 
     [HideInInspector]
     public bool isReading;
@@ -59,7 +62,8 @@ public class WandManager : MonoBehaviour {
     void Awake () {
         spellCollider = this.GetComponent<Collider>();
         gunLine = GetComponent<LineRenderer>();
-
+        colorBegin = gunLine.material.color;
+        colorEnd = new Color(colorBegin.r, colorBegin.g, colorBegin.b, 0f);
         isReading = false;
         movableMask = LayerMask.GetMask("Movable");
         doorMask = LayerMask.GetMask("Door");
@@ -114,9 +118,9 @@ public class WandManager : MonoBehaviour {
                 //Debug.Log("rayCast");
                 //Debug.Log(transform.position);
 
-                //gunLine.enabled = true;
-                //gunLine.SetPosition(0, transform.position);
-
+                gunLine.enabled = true;
+                gunLine.SetPosition(0, transform.position);
+                colorDt = 0f;
                 shootRay.origin = transform.position;
                 shootRay.direction = transform.forward;
 
@@ -134,13 +138,13 @@ public class WandManager : MonoBehaviour {
                     }
 
                     //Set the second position of the line renderer to the point the raycast hit.
-                    //gunLine.SetPosition(1, shootHit.point);
+                    gunLine.SetPosition(1, shootHit.point);
                 }
                 else
                 {
                     //Debug.Log("rayCast fail");
                     //... set the second position of the line renderer to the fullest extent of the gun's range.
-                    //gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
+                    gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
                 }
                 break;
             case "holohomora":
@@ -155,7 +159,7 @@ public class WandManager : MonoBehaviour {
                 if (Physics.Raycast(shootRay, out shootHit, range, doorMask))
                 {
                     DoorManager doorManager = shootHit.collider.GetComponent<DoorManager>();
-                    if(doorManager!= null)
+                    if (doorManager != null)
                     {
                         holohomoraParticule.transform.position = shootHit.point;
                         holohomoraParticule.transform.rotation = Quaternion.LookRotation(-shootRay.direction);
@@ -197,6 +201,7 @@ public class WandManager : MonoBehaviour {
         // Enable the line renderer and set it's first position to be the end of the gun.
     }
 
+
     public void OnTriggerEnter(Collider other)
     {
 
@@ -209,7 +214,7 @@ public class WandManager : MonoBehaviour {
         if (other.gameObject.CompareTag("restart"))
         {
             Debug.Log("restart");
-            SceneManager.LoadScene("SceneSansCasque autonome");
+            SceneManager.LoadScene("SceneCasque 1");
         }
     }
 
@@ -307,17 +312,23 @@ public class WandManager : MonoBehaviour {
             
         }
 
-        /**if (OVRInput.GetUp(OVRInput.RawButton.LThumbstick))
+        if (gunLine.enabled)
         {
-            if (teleport.getRight() && mesh_teleport.enabled == true)
+            //colorDt += Time.deltaTime;
+            //Debug.Log("a " + colorDt);
+            //if (colorDt > Delay)
+            //{
+            //    gunLine.enabled = false;
+            //}
+
+            colorDt += Time.deltaTime;
+            Color c = Color.Lerp(colorBegin, colorEnd, (colorDt / Delay));
+            gunLine.material.color = c;
+            if (c.a <= 0)
             {
-                position = teleport.getPosition();
-                player.position = new Vector3(position.x, player.position.y, position.z);
-                camera.position = new Vector3(position.x, camera.position.y, position.z);
+                gunLine.enabled = false;
             }
-        }**/
+        }
     }
-
-
 }
 

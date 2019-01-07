@@ -23,6 +23,7 @@ public class Maze : MonoBehaviour
     public MazeEnemy[] mazeEnemiesPrefab;
     [Range(0, 100)]
     public int[] numberOfEnemyType;
+    public MazeEntity[] entityPrefab;
 
     //probability
     //[Range(0f, 1f)]
@@ -34,6 +35,7 @@ public class Maze : MonoBehaviour
     public MazeRoomSettings[] roomSettings;
     public MazeEntity targetTransform;
     public MazeTarget targetPrefab;
+    public int maxEntity;
 
     private List<MazeRoom> rooms = new List<MazeRoom>();
     private MazeCell[,] cells;
@@ -60,6 +62,7 @@ public class Maze : MonoBehaviour
         PlaceLight();
         AddEnemy();
         CreateTarget();
+        AddObject();
 
         Transform obj = Instantiate(roof);
         obj.parent = transform;
@@ -315,6 +318,21 @@ public class Maze : MonoBehaviour
                 entityMap[i, j] = 3;
                 entityOnMap++;
             }
+        }
+    }
+
+    private void AddObject()
+    {
+        for(int nbEntity = 0; nbEntity < maxEntity; nbEntity++)
+        {
+            MazeEntity targetTransformInstance = Instantiate(entityPrefab[Random.Range(0, entityPrefab.Length)]) as MazeEntity;
+            IntVector2 cellCoordinate;
+            do
+            {
+                cellCoordinate = RandomCoordinates;
+            } while (entityMap[cellCoordinate.x, cellCoordinate.z] != 0);
+            targetTransformInstance.Initialize(cells[cellCoordinate.x, cellCoordinate.z]);
+            entityMap[cellCoordinate.x, cellCoordinate.z] = 2;
         }
     }
 }

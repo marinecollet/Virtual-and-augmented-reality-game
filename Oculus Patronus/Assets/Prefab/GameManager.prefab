@@ -56,5 +56,10 @@ MonoBehaviour:
   levels:
   - {fileID: 11400000, guid: 728407674edcea94a9451ad076af0457, type: 2}
   - {fileID: 11400000, guid: daab6e36e66039c4f89a0731fd135ffc, type: 2}
+  - {fileID: 11400000, guid: 56e9d703709665449a3a03fcbd3b9f1c, type: 2}
+  - {fileID: 11400000, guid: 208d89a7b192ec3478d13e0cb7fc07ab, type: 2}
+  - {fileID: 11400000, guid: f22d22d7c750b864184ebc90306e7619, type: 2}
+  - {fileID: 11400000, guid: 38e11d109ab43ce479c3e60760b0c7a8, type: 2}
+  - {fileID: 11400000, guid: d1a33c08512569047911d84cf2729de4, type: 2}
   player: {fileID: 0}
-  in_game: {fileID: 245583479159752276, guid: 4ef25b42b981a5d48a9b34f8393a4b0a, type: 2}
+  dirLight: {fileID: 0}

@@ -15,10 +15,11 @@ public class EnemyManager : MonoBehaviour
     public AudioSource audioSource;
     public int life;
 
+    private ParticleSystem particule;
     private bool isShooting;
-    private bool isTargeting;
-    private float timeSinceLastShot;
-    private Player player;
+    public bool isTargeting;
+    public float timeSinceLastShot;
+    public Player player;
     private Ray shootRay;
     private RaycastHit shootHit;
     private LineRenderer gunLine;
@@ -33,6 +34,7 @@ public class EnemyManager : MonoBehaviour
         player = null;
         gunLine = GetComponent<LineRenderer>();
         anim = GetComponent<Animator>();
+        particule = GetComponent<ParticleSystem>();
     }
 
     //// Update is called once per frame
@@ -42,6 +44,7 @@ public class EnemyManager : MonoBehaviour
         if (collider.tag == "Shot")
         {
             Destroy(collider.gameObject);
+            particule.Play();
             life--;
             if(life == 0)
             {
@@ -77,6 +80,7 @@ public class EnemyManager : MonoBehaviour
         if (Game_Manager.isSetup && player == null)
         {
             player = GameObject.FindWithTag("Player").GetComponent<Player>();
+            //player = GameObject.Find("OVRCameraRig").GetComponent<Player>();
         }
 
         if (isTargeting && player != null)
@@ -89,7 +93,7 @@ public class EnemyManager : MonoBehaviour
 
             if (Physics.Raycast(shootRay, out shootHit, maxDistTargeting))
             {
-                if (shootHit.collider.gameObject.CompareTag("Player"))
+                if (shootHit.collider.gameObject.CompareTag("Player") || shootHit.collider.gameObject.CompareTag("SortDetection"))
                 {
                     if (timeSinceLastShot > shootingSpeed && !isShooting)
                     {
@@ -138,7 +142,7 @@ public class EnemyManager : MonoBehaviour
         projectile.transform.position = spellShotSpawn.position;
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
-        rb.velocity = (new Vector3(player.transform.position.x, player.transform.position.y + Random.Range(0.06f, 0.1f), player.transform.position.z) - spellShotSpawn.position).normalized * shotSpeed;
+        rb.velocity = (new Vector3(player.transform.position.x, player.transform.position.y + Random.Range(1.2f, 1.7f), player.transform.position.z) - spellShotSpawn.position).normalized * shotSpeed;
         timeSinceLastShot = 0;
         isShooting = false;
     }
