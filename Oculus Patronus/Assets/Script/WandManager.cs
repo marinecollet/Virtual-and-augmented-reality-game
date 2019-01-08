@@ -22,6 +22,7 @@ public class WandManager : MonoBehaviour {
     private Quaternion q = Quaternion.identity ;
     public GameObject shield;
     public ParticleSystem holohomoraParticulePrefab;
+    public GameObject spellShot;
     //private Dictionary<string,List<SpellColliderType>> colliderDictio;
 
     private SpellTree spellTree;
@@ -48,8 +49,6 @@ public class WandManager : MonoBehaviour {
 
     ChangeParent changedParentGameObject = null;
     
-    GameObject spellShot;
-    
 
     [System.Serializable]
     public struct SpellDefinition
@@ -67,7 +66,6 @@ public class WandManager : MonoBehaviour {
         movableMask = LayerMask.GetMask("Movable");
         doorMask = LayerMask.GetMask("Door");
 
-        spellShot = Resources.Load("Sphere") as GameObject;
 
         spellTree = new SpellTree();
 

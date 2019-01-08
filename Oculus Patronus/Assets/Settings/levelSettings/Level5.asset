@@ -21,5 +21,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0b1f96183f5d22948971cf694a9e992c, type: 2}
   - {fileID: 11400000, guid: f85c87dc258e5164e9ac370f164af9cc, type: 2}
   size:
-    x: 30
-    z: 30
+    x: 25
+    z: 25

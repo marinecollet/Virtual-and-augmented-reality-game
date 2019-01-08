@@ -5647,6 +5647,7 @@ MonoBehaviour:
   shield: {fileID: 0}
   holohomoraParticulePrefab: {fileID: 198227691124290386, guid: 06769c38d222c364cbb7c56344ed37cb,
     type: 2}
+  spellShot: {fileID: 1474511498535222, guid: 6f7273a50fb0a794d8d6e55980aabd8e, type: 2}
   isReading: 0
 --- !u!114 &114322164078606020
 MonoBehaviour:
@@ -5731,6 +5732,7 @@ MonoBehaviour:
   shield: {fileID: 0}
   holohomoraParticulePrefab: {fileID: 198227691124290386, guid: 06769c38d222c364cbb7c56344ed37cb,
     type: 2}
+  spellShot: {fileID: 1474511498535222, guid: d41472331cb00cf40a5cf865102803bd, type: 2}
   isReading: 0
 --- !u!114 &114531867590655120
 MonoBehaviour:
@@ -5763,6 +5765,7 @@ MonoBehaviour:
   shield: {fileID: 0}
   holohomoraParticulePrefab: {fileID: 198227691124290386, guid: 06769c38d222c364cbb7c56344ed37cb,
     type: 2}
+  spellShot: {fileID: 1474511498535222, guid: d41472331cb00cf40a5cf865102803bd, type: 2}
   isReading: 0
 --- !u!114 &114546280090091024
 MonoBehaviour:
@@ -5872,6 +5875,7 @@ MonoBehaviour:
   shield: {fileID: 0}
   holohomoraParticulePrefab: {fileID: 198227691124290386, guid: 06769c38d222c364cbb7c56344ed37cb,
     type: 2}
+  spellShot: {fileID: 1474511498535222, guid: d41472331cb00cf40a5cf865102803bd, type: 2}
   isReading: 0
 --- !u!114 &114852522930930942
 MonoBehaviour:
