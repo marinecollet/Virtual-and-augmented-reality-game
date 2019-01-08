@@ -215,7 +215,7 @@ Transform:
   m_GameObject: {fileID: 1394026949659570}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_Children:
   - {fileID: 4711941563300414}
   - {fileID: 4049959921923116}
@@ -363,7 +363,7 @@ MonoBehaviour:
   shootingSpeed: 3
   spellShot: {fileID: 1474511498535222, guid: cc5f605705ff81c46be77a69d32017ba, type: 2}
   spellShotSpawn: {fileID: 4036422102821882}
-  shotSpeed: 2
+  shotSpeed: 3
   maxDistTargeting: 30
   minDistRotating: 0
   audioSource: {fileID: 82836045999895810}

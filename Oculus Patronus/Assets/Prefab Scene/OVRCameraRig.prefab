@@ -133,7 +133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1421671178772392
 GameObject:
   m_ObjectHideFlags: 1
@@ -1270,7 +1270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeAtStart: 10
-  lifeLosePerShot: 0
+  lifeLosePerShot: 1
   damageOverlay: {fileID: 114748432452142994}
   wand: {fileID: 0}
   spellDetector: {fileID: 4570710811921462}

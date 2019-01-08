@@ -15,6 +15,7 @@ TagManager:
   - Target
   - restart
   - quit
+  - Hand
   layers:
   - Default
   - TransparentFX

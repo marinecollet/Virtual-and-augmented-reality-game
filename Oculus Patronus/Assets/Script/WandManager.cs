@@ -22,7 +22,6 @@ public class WandManager : MonoBehaviour {
     private Quaternion q = Quaternion.identity ;
     public GameObject shield;
     public ParticleSystem holohomoraParticulePrefab;
-    public Transform laveShot;
     //private Dictionary<string,List<SpellColliderType>> colliderDictio;
 
     private SpellTree spellTree;

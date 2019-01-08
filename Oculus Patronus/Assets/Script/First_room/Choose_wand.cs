@@ -26,6 +26,7 @@ public class Choose_wand : MonoBehaviour {
             canGrab = true;
         }
 
+
         if (other.gameObject.CompareTag("quit"))
         {
             Debug.Log("quit");
@@ -63,7 +64,7 @@ public class Choose_wand : MonoBehaviour {
             rig.useGravity = false;
             objectDisappear.SetActive(false);
             wand.gameObject.GetComponent<WandManager>().enabled = true;
-            this.GetComponent<SphereCollider>().enabled = false;
+            //this.GetComponent<SphereCollider>().enabled = false;
             SortDetection.SetActive(true);
 }
 

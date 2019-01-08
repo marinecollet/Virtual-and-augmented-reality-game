@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     public virtual void moveToFirstRoomAfter()
     {
         FirstRoom.gameObject.SetActive(true);
-        this.move(new Vector3(28, 0, 0));
+        this.move(new Vector3(27.5f, 0, 0));
         life = lifeAtStart;
         isDead = false;
     }
