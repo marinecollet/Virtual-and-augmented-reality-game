@@ -344,12 +344,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8481fe5b1f8190d44a92372d3dff4ca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotSpeed: 0
   shootingSpeed: 5
   spellShot: {fileID: 1474511498535222, guid: 51e7122db72490946bda24caea4fd26b, type: 2}
   spellShotSpawn: {fileID: 4582990761105590}
   shotSpeed: 0.5
-  maxDistTargeting: 0.25
+  maxDistTargeting: 0.4
   minDistRotating: 0.01
   audioSource: {fileID: 82809219355734310}
   isTargeting: 0
@@ -372,7 +371,7 @@ LineRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1364422521800488}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

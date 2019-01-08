@@ -56,7 +56,7 @@ MonoBehaviour:
   size:
     x: 10
     z: 10
-  centerPosition: {x: 0, y: -0.9, z: -2}
+  centerPosition: {x: 0, y: -0.9, z: 2}
   scale: 0.1
   cellPrefab: {fileID: 114371738435711358, guid: dd1037a0230f05c4ebe468a199888888,
     type: 2}

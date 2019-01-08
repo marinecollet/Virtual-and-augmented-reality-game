@@ -6,6 +6,8 @@ using UnityEngine;
 public class SpellCollider : MonoBehaviour {
 
     public SpellColliderType colliderList;
+    public Material emptyMat;
+    public Material fillMat;
 
     private Renderer render;
 
@@ -22,11 +24,11 @@ public class SpellCollider : MonoBehaviour {
             other.GetComponent<WandManager>().AddSortCollider(colliderList);
         }
 
-        render.material.color = Color.green;
+        render.material = fillMat;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        render.material.color = Color.gray;
+        render.material = emptyMat;
     }
 }

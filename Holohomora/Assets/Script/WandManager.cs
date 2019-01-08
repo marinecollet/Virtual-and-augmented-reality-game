@@ -18,8 +18,8 @@ public class WandManager : MonoBehaviour {
     public float shotSpeed;
     public Transform spellShotSpawn;
     public ParticleSystem holohomoraParticulePrefab;
-    public Renderer[] cursorRenderer;
-    public Material defaultCursortMaterial, movingCursorMaterial;
+    //public Renderer[] cursorRenderer;
+    //public Material defaultCursortMaterial, movingCursorMaterial;
     //private Dictionary<string,List<SpellColliderType>> colliderDictio;
 
     private SpellTree spellTree;
@@ -130,9 +130,9 @@ public class WandManager : MonoBehaviour {
                 if (!teleport.getRight() && mesh_teleport.activeSelf)
                 {
                     Debug.Log("nop");
-                    foreach (Renderer mat in cursorRenderer) {
-                        mat.material = defaultCursortMaterial;
-                    }
+                    //foreach (Renderer mat in cursorRenderer) {
+                    //    mat.material = defaultCursortMaterial;
+                    //}
 
                     mesh_teleport.SetActive(false);
                     // SortDetection.SetActive(true);
@@ -157,10 +157,10 @@ public class WandManager : MonoBehaviour {
                         //Set the second position of the line renderer to the point the raycast hit.
                         //gunLine.SetPosition(1, shootHit.point);
                     }
-                    foreach (Renderer mat in cursorRenderer)
-                    {
-                        mat.material = defaultCursortMaterial;
-                    }
+                    //foreach (Renderer mat in cursorRenderer)
+                    //{
+                    //    mat.material = defaultCursortMaterial;
+                    //}
                     teleport.validTp();
                     //SortDetection.SetActive(true);
                 }
@@ -169,10 +169,10 @@ public class WandManager : MonoBehaviour {
                     Debug.Log("mb");
                     //SortDetection.SetActive(false);
                     mesh_teleport.SetActive(true);
-                    foreach (Renderer mat in cursorRenderer)
-                    {
-                        mat.material = movingCursorMaterial;
-                    }
+                    //foreach (Renderer mat in cursorRenderer)
+                    //{
+                    //    mat.material = movingCursorMaterial;
+                    //}
                 }
                 break;
             case "holohomora":
