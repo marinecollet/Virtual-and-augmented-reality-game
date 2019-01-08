@@ -29,13 +29,11 @@ public class Choose_wand : MonoBehaviour {
 
         if (other.gameObject.CompareTag("quit"))
         {
-            Debug.Log("quit");
             Application.Quit();
         }
 
         if (other.gameObject.CompareTag("restart"))
         {
-            Debug.Log("restart");
             SceneManager.LoadScene("SceneCasque 1");
         }
     }

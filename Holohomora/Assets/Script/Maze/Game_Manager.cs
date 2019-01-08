@@ -73,7 +73,7 @@ public class Game_Manager : MonoBehaviour {
         }
     }
 
-    void RestartGame()
+    public void RestartGame()
     {
         StopAllCoroutines();
         Destroy(mazeInstance.gameObject);
