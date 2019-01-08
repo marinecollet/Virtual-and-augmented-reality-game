@@ -10,29 +10,21 @@ public class Game_Manager : MonoBehaviour {
     public Maze mazePrefab;
     public Player dobbyInstance;
     public Socket socketPrefab;
-    //public float scale;
+    public LevelSettings[] levels;
 
     private Maze mazeInstance;
     //private Player dobbyInstance;
     private Socket socketInstance;
+    private int actualLevel;
 
-
-    KeywordRecognizer keywordRecognizer = null;
-    Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
 
     void Start ()
     {
-        keywords.Add("Next", () =>
-        {
-            // Call the OnReset method on every descendant object.
-            RestartGame();
-        });
-        keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
-
+        actualLevel = 1;
         StartCoroutine(BeginGame());
     }
-	
-	void Update ()
+
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -43,32 +35,34 @@ public class Game_Manager : MonoBehaviour {
     IEnumerator BeginGame()
     {
         mazeInstance = Instantiate(mazePrefab) as Maze;
-        yield return StartCoroutine(mazeInstance.Generate());
-        float tempX = Random.Range(0, mazeInstance.size.x);
-        float tempZ = Random.Range(0, mazeInstance.size.z);
-        //Vector3 dobbySpawn = new Vector3((tempX - mazeInstance.size.x * 0.5f + 0.5f) * 0.1f + 0, -1, (tempZ - mazeInstance.size.z * 0.5f + 0.5f) * 0.1f + 2);
-        //dobbyInstance = Instantiate(dobbyPrefab) as Player;
+        if (levels != null && levels.Length > 0)
+        {
+            yield return StartCoroutine(mazeInstance.Generate(levels[actualLevel - 1]));
+        }
+        else
+        {
+            yield return StartCoroutine(mazeInstance.Generate());
+        }
+
         dobbyInstance.gameObject.SetActive(true);
         dobbyInstance.SetLocation(mazeInstance.GetCell(new IntVector2(0,0)));
         socketInstance = Instantiate(socketPrefab) as Socket;
         socketInstance.SetLocation(mazeInstance.GetCell(new IntVector2(mazeInstance.size.x-1, mazeInstance.size.z-1)));
+        if (levels != null && levels.Length > 0)
+        {
+            socketInstance.SetMaterial(levels[actualLevel - 1].targetMat);
+        }
         isSetup = true;
-        //dobbyInstance = Instantiate(dobby) as GameObject;
-        //dobbyInstance.transform.position = dobbySpawn;
     }
 
     private void FixedUpdate()
     {
-        if(dobbyInstance && socketInstance)
+        if(isSetup)//dobbyInstance && socketInstance)
         {
             if (dobbyInstance.currentCell == socketInstance.currentCell && isSetup)
             {
-                // Check if we have reached beyond 2 seconds.
-                // Subtracting two is more accurate over time than resetting to zero.
-                
                 isSetup = false;
                 StartNextLevel();
-                
             }
         }
     }
@@ -86,8 +80,10 @@ public class Game_Manager : MonoBehaviour {
         }
         isSetup = false;
         AStar.Reset();
+        actualLevel = 1;
         StartCoroutine(BeginGame());
     }
+
     void StartNextLevel()
     {
         StopAllCoroutines();
@@ -102,13 +98,31 @@ public class Game_Manager : MonoBehaviour {
         
         AStar.Reset();
 
+        if (levels != null && levels.Length > 0)
+        {
+            actualLevel++;
+            if (actualLevel > levels.Length)
+            {
+                Debug.Log("win");
+                actualLevel--;
+                //dobbyInstance.win();
+            }
+        }
+
         StartCoroutine(GenerateNextLevel());
     }
 
     IEnumerator GenerateNextLevel()
     {
         mazeInstance = Instantiate(mazePrefab) as Maze;
-        yield return StartCoroutine(mazeInstance.Generate());
+        if (levels != null && levels.Length > 0)
+        {
+            yield return StartCoroutine(mazeInstance.Generate(levels[actualLevel - 1]));
+        }
+        else
+        {
+            yield return StartCoroutine(mazeInstance.Generate());
+        }
         Debug.Log("done");
         dobbyInstance.gameObject.SetActive(true);
         dobbyInstance.SetLocation(mazeInstance.GetCell(new IntVector2(0, 0)));

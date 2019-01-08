@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b0bf6f60de0bd84fb0bf29b34a658eb, type: 3}
+  m_Name: Diagon Alley
+  m_EditorClassIdentifier: 
+  floorMaterial: {fileID: 2100000, guid: c9e1c5a99155a5c47be405faaf1eb494, type: 2}
+  wallMaterial: {fileID: 2100000, guid: 3d267932e67964b4095615a0fffd35aa, type: 2}
+  wallPrefabs:
+  - {fileID: 114699878219549792, guid: 24c4efbe2466c054fab545cb27518828, type: 2}
+  - {fileID: 114765860782398544, guid: c42573861b3d0e1499cc417b1ef7f5e0, type: 2}
+  - {fileID: 114765860782398544, guid: fe23b7df58c46534297451e46b8f9949, type: 2}
+  - {fileID: 114765860782398544, guid: 6241c59fc066aac4b9ae014d1f828405, type: 2}
+  - {fileID: 114765860782398544, guid: a84fff42a78ccdd4ebb41c0430324f45, type: 2}
+  nbIterationOfWalls: f401000001000000010000000100000001000000

@@ -66,15 +66,16 @@ MonoBehaviour:
     type: 2}
   doorPrefab: {fileID: 114831030067984944, guid: 0152cad236bcab549b13b108b9a90c5b,
     type: 2}
-  ennemyPrefab: {fileID: 114520052698084144, guid: c1c37530d462a464abcc99296c73a292,
+  enemyPrefab: {fileID: 114520052698084144, guid: c1c37530d462a464abcc99296c73a292,
     type: 2}
+  lightPrefab: {fileID: 114052750746126678, guid: e5b402b7fe69fb84e877e1d63f0479cb,
+    type: 2}
+  lightOffset: 2
   numberOfEnemy: 3
   doorProbability: 0.1
   roomSettings:
-  - floorMaterial: {fileID: 2100000, guid: d75479ecb30a58c409bcec604bb4fb69, type: 2}
-    wallMaterial: {fileID: 2100000, guid: 629c23380e49b044e8185ea4a647f147, type: 2}
-  - floorMaterial: {fileID: 2100000, guid: 9f6a7a39c905b4d4784910c6d620f552, type: 2}
-    wallMaterial: {fileID: 2100000, guid: a16a2efc1a28ffd4d92a0901840b7772, type: 2}
+  - {fileID: 11400000, guid: 72907377d95c2ce438064d7194ab7532, type: 2}
+  - {fileID: 11400000, guid: 62f23214468fb014a97353368f31d333, type: 2}
 --- !u!114 &114650555643188378
 MonoBehaviour:
   m_ObjectHideFlags: 1

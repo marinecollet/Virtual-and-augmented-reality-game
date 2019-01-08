@@ -834,6 +834,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114104862142972212, guid: e005fec759b17414abbcc10d1b19951b,
+        type: 2}
+      propertyPath: levels.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4350570936866790, guid: e005fec759b17414abbcc10d1b19951b, type: 2}
       propertyPath: m_LocalPosition.x
       value: -1.3925934
@@ -871,6 +876,48 @@ Prefab:
       propertyPath: dobbyInstance
       value: 
       objectReference: {fileID: 1650808022}
+    - target: {fileID: 114104862142972212, guid: e005fec759b17414abbcc10d1b19951b,
+        type: 2}
+      propertyPath: levels.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c0de4b0a3134d946868793c54953c94,
+        type: 2}
+    - target: {fileID: 114104862142972212, guid: e005fec759b17414abbcc10d1b19951b,
+        type: 2}
+      propertyPath: levels.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d64f7aef0c5eb2488be4af05cf448ce,
+        type: 2}
+    - target: {fileID: 114104862142972212, guid: e005fec759b17414abbcc10d1b19951b,
+        type: 2}
+      propertyPath: levels.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: ae40144aedcb015488c0dbeb7747eecb,
+        type: 2}
+    - target: {fileID: 114104862142972212, guid: e005fec759b17414abbcc10d1b19951b,
+        type: 2}
+      propertyPath: levels.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a42d15626dfc884ba64cd6c5f03effd,
+        type: 2}
+    - target: {fileID: 114104862142972212, guid: e005fec759b17414abbcc10d1b19951b,
+        type: 2}
+      propertyPath: levels.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7cd760766f2dc3d4eb680457209e77d0,
+        type: 2}
+    - target: {fileID: 114104862142972212, guid: e005fec759b17414abbcc10d1b19951b,
+        type: 2}
+      propertyPath: levels.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 99ec268e26cebaf4587c50cf08ae7d9f,
+        type: 2}
+    - target: {fileID: 114104862142972212, guid: e005fec759b17414abbcc10d1b19951b,
+        type: 2}
+      propertyPath: levels.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1a40e511216199e48a32c23d8ec99b5e,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e005fec759b17414abbcc10d1b19951b, type: 2}
   m_IsPrefabAsset: 0
