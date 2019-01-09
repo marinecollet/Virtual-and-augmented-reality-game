@@ -1,0 +1,27 @@
+<!-- 
+    don't touch inything except collider 
+    You can use any number of collider to create spell
+    the spell type are LEFT RIGHT TOP BOTTOM CENTER
+-->
+<spellList>
+    <shot>
+        <collider>LEFT</collider>
+        <collider>CENTER</collider>
+    </shot>
+        
+    <holohomora>
+        <collider>TOP</collider>
+        <collider>CENTER</collider>
+        <collider>BOTTOM</collider>
+    </holohomora>
+
+    <lave>
+        <collider>BOTTOM</collider>
+        <collider>CENTER</collider>
+    </lave>
+        
+    <protego>
+        <collider>LEFT</collider>
+        <collider>BOTTOM</collider>
+    </protego>
+</spellList>

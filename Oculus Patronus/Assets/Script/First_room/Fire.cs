@@ -22,7 +22,7 @@ public class Fire : MonoBehaviour
         yield return new WaitForSeconds(3);
         if(player is PlayerSansCasque)
         {
-            player.move(new Vector3(0.5f, 1.6f, 0.5f));
+            player.move(new Vector3(0.5f, 0, 0.5f));
             player.spellDetector.gameObject.SetActive(true);
         }
         else

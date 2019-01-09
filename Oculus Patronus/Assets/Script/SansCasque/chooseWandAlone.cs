@@ -74,8 +74,7 @@ public class chooseWandAlone : MonoBehaviour {
             Debug.Log("disppear");
             wand.gameObject.GetComponent<WandManagerAlone>().enabled = true;
             this.gameObject.SetActive(false);
-            //this.GetComponent<BoxCollider>().enabled = false;
-            //this.GetComponent<Renderer>().enabled = false;
+            wand.GetComponent<WandManagerAlone>().initSpell();
         }
 
     }

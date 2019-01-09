@@ -21,20 +21,10 @@ public class PlayerSansCasque : Player
     private float yaw = 0.0f;
     private float pitch = 0.0f;
 
-    //public override IEnumerator moveToFirstRoomAfter()
-    //{
-    //    yield return new WaitForSeconds(3);
-    //    FirstRoom.gameObject.SetActive(true);
-    //    this.move(new Vector3(28,1.6f,0));
-    //    life = lifeAtStart;
-    //    isDead = false;
-    //    fakeHands.SetActive(true);
-    //}
-
     public override void moveToFirstRoomAfter()
     {
         FirstRoom.gameObject.SetActive(true);
-        this.move(new Vector3(28, 1.6f, 0));
+        this.move(new Vector3(28, 0f, 0));
         life = lifeAtStart;
         isDead = false;
         fakeHands.SetActive(true);

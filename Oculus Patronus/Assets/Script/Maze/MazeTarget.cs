@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MazeTarget : MazeEntity {
+public class MazeTarget : MonoBehaviour {
 
     public Game_Manager gameManager;
 

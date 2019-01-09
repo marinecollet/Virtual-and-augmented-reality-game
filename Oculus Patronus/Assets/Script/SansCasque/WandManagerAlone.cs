@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -47,6 +48,11 @@ public class WandManagerAlone : MonoBehaviour {
     {
         public string spellName;
         public SpellColliderType[] colliderOrder;
+        public SpellDefinition(string name, SpellColliderType[] col)
+        {
+            spellName = name;
+            colliderOrder = col;
+        }
     }
 
     void Awake()
@@ -62,15 +68,78 @@ public class WandManagerAlone : MonoBehaviour {
 
         spellTree = new SpellTree();
 
-        foreach (SpellDefinition spell in spellList)
-        {
-            spellTree.addSpell(new List<SpellColliderType>(spell.colliderOrder), spell.spellName);
-        }
+        //foreach (SpellDefinition spell in spellList)
+        //{
+        //    spellTree.addSpell(new List<SpellColliderType>(spell.colliderOrder), spell.spellName);
+        //}
 
         failSpellParticule = GetComponent<ParticleSystem>();
         holohomoraParticule = Instantiate(holohomoraParticulePrefab) as ParticleSystem;
     }
+    public void initSpell()
+    {
+        Game_Manager gm = GameObject.Find("GameManager").GetComponent<Game_Manager>();
+        Debug.Log(gm.spell);
+        if (gm.spell != null)
+        {
+            Debug.Log("arf");
+            spellList.Clear();
 
+            List<string> list = gm.spell.Shot.Collider;
+            SpellColliderType[] array = new SpellColliderType[list.Count];
+            int i = 0;
+            foreach (string s in list)
+            {
+                Debug.Log(s);
+                array[i] = (SpellColliderType)Enum.Parse(typeof(SpellColliderType), s);
+                i++;
+            }
+            SpellDefinition def = new SpellDefinition("shot", array);
+            spellList.Add(def);
+
+            list = gm.spell.Holohomora.Collider;
+            array = new SpellColliderType[list.Count];
+            i = 0;
+            foreach (string s in list)
+            {
+                Debug.Log(s);
+                array[i] = (SpellColliderType)Enum.Parse(typeof(SpellColliderType), s);
+                i++;
+            }
+            def = new SpellDefinition("holohomora", array);
+            spellList.Add(def);
+
+            list = gm.spell.Lave.Collider;
+            array = new SpellColliderType[list.Count];
+            i = 0;
+            foreach (string s in list)
+            {
+                Debug.Log(s);
+                array[i] = (SpellColliderType)Enum.Parse(typeof(SpellColliderType), s);
+                i++;
+            }
+            def = new SpellDefinition("lave", array);
+            spellList.Add(def);
+
+            list = gm.spell.Protego.Collider;
+            array = new SpellColliderType[list.Count];
+            i = 0;
+            foreach (string s in list)
+            {
+                Debug.Log(s);
+                array[i] = (SpellColliderType)Enum.Parse(typeof(SpellColliderType), s);
+                i++;
+            }
+            def = new SpellDefinition("protego", array);
+            spellList.Add(def);
+            Debug.Log("def " + spellList.Count);
+        }
+        foreach (SpellDefinition spell in spellList)
+        {
+            spellTree.addSpell(new List<SpellColliderType>(spell.colliderOrder), spell.spellName);
+        }
+        spellTree.DebugTree();
+    }
     public void AddSortCollider(SpellColliderType col)
     {
         if (this.spellTree.advance(col))
