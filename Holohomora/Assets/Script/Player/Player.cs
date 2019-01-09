@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public int lifeAtStart;
     public int lifeLosePerShot;
     public bool isDead { get; private set; }
-    public Teleport teleport;
+    private Teleport teleport;
 
     private MazeCell targetCell;
     private MazeCell movingCell;
@@ -102,7 +102,9 @@ public class Player : MonoBehaviour
         }
         else
         {
-            teleport.unValidTp();
+            teleport = GameObject.Find("Launch Mesh(Clone)").GetComponent<Teleport>();
+            if(teleport != null)
+                teleport.unValidTp();
         }
     }
 
@@ -115,8 +117,6 @@ public class Player : MonoBehaviour
             {
                 if(mc != null)
                 {
-                    //Renderer rend2 = mc.transform.GetChild(0).GetComponent<Renderer>();
-                    //rend2.material.color = Color.blue;
                     Vector3 pos = new Vector3(mc.transform.position.x, -0.8f, mc.transform.position.z);
                     Gizmos.DrawCube(pos, Vector3.one * 0.02f);
                 }
@@ -139,6 +139,10 @@ public class Player : MonoBehaviour
     public void reset()
     {
         life = lifeAtStart;
+        haveWin = false;
+        isMoving = false;
+        isHurt = false;
+        isDead = false;
     }
 
     public void win()

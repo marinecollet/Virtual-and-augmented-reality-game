@@ -6,7 +6,6 @@ using UnityEngine;
 public class WandManager : MonoBehaviour {
 
     // Use this for initialization
-
     public float range = 100f;
     public List<SpellDefinition> spellList;
     public Transform cameraTransform;
@@ -14,13 +13,9 @@ public class WandManager : MonoBehaviour {
 
     public Teleport teleport;
     public GameObject mesh_teleport;
-    //public GameObject SortDetection;
     public float shotSpeed;
     public Transform spellShotSpawn;
     public ParticleSystem holohomoraParticulePrefab;
-    //public Renderer[] cursorRenderer;
-    //public Material defaultCursortMaterial, movingCursorMaterial;
-    //private Dictionary<string,List<SpellColliderType>> colliderDictio;
 
     private SpellTree spellTree;
     private ParticleSystem holohomoraParticule;
@@ -31,7 +26,6 @@ public class WandManager : MonoBehaviour {
 
     Ray shootRay;
     RaycastHit shootHit;
- //   ParticleSystem spellParticles;
     LineRenderer gunLine;
     int movableMask, doorMask;
 
@@ -120,27 +114,18 @@ public class WandManager : MonoBehaviour {
                 else
                 {
                     rb.velocity = wand.transform.forward * shotSpeed;
-                    //gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
                 }
 
                 break;
             case "tp":
                 if (!teleport.getRight() && mesh_teleport.activeSelf)
                 {
-                    Debug.Log("nop");
-                    //foreach (Renderer mat in cursorRenderer) {
-                    //    mat.material = defaultCursortMaterial;
-                    //}
-
                     mesh_teleport.SetActive(false);
-                    // SortDetection.SetActive(true);
                 }
                 else if (teleport.getRight() && mesh_teleport.activeSelf)
                 {
-                    Debug.Log("yep");
                     shootRay.origin = cameraTransform.position;
                     shootRay.direction = cameraTransform.forward;
-                    //gunLine.SetPosition(0, spellShotSpawn.position);
 
                     if (Physics.Raycast(shootRay, out shootHit, range))
                     {
@@ -151,40 +136,20 @@ public class WandManager : MonoBehaviour {
                             Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
                             player.SetTargetCell(mc);
                         }
-
-                        //Set the second position of the line renderer to the point the raycast hit.
-                        //gunLine.SetPosition(1, shootHit.point);
                     }
-                    //foreach (Renderer mat in cursorRenderer)
-                    //{
-                    //    mat.material = defaultCursortMaterial;
-                    //}
                     teleport.validTp();
-                    //SortDetection.SetActive(true);
                 }
                 else
                 {
-                    Debug.Log("mb");
-                    //SortDetection.SetActive(false);
                     mesh_teleport.SetActive(true);
-                    //foreach (Renderer mat in cursorRenderer)
-                    //{
-                    //    mat.material = movingCursorMaterial;
-                    //}
                 }
                 break;
             case "holohomora":
-                //Set the shootRay so that it starts at the end of the wand and points forward.
-
-                //gunLine.enabled = true;
-                //gunLine.SetPosition(0, transform.position);
-
                 shootRay.origin = cameraTransform.position;
                 shootRay.direction = cameraTransform.forward;
 
                 if (Physics.Raycast(shootRay, out shootHit, range,doorMask))
                 {
-                    //if (shootHit.collider.CompareTag("Door")) { 
                         DoorManager doorManager = shootHit.collider.GetComponent<DoorManager>();
 
                         if (doorManager != null)
@@ -195,17 +160,6 @@ public class WandManager : MonoBehaviour {
                             holohomoraParticule.Play();
                             doorManager.openTheDoor();
                         }
-
-                        //Set the second position of the line renderer to the point the raycast hit.
-                        //gunLine.SetPosition(1, shootHit.point);
-                    //}
-                    //else
-                    //{
-                    //    holohomoraParticule.transform.position = shootHit.point;
-                    //    holohomoraParticule.transform.rotation = Quaternion.LookRotation(-shootRay.direction,Vector3.up);
-                    //    holohomoraParticule.startColor = Color.red;
-                    //    holohomoraParticule.Play();
-                    //}
                 }
                 else
                 {
@@ -216,9 +170,6 @@ public class WandManager : MonoBehaviour {
                         holohomoraParticule.startColor = Color.red;
                         holohomoraParticule.Play();
                     }
-                    //Debug.Log("holohomora rayCast fail");
-                    //... set the second position of the line renderer to the fullest extent of the gun's range.
-                    //gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
                 }
                 break;
             default:

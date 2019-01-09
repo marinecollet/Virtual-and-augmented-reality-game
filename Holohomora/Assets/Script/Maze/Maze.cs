@@ -23,8 +23,6 @@ public class Maze : MonoBehaviour
     [Range(0, 100)]
     public int numberOfEnemy;
 
-    //[Range(0f, 1f)]
-    //public float ennemyProbability;
     [Range(0f, 1f)]
     public float doorProbability;
 
@@ -52,7 +50,6 @@ public class Maze : MonoBehaviour
             yield return delay;
             DoNextGenerationStep(activeCells);
         }
-        //PlaceLight();
         AddEnemy();
     }
 
@@ -170,19 +167,6 @@ public class Maze : MonoBehaviour
         }
     }
 
-    //private void CreateWall(MazeCell cell, MazeCell otherCell, MazeDirection direction)
-    //{
-    //    MazeWall wall = Instantiate(wallPrefab) as MazeWall;
-    //    wall.Initialize(cell, otherCell, direction);
-    //    wall.transform.localScale = wall.transform.localScale * scale;
-    //    if (otherCell != null)
-    //    {
-    //        wall = Instantiate(wallPrefab) as MazeWall;
-    //        wall.Initialize(otherCell, cell, direction.GetOpposite());
-    //        wall.transform.localScale = wall.transform.localScale * scale;
-    //    }
-    //}
-
     private void CreateWall(MazeCell cell, MazeCell otherCell, MazeDirection direction)
     {
         int[] nbIterationOfWalls = cell.room.nbWallInRoom;
@@ -208,9 +192,7 @@ public class Maze : MonoBehaviour
             wall = Instantiate(otherCell.room.Settings.wallPrefabs[idx]) as MazeWall;
             nbIterationOfWalls[idx]++;
 
-            //wall = Instantiate(wallPrefabs[Random.Range(0, wallPrefabs.Length)]) as MazeWall;
             wall.Initialize(otherCell, cell, direction.GetOpposite());
-            //wall.transform.localScale = wall.transform.localScale * scale;
             wall.transform.localScale = new Vector3(wall.transform.localScale.x * scale, wall.transform.localScale.y * scale, wall.transform.localScale.z * scale);
         }
     }
@@ -233,7 +215,6 @@ public class Maze : MonoBehaviour
         int enemyCreated = 0;
 
         int maxEnemy = numberOfEnemy < size.x * size.z - 7 ? numberOfEnemy : size.x * size.z - 7;
-        Debug.Log(maxEnemy);
         IntVector2 start = new IntVector2(0, 0);
         IntVector2 end = new IntVector2(size.x - 1, size.z - 1);
         entityMap[0, 0] = 1;

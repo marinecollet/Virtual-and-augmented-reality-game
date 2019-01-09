@@ -13,7 +13,6 @@ public class Game_Manager : MonoBehaviour {
     public LevelSettings[] levels;
 
     private Maze mazeInstance;
-    //private Player dobbyInstance;
     private Socket socketInstance;
     private int actualLevel;
 
@@ -57,7 +56,7 @@ public class Game_Manager : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if(isSetup)//dobbyInstance && socketInstance)
+        if(isSetup)
         {
             if (dobbyInstance.currentCell == socketInstance.currentCell && isSetup)
             {
@@ -74,6 +73,9 @@ public class Game_Manager : MonoBehaviour {
             Destroy(mazeInstance.gameObject);
         dobbyInstance.reset();
         dobbyInstance.gameObject.SetActive(false);
+        GameObject tar = GameObject.Find("target(Clone)");
+        if (tar != null)
+            tar.GetComponent<Renderer>().enabled = false;
 
         if (socketInstance != null)
         {

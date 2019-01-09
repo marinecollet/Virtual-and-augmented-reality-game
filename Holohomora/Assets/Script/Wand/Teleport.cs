@@ -47,15 +47,11 @@ public class Teleport : MonoBehaviour
         shootRay.origin = cameraTransform.position + cameraTransform.forward*0.1f;
         shootRay.direction = cameraTransform.forward;
 
-        
-        //MakeArcMesh(CalculateArcArray());
-
         if (Physics.Raycast(shootRay, out shootHit, distance))
         {
             gunLine.enabled = true;
             gunLine.SetPosition(0, spellShotSpawn.position);
             if (shootHit.collider.gameObject.layer == groundLayer) { 
-                //renderer.material = Resources.Load("Correct_zone", typeof(Material)) as Material;
                 right = true;
                 position = shootHit.point;
 
@@ -68,15 +64,12 @@ public class Teleport : MonoBehaviour
                 pos.y = position.y + 0.001f;
                 pos.z = position.z;
                 target.transform.localPosition = pos;
-                Debug.Log("oui "+pos);
                 gunLine.material = lineMaterials[0];
                 gunLine.SetPosition(1, shootHit.point);
 
             }
             else
             {
-                //Debug.Log("nop " + shootHit.collider.gameObject.name + " " + groundLayer);
-                //renderer.material = Resources.Load("Bad_zone", typeof(Material)) as Material;
                 right = false;
                 if (targetRenderer.enabled)
                 {
@@ -88,8 +81,6 @@ public class Teleport : MonoBehaviour
         }
         else
         {
-            //renderer.material = Resources.Load("Bad_zone", typeof(Material)) as Material;
-            //Debug.Log("non ");
             if (targetRenderer.enabled)
             {
                 targetRenderer.enabled = false;
@@ -114,7 +105,6 @@ public class Teleport : MonoBehaviour
 
     public void validTp()
     {
-        //targetRenderer.enabled = false;
         this.gameObject.SetActive(false);
     }
 

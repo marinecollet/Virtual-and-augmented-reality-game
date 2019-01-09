@@ -8,8 +8,12 @@ public class Page_right : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Wand"))
+        if (other.gameObject.CompareTag("Wand") || other.gameObject.CompareTag("Shot"))
         {
+            if (other.gameObject.CompareTag("Shot"))
+            {
+                Destroy(other.gameObject);
+            }
             Renderer renderer = GetComponent<SkinnedMeshRenderer>();
             string name_renderer = renderer.material.name;
             Debug.Log(name_renderer);

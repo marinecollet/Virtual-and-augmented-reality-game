@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MazeDoor : MazePassage
 {
-    public bool isOpen;// { get; set; }
+    public bool isOpen;
 
     public void Awake()
     {

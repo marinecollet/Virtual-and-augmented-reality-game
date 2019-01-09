@@ -17,7 +17,6 @@ public class SpellCollider : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Enter" + other.gameObject.tag);
 
         if (other.gameObject.CompareTag("Wand"))
         {

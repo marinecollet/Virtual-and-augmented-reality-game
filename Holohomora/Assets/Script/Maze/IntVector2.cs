@@ -41,7 +41,6 @@ public struct IntVector2
     public float distance(IntVector2 b)
     {
         IntVector2 c = this - b;
-        //return Mathf.Abs(c.x) + Mathf.Abs(c.z);
         return Mathf.Sqrt(Mathf.Pow(c.x, 2) + Mathf.Pow(c.z, 2));
     }
 }

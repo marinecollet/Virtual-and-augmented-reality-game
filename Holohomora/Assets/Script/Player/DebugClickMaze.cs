@@ -12,7 +12,6 @@ public class DebugClickMaze : MonoBehaviour {
     {
         Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
         MazeCell parent = this.transform.GetComponentInParent<MazeCell>();
-        //Debug.Log("target "+parent.coordinates.x + " " + parent.coordinates.z);
         player.SetTargetCell(parent);
     }
 }

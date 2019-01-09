@@ -17,8 +17,6 @@ public class HandTracking : MonoBehaviour
     }
 
     public GameObject TrackingObject;
-    //public TextMesh StatusText;
-    public TextMesh StatusText;
 
     private HashSet<uint> trackedHands = new HashSet<uint>();
     private Dictionary<uint, GameObject> trackingObject = new Dictionary<uint, GameObject>();
@@ -38,58 +36,6 @@ public class HandTracking : MonoBehaviour
         gestureRecognizer.HoldCompleted += GestureRecognizer_HoldCompleted;
         gestureRecognizer.HoldCanceled += GestureRecognizer_HoldCanceled;
         gestureRecognizer.StartCapturingGestures();
-        StatusText.text = "READY\n";
-    }
-
-    void ChangeObjectColor(GameObject obj, Color color)
-    {
-        var rend = obj.GetComponentInChildren<Renderer>();
-        if (rend)
-        {
-            rend.material.color = color;
-            Debug.LogFormat("Color Change: {0}", color.ToString());
-        }
-    }
-
-
-    private void GestureRecognizer_HoldStarted(HoldStartedEventArgs args)
-    {
-        uint id = args.source.id;
-        //StatusText.text = "HoldStarted - Kind:" + args.source.kind.ToString() + " - Id:" + id;
-        if (trackingObject.ContainsKey(activeId))
-        {
-            //StatusText.text += "-TRACKED";
-        }
-    }
-
-    private void GestureRecognizer_HoldCompleted(HoldCompletedEventArgs args)
-    {
-        uint id = args.source.id;
-        //StatusText.text = "HoldCompleted - Kind:" + args.source.kind.ToString() + " - Id:" + id;
-        if (trackingObject.ContainsKey(activeId))
-        {
-            //StatusText.text += "-TRACKED";
-        }
-    }
-
-    private void GestureRecognizer_HoldCanceled(HoldCanceledEventArgs args)
-    {
-        uint id = args.source.id;
-        //StatusText.text = "HoldCanceled - Kind:" + args.source.kind.ToString() + " - Id:" + id;
-        if (trackingObject.ContainsKey(activeId))
-        {
-            //StatusText.text += "-TRACKED";
-        }
-    }
-
-    private void GestureRecognizerTapped(TappedEventArgs args)
-    {
-        uint id = args.source.id;
-        //StatusText.text = "Tapped - - Kind:" + args.source.kind.ToString() + " - Id:" + id;
-        if (trackingObject.ContainsKey(activeId))
-        {
-            //StatusText.text += "-TRACKED";
-        }
     }
 
 
@@ -105,12 +51,7 @@ public class HandTracking : MonoBehaviour
         trackedHands.Add(id);
         activeId = id;
 
-        //var obj = Instantiate(TrackingObject) as GameObject;
-        //obj.transform.SetParent(this.transform);
-        //obj.transform.localRotation = this.transform.localRotation;
-
         var obj = Instantiate(TrackingObject) as GameObject;
-        //obj.transform.SetParent(this.transform.GetChild(0));
 
         obj.transform.localRotation = this.transform.GetChild(0).rotation;
 
@@ -119,13 +60,12 @@ public class HandTracking : MonoBehaviour
 
         if (args.state.sourcePose.TryGetPosition(out pos))
         {
-            obj.transform.localPosition = pos;// + new Vector3(0f, 0f, 0.5f);
+            obj.transform.localPosition = pos;
         }
-        StatusText.text = "obj created at pos " + pos;
 
 
         trackingObject.Add(id, obj);
-     
+
     }
 
     private void InteractionManager_InteractionSourceUpdated(InteractionSourceUpdatedEventArgs args)
@@ -141,9 +81,8 @@ public class HandTracking : MonoBehaviour
                 if (args.state.sourcePose.TryGetPosition(out pos))
                 {
                     trackingObject[id].transform.localRotation = this.transform.GetChild(0).rotation;
-                    trackingObject[id].transform.localPosition = pos;// + new Vector3(0f,0f,0.5f);
+                    trackingObject[id].transform.localPosition = pos;
                 }
-                StatusText.text = "obj updated at pos " + pos;
                 if (args.state.sourcePose.TryGetRotation(out rot))
                 {
                     trackingObject[id].transform.rotation = rot;
@@ -171,11 +110,54 @@ public class HandTracking : MonoBehaviour
             var obj = trackingObject[id];
             trackingObject.Remove(id);
             Destroy(obj);
-            StatusText.text = "obj destroyed \n" + StatusText.text;
         }
         if (trackedHands.Count > 0)
         {
             activeId = trackedHands.First();
+        }
+    }
+
+
+
+    void ChangeObjectColor(GameObject obj, Color color)
+    {
+        var rend = obj.GetComponentInChildren<Renderer>();
+        if (rend)
+        {
+            rend.material.color = color;
+            Debug.LogFormat("Color Change: {0}", color.ToString());
+        }
+    }
+
+    private void GestureRecognizer_HoldStarted(HoldStartedEventArgs args)
+    {
+        uint id = args.source.id;
+        if (trackingObject.ContainsKey(activeId))
+        {
+        }
+    }
+
+    private void GestureRecognizer_HoldCompleted(HoldCompletedEventArgs args)
+    {
+        uint id = args.source.id;
+        if (trackingObject.ContainsKey(activeId))
+        {
+        }
+    }
+
+    private void GestureRecognizer_HoldCanceled(HoldCanceledEventArgs args)
+    {
+        uint id = args.source.id;
+        if (trackingObject.ContainsKey(activeId))
+        {
+        }
+    }
+
+    private void GestureRecognizerTapped(TappedEventArgs args)
+    {
+        uint id = args.source.id;
+        if (trackingObject.ContainsKey(activeId))
+        {
         }
     }
 
