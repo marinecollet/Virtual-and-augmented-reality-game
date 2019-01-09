@@ -41,33 +41,6 @@ public class HandTracking : MonoBehaviour
         StatusText.text = "READY\n";
     }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        var obj = Instantiate(TrackingObject) as GameObject;
-    //        obj.transform.SetParent(this.transform.GetChild(0));
-    //        obj.transform.localRotation = Quaternion.identity;
-
-    //        Vector3 pos;
-
-
-    //        obj.transform.localPosition = new Vector3(0.0f, -0.1f, 0.6f);
-
-    //        StatusText.text = "obj created at pos " + new Vector3(0.0f, -0.1f, 0.6f) + "\n" + StatusText.text;
-
-
-    //        trackingObject.Add(1, obj);
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.C))
-    //    {
-    //        var obj = trackingObject[1];
-    //        trackingObject.Remove(1);
-    //        Destroy(obj);
-    //        StatusText.text = "obj destroyed \n" + StatusText.text;
-    //    }
-    //}
-
     void ChangeObjectColor(GameObject obj, Color color)
     {
         var rend = obj.GetComponentInChildren<Renderer>();
@@ -128,6 +101,7 @@ public class HandTracking : MonoBehaviour
         {
             return;
         }
+
         trackedHands.Add(id);
         activeId = id;
 
@@ -151,6 +125,7 @@ public class HandTracking : MonoBehaviour
 
 
         trackingObject.Add(id, obj);
+     
     }
 
     private void InteractionManager_InteractionSourceUpdated(InteractionSourceUpdatedEventArgs args)

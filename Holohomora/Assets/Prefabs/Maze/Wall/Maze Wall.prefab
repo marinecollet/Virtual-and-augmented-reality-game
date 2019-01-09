@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 33988708376283444}
   - component: {fileID: 23620554783577124}
   - component: {fileID: 65140189915145868}
-  - component: {fileID: 114824424515902910}
+  - component: {fileID: 114260395558608346}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Wall
@@ -127,6 +127,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114260395558608346
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1919747392287836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 745b528d6b11ffa4282edcb320ea6629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114699878219549792
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -142,14 +153,3 @@ MonoBehaviour:
   otherCell: {fileID: 0}
   direction: 0
   wall: {fileID: 4191011795364824}
---- !u!114 &114824424515902910
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1919747392287836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32458ec462bf42948b8c67ca7f9f14cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -27,7 +27,16 @@ public class Teleport : MonoBehaviour
         mesh = GetComponent<MeshFilter>().mesh;
         gunLine = GetComponent<LineRenderer>();
         groundLayer = 10;
-        target = Instantiate(targetPrefab) as Transform;
+        GameObject go = GameObject.Find("target(Clone)");
+        if(go != null)
+        {
+            target = go.GetComponent<Transform>();
+        }
+        else
+        {
+            target = Instantiate(targetPrefab) as Transform;
+        }
+        
         targetRenderer = target.GetComponent<Renderer>();
         targetRenderer.enabled = false;
         cameraTransform = Camera.main.GetComponent<Transform>();

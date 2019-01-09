@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 33415474939178612}
   - component: {fileID: 23138445055293610}
   - component: {fileID: 65719979156366460}
-  - component: {fileID: 114382084817438542}
+  - component: {fileID: 114013069122570132}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Wall
@@ -219,6 +219,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114013069122570132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1392594314188356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 745b528d6b11ffa4282edcb320ea6629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114132270887743184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,14 +245,3 @@ MonoBehaviour:
   otherCell: {fileID: 0}
   direction: 0
   wall: {fileID: 4288915170232402}
---- !u!114 &114382084817438542
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1392594314188356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32458ec462bf42948b8c67ca7f9f14cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -38,6 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4847460358483984}
   - component: {fileID: 114673107405003736}
+  - component: {fileID: 114927671897904416}
   m_Layer: 0
   m_Name: New Sirius
   m_TagString: Untagged
@@ -56,7 +57,7 @@ GameObject:
   - component: {fileID: 33778635661310528}
   - component: {fileID: 23360751229562162}
   - component: {fileID: 65511541602569764}
-  - component: {fileID: 114129586886814096}
+  - component: {fileID: 114114364977706510}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Wall
@@ -219,7 +220,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114129586886814096
+--- !u!114 &114114364977706510
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -227,7 +228,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1552483050867392}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32458ec462bf42948b8c67ca7f9f14cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 745b528d6b11ffa4282edcb320ea6629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114673107405003736
@@ -245,3 +246,14 @@ MonoBehaviour:
   otherCell: {fileID: 0}
   direction: 0
   wall: {fileID: 4589320642819590}
+--- !u!114 &114927671897904416
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1410868440739816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 745b528d6b11ffa4282edcb320ea6629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

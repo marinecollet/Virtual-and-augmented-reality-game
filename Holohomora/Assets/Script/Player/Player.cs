@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     private List<MazeCell> path;
     private int life;
 
+
+    private bool haveWin = false;
     private bool isMoving = false;
     private bool isHurt = false;
     private Animator anim;
@@ -62,7 +64,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (isMoving && !isHurt && !isDead)
+        if (isMoving && !isHurt && !isDead && !haveWin)
         {
             Vector3 dir = movingCell.transform.position - this.transform.position;
             dir.Normalize();
@@ -137,6 +139,12 @@ public class Player : MonoBehaviour
     public void reset()
     {
         life = lifeAtStart;
+    }
+
+    public void win()
+    {
+        haveWin = true;
+        anim.SetBool("haveWin", true);
     }
 }
 

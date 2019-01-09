@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33760536997045976}
   - component: {fileID: 23874739479379724}
   - component: {fileID: 65262314526661020}
-  - component: {fileID: 114573084379611058}
+  - component: {fileID: 114786988069938010}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Wall
@@ -234,7 +234,7 @@ MonoBehaviour:
   otherCell: {fileID: 0}
   direction: 0
   wall: {fileID: 4569543133975838}
---- !u!114 &114573084379611058
+--- !u!114 &114786988069938010
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,6 +242,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1090383269434236}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32458ec462bf42948b8c67ca7f9f14cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 745b528d6b11ffa4282edcb320ea6629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

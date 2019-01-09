@@ -70,7 +70,8 @@ public class Game_Manager : MonoBehaviour {
     public void RestartGame()
     {
         StopAllCoroutines();
-        Destroy(mazeInstance.gameObject);
+        if(mazeInstance.gameObject != null)
+            Destroy(mazeInstance.gameObject);
         dobbyInstance.reset();
         dobbyInstance.gameObject.SetActive(false);
 
@@ -89,7 +90,7 @@ public class Game_Manager : MonoBehaviour {
         StopAllCoroutines();
         Destroy(mazeInstance.gameObject);
 
-        dobbyInstance.gameObject.SetActive(false);
+        
 
         if (socketInstance != null)
         {
@@ -103,13 +104,19 @@ public class Game_Manager : MonoBehaviour {
             actualLevel++;
             if (actualLevel > levels.Length)
             {
-                Debug.Log("win");
                 actualLevel--;
-                //dobbyInstance.win();
+                dobbyInstance.win();
+            }
+            else
+            {
+                dobbyInstance.gameObject.SetActive(false);
+                StartCoroutine(GenerateNextLevel());
             }
         }
-
-        StartCoroutine(GenerateNextLevel());
+        else
+        {
+            dobbyInstance.gameObject.SetActive(false);
+        }
     }
 
     IEnumerator GenerateNextLevel()
@@ -128,6 +135,7 @@ public class Game_Manager : MonoBehaviour {
         dobbyInstance.SetLocation(mazeInstance.GetCell(new IntVector2(0, 0)));
         socketInstance = Instantiate(socketPrefab) as Socket;
         socketInstance.SetLocation(mazeInstance.GetCell(new IntVector2(mazeInstance.size.x - 1, mazeInstance.size.z - 1)));
+        socketInstance.SetMaterial(levels[actualLevel - 1].targetMat);
         isSetup = true;
     }
 }
