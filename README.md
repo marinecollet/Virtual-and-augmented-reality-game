@@ -1,4 +1,4 @@
-# TX52-VI50
+# Virtual and augmented reality games
 
 Oculus Patronus is a virtual reality video game made with Unity for the Oculus Rift
 
