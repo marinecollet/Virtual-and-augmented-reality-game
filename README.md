@@ -8,3 +8,4 @@ Holohomora is an augmented reality video game made with Unity for the Hololens
 https://www.youtube.com/watch?v=ZQOljQRsV0c&t=2s
 
 
+3D model made on Blender:  https://github.com/marinecollet/Blender-modeling
